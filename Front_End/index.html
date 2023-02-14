@@ -5,70 +5,235 @@
     <title>Easy Car Rental</title>
     <meta content="width=device-width initial-scale=1" name="viewport">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
-    .background{
-        width: 100vw;
-        height: 75vh;
-    }
+        .background {
+            width: 100vw;
+            height: 75vh;
+        }
     </style>
 
 </head>
 <body>
-  <div class="container-fluid bg-white">
-<!--content-->
-      <div class="row position-relative">
-          <img src="assets/img/doi-luang-chiang-dao-mountains-sunrise-chiang-mai-thailand.jpg" class="img-fluid background" alt="img">
+<div class="container-fluid bg-white">
+    <!--Home-->
+    <div class="row position-relative">
+        <img src="assets/img/doi-luang-chiang-dao-mountains-sunrise-chiang-mai-thailand.jpg"
+             class="img-fluid background" alt="img">
 
-          <!--Navbar-->
-          <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-lg bg-white">
-              <div class="container-fluid row">
-                  <a class="navbar-brand col-8 ml-5" href="#">
-                      <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50" class="d-inline-block align-text-top">
-                  </a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                      <ul class="navbar-nav">
-                          <li class="nav-item ml-4 mr-4">
-                              <a class="nav-link active" aria-current="page" href="#">Home</a>
-                          </li>
-                          <li class="nav-item ml-4 mr-4">
-                              <a class="nav-link" href="#">Features</a>
-                          </li>
-                          <li class="nav-item ml-4 mr-4">
-                              <a class="nav-link" href="#">Pricing</a>
-                          </li>
-                          <li class="nav-item ml-4 mr-4">
-                              <a class="nav-link disabled">Disabled</a>
-                          </li>
-                      </ul>
-                  </div>
-<!--                  <button type="button" class="btn btn-warning">Sign in</button>-->
-              </div>
-          </nav>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-lg bg-white">
+            <div class="container-fluid row">
+                <a class="navbar-brand col-8 ml-5" href="index.html">
+                    <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50"
+                         class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ml-4 mr-4">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item ml-4 mr-4">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item ml-4 mr-4">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item ml-4 mr-4">
+                            <a class="nav-link disabled">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--                  <button type="button" class="btn btn-warning">Sign in</button>-->
+            </div>
+        </nav>
 
-          <!--Login Option Container-->
-          <form class="position-absolute bg-white p-4 shadow align-self-center" style="border-radius: 0.5rem; right: 20%;">
-              <div class="mb-3">
-                  <p class="h4">Sign in</p>
-                  <hr>
-              </div>
-              <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text" style="color: #B2BEB5; font-size: 15px">We'll never share your email with anyone else.</div>
-              </div>
-              <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
-              </div>
-              <button type="submit" class="btn btn-primary" style="background: #FB6011; border-color: #FB6011">Submit</button>
-          </form>
+        <!--Home Description-->
+        <div class="position-absolute align-self-center"
+             style="font-family: 'Josefin Sans', sans-serif; left: 5%; color: white; width: 50%;">
+            <p class="h1" style="font-size: 105px">Car Rental</p>
+            <p class="h1" style="font-size: 105px">in Sri Lanka</p>
+            <p class="h1" style="font-size: 17px">With over 5 years of experience in the industry, we strive to offer
+                the highest levels of customer service and a highly personalised service to all our customers who are on
+                the lookout for Sri Lanka car rental opportunities. With one of the largest and most modern and varied
+                fleets in Sri Lanka, Easy is known for its high levels of customer service quality and satisfaction.</p>
+        </div>
 
-      </div>
-  </div>
+        <!--Login Option Container-->
+        <form class="position-absolute bg-white p-4 shadow align-self-center"
+              style="border-radius: 0.5rem; right: 17%;">
+            <div class="mb-3">
+                <p class="h4">Sign in</p>
+                <hr>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text" style="color: #B2BEB5; font-size: 15px">We'll never share your
+                    email with anyone else.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary" style="background: #FB6011; border-color: #FB6011">Submit
+            </button>
+        </form>
+    </div>
 
+    <!--Car Details Cards-->
+    <div class="container bg-white">
+        <div class="container">
+            <p class="h1 mt-5 mb-5"
+               style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">What Are You Looking
+                For</p>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Toyota_Premio-removebg-preview.png" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Premio</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Mercedes-removebg-preview.png" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mercedes</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/BMW_i8-removebg-preview.png" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">BMW i8</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Perodua_Bezza_Prime_Sedan-removebg-preview.png"
+                                 class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Perodua Bezza Prime Sedan - Auto (2017)</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Toyota_Allion_NZT_260-removebg-preview.png" class="card-img-top"
+                                 alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Allion NZT 260</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Toyota_Axio_NKR_165-removebg-preview.png" class="card-img-top"
+                                 alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Axio NKR 165</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Toyota_Corolla_Axio_NZE141-removebg-preview.png"
+                                 class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Corolla Axio NZE141</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Toyota_Prius_C_Aqua_--removebg-preview.png" class="card-img-top"
+                                 alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Prius C Aqua - Auto</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-top" style="width: 348px; height: 245px">
+                            <img src="assets/img/car/Perodua__Daihatsu__Axia_-_Auto-removebg-preview.png"
+                                 class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Perodua (Daihatsu) Axia - Auto</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--About Us-->
+    <div class="container bg-white">
+        <p class="h1 mt-5 mb-5" style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">
+            About Us</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem beatae doloremque est eum fuga nam, officiis
+            provident quidem rem velit? Amet commodi delectus et fugiat officiis repudiandae sequi sit unde.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad animi asperiores cumque ducimus eos, error
+            illum impedit ipsum laudantium provident similique voluptatum? Blanditiis dolorem impedit iusto! Aliquid
+            esse, voluptate? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci consectetur
+            consequatur cumque doloremque error et harum itaque magnam minus molestias neque perferendis placeat
+            provident quam, reiciendis sequi tempora vitae.</p>
+        <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" class="d-inline-block align-text-top">
+    </div>
+
+    <!--Contact Us-->
+    <div class="container bg-white">
+        <p class="h1 mt-5 mb-5" style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">Contact</p>
+        
+    </div>
+</div>
 
 
 <script src="assets/js/jquery-3.6.1.min.js"></script>
