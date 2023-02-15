@@ -66,7 +66,7 @@
         </div>
 
         <!--Login Option Container-->
-        <form class="position-absolute bg-white p-4 shadow align-self-center"
+        <form id="signInForm" class="position-absolute bg-white p-4 shadow align-self-center"
               style="border-radius: 0.5rem; right: 17%;">
             <div class="mb-3">
                 <p class="h4">Sign in</p>
@@ -85,10 +85,10 @@
             </div>
             <div class="mb-3">
                 <div class="row">
-                    <button type="submit" class="btn btn-primary col-3 ml-3"
+                    <button id="btnSignIn" type="submit" class="btn btn-primary col-3 ml-3"
                             style="background: #FB6011; border-color: #FB6011">Submit
                     </button>
-                    <a class="navbar-brand col-4 align-self-center" style="font-size: 14px" href="#">Don't have an
+                    <a id="btnSignUp" class="navbar-brand col-4 align-self-center" style="font-size: 14px" href="#">Don't have an
                         account? Sign Up</a>
                 </div>
             </div>
@@ -341,6 +341,27 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
 
+    $("#btnSignIn").click(function () {
+
+        let baseURL="http://localhost:8080/easy/";
+
+        var formData = $("#signInForm").serialize();
+
+        $.ajax({
+            url: baseURL+"signIn",
+            method: "post",
+            data: formData,
+            dataType:"json",
+            success: function (res) {
+                alert(res.message);
+                loadAllCustomers();
+            },
+            error:function(error){
+                var jsObject=JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
+    });
 </script>
 </body>
 </html>
