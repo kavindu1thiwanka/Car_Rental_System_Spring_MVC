@@ -1,10 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Easy Car Rental</title>
+  <meta content="width=device-width initial-scale=1" name="viewport">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+  <style>
+    .background {
+      width: 100vw;
+      height: 75vh;
+    }
+  </style>
 </head>
 <body>
+<div class="container-fluid bg-white">
+  <!--Home-->
+  <div class="row position-relative">
+    <img src="assets/img/doi-luang-chiang-dao-mountains-sunrise-chiang-mai-thailand.jpg"
+         class="img-fluid background" alt="img">
 
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-lg bg-white">
+      <div class="container-fluid row">
+        <a class="navbar-brand col-7 ml-5" href="index.html">
+          <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50"
+               class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ml-5" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item ml-3 mr-3">
+              <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
+            </li>
+            <li class="nav-item ml-3 mr-3">
+              <a class="nav-link" href="#about_us">ABOUT US</a>
+            </li>
+            <li class="nav-item ml-3 mr-3">
+              <a class="nav-link" href="#contact_us">CONTACT</a>
+            </li>
+            <li class="nav-item ml-3 mr-3">
+              <a class="nav-link" href="#">DASHBOARD</a>
+            </li>
+            <li class="nav-item ml-3 mr-3">
+              <a class="nav-link" href="#">SIGN OUT</a>
+            </li>
+          </ul>
+        </div>
+        <!--                  <button type="button" class="btn btn-warning">Sign in</button>-->
+      </div>
+    </nav>
+
+    <!--Home Description-->
+    <div class="position-absolute align-self-center"
+         style="font-family: 'Josefin Sans', sans-serif; left: 5%; color: white; width: 50%;">
+      <p class="h1" style="font-size: 105px">Car Rental</p>
+      <p class="h1" style="font-size: 105px">in Sri Lanka</p>
+      <p class="h1" style="font-size: 17px">With over 5 years of experience in the industry, we strive to offer
+        the highest levels of customer service and a highly personalised service to all our customers who are on
+        the lookout for Sri Lanka car rental opportunities. With one of the largest and most modern and varied
+        fleets in Sri Lanka, Easy is known for its high levels of customer service quality and satisfaction.</p>
+    </div>
+
+  </div>
+
+  <!--Car Details Cards-->
+  <div class="container bg-white">
+    <div class="container">
+      <p class="h1 mt-5 mb-5" id="car_details"
+         style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">What Are You Looking
+        For</p>
+      <h1 class="h1 mb-3" style="font-family: 'Josefin Sans', sans-serif;">Luxury Cars</h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Toyota_Premio-removebg-preview.png" class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Toyota Premio</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.10000/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Mercedes-removebg-preview.png" class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Mercedes</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.18000/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/BMW_i8-removebg-preview.png" class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">BMW i8</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.18000/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1 class="h1 mb-3 mt-3" style="font-family: 'Josefin Sans', sans-serif;">Premium Cars</h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Perodua_Bezza_Prime_Sedan-removebg-preview.png"
+                   class="card-img-top" alt="...">
+            </div>
+            <div class=Luxury"card-body">
+              <h5 class="card-title">Perodua Bezza Prime Sedan - Auto (2017)</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.5500/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Toyota_Allion_NZT_260-removebg-preview.png" class="card-img-top"
+                   alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Toyota Allion NZT 260</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.5800/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Toyota_Axio_NKR_165-removebg-preview.png" class="card-img-top"
+                   alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Toyota Axio NKR 165</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.6000/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Toyota_Corolla_Axio_NZE141-removebg-preview.png"
+                   class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Toyota Corolla Axio NZE141</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.5500/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1 class="h1 mb-3 mt-3" style="font-family: 'Josefin Sans', sans-serif;">General Cars</h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Toyota_Prius_C_Aqua_--removebg-preview.png" class="card-img-top"
+                   alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Toyota Prius C Aqua - Auto</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.5000/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Perodua__Daihatsu__Axia_-_Auto-removebg-preview.png"
+                   class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Perodua (Daihatsu) Axia - Auto</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.3800/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Suzuki_Celerio_-_Auto-removebg-preview.png"
+                   class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Suzuki Celerio - Auto</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.3300/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Suzuki_Alto_K10_-_Auto-removebg-preview.png"
+                   class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Suzuki Alto K10 - Auto</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.3000/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card h-100 shadow-sm">
+            <div class="card-img-top" style="width: 348px; height: 245px">
+              <img src="assets/img/car/Suzuki_Alto_-_Premium_--removebg-preview.png"
+                   class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Suzuki Alto Premium - Manual</h5>
+              <div class="row mt-4 card-text">
+                <p class="col-7">Rs.2500/-</p>
+                <button type="submit" class="btn btn-primary col-4" style="background: #FB6011; border-color: #FB6011">Details >></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--About Us-->
+  <div class="container bg-white">
+    <p class="h1 mt-5 mb-4" id="about_us" style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">
+      WHO WE ARE</p>
+    <p> With over 05 years of experience in the industry, we strive to offer the highest levels of customer service
+      and a highly personalised service to all our customers.
+    </p>
+    <p>With one of the largest and most modern and varied fleets in Sri Lanka, our service is backed by a networked
+      front office, fully-fledged mechanical servicing and valet servicing onsite making us one of the preferred
+      providers of Sri Lanka car rentals in the island.</p>
+
+    <!--        <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" class="d-inline-block align-text-top">-->
+  </div>
+
+  <!--Contact Us-->
+  <div class="container bg-white">
+    <p class="h1 mt-5 mb-4" id="contact_us" style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">Contact</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae commodi optio placeat praesentium,
+      quas quibusdam ratione repellat suscipit? Aliquid illum ipsam laudantium maiores molestias pariatur possimus
+      saepe sint sit!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cum eos error expedita facilis in
+      itaque, magnam natus nemo
+      ratione repellendus similique, ullam veritatis. Fugit magni minus perferendis quas quibusdam! Lorem ipsum
+      dolor sit amet, consectetur
+      adipisicing elit. Alias corporis delectus dolorem eaque eius impedit, laborum mollitia neque nesciunt nulla
+      quia sint. Deserunt distinctio
+      ex exercitationem in! Laudantium officia, vel?
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="container-fluid" style="background: #1C201F">
+    <div class="row">
+      <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" class="">
+    </div>
+    <div class="row" style="width: 100%; height: 10%">
+      <a href="https://www.facebook.com/kavindu.thiwanka.925" target="_blank"><i
+              class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/kavindu.thiwank0" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/kavindu-thiwanka-762385239" target="_blank"><i
+              class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/kavindu1thiwanka" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script>
+
+</script>
 </body>
 </html>
