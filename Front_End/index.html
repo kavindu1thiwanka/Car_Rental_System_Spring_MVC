@@ -459,7 +459,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn" style="background: #FB6011; border-color: #FB6011; color: white">Save changes</button>
+                    <button id="reserveBtn" type="button" class="btn" style="background: #FB6011; border-color: #FB6011; color: white">Reserve</button>
                 </div>
             </div>
         </div>
@@ -486,9 +486,9 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
 
-    $("#btnSignIn").click(function () {
+    let baseURL = "http://localhost:8080/easy/";
 
-        let baseURL = "http://localhost:8080/easy/";
+    $("#btnSignIn").click(function () {
 
         var formData = $("#signInForm").serialize();
 
@@ -498,14 +498,20 @@
             data: formData,
             dataType: "json",
             success: function (res) {
-                $("#signInForm").css("display","none");
-                $("#dashboardNav").disable(false);
+                if (res){
+                    $("#signInForm").css("display","none");
+                    $("#dashboardNav").disable(false);
+                }
             },
             error: function (error) {
                 var jsObject = JSON.parse(error.responseText);
                 alert(jsObject.message);
             }
         });
+    });
+
+    $("#reserveBtn").click(function () {
+        alert("reserved")
     });
 </script>
 </body>
