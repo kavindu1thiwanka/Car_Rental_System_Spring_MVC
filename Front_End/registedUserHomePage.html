@@ -91,7 +91,7 @@
                                     <p class="col-12">Rs.10000/-</p>
                                     <p class="col-12" style="color:#32CD32;">Available</p>
                                 </div>
-                                <button type="button" class="btn btn-primary col-4 align-self-center" data-toggle="modal" data-target="#exampleModal"
+                                <button id="detailsBtn" type="button" class="btn btn-primary col-4 align-self-center" data-toggle="modal" data-target="#exampleModal"
                                         style="background: #FB6011; border-color: #FB601100; height: 10%">Details >>
                                 </button>
                             </div>
@@ -396,7 +396,9 @@
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
-
+    $("#detailsBtn").click(function () {
+        alert("hari");
+    })
 </script>
 </body>
 </html>

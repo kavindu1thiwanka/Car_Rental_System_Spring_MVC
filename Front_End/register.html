@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Easy Car Rental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <link rel="stylesheet" href="assets/fonts/css/all.min.css">-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-lg bg-white">
+    <div class="container-fluid row">
+        <a class="navbar-brand col-10 ml-5" href="index.html">
+            <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50"
+                 class="d-inline-block align-text-top">
+        </a>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="singInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sign In</h1>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--            form Start-->
+                <form action="#">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                        <input type="text" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="d-grid mb-3">
+                        <button type="button" class="btn btn-primary">Sign In</button>
+                        <p class="text-center mt-3">
+                            Register Now for Free by clicking <a href="register.html">Register Now</a> Button
+                        </p>
+                    </div>
+                </form>
+                <!--            form end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="container mt-5">
+    <section class="row" id="signup-form">
+        <div class="col-lg-4 bg-white m-auto rounded-top rounded-bottom" id="form-top">
+            <h2 class="text-center pt-3">Signup Now</h2>
+            <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
+
+            <!--            form Start-->
+            <form action="#">
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Name">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                    <input type="text" class="form-control" placeholder="Contact Number">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+                    <input type="text" class="form-control" placeholder="Address">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input type="text" class="form-control" placeholder="Email">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-list-numeric"></i></span>
+                    <input type="text" class="form-control" placeholder="Nic Number">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-file"></i></span>
+                    <input type="file" class="form-control" placeholder="Nic Photo Upload here">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Conform Password">
+                </div>
+                <div class="d-grid mb-3">
+                    <button type="button" class="btn btn-primary">SignUp Now</button>
+                    <p class="text-center text-muted mt-2">When You Register by Clicking Signup Button, You Agree to our
+                        <a href="#">Terms and Conditions</a>and <a href="#">Privacy Policy</a></p>
+
+                    <p class="text-center">
+                        Already Have an Account ? <a data-toggle="modal" data-target="#singInModal">Login Here</a>
+                    </p>
+                </div>
+            </form>
+            <!--            form end-->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer">
+            <div class="footer mt-2">
+                <p>@ All CopyRights Reserved 2023</p>
+            </div>
+        </div>
+    </footer>
+</main>
+<script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>
