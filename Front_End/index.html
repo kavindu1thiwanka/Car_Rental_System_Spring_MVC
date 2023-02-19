@@ -421,24 +421,24 @@
 
     $("#btnSignIn").click(function () {
 
-        // let baseURL = "http://localhost:8080/easy/";
-        //
-        // var formData = $("#signInForm").serialize();
-        //
-        // $.ajax({
-        //     url: baseURL + "signIn",
-        //     method: "post",
-        //     data: formData,
-        //     dataType: "json",
-        //     success: function (res) {
-        //         alert(res.message);
-        //         loadAllCustomers();
-        //     },
-        //     error: function (error) {
-        //         var jsObject = JSON.parse(error.responseText);
-        //         alert(jsObject.message);
-        //     }
-        // });
+        let baseURL = "http://localhost:8080/easy/";
+
+        var formData = $("#signInForm").serialize();
+
+        $.ajax({
+            url: baseURL + "signIn",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            success: function (res) {
+                alert(res.message);
+                loadAllCustomers();
+            },
+            error: function (error) {
+                var jsObject = JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
 
         // alert("hari");
     });
