@@ -464,7 +464,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="reserveBtn" type="button" class="btn" style="background: #FB6011; border-color: #FB6011; color: white">Reserve</button>
+                    <button id="reserveBtn" type="button" class="btn" disabled style="background: #FB6011; border-color: #FB6011; color: white">Reserve</button>
                 </div>
             </div>
         </div>
@@ -487,7 +487,7 @@
         </div>
     </div>
 </footer>
-<script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
 
@@ -505,7 +505,8 @@
             success: function (res) {
                 if (res){
                     $("#signInForm").css("display","none");
-                    $("#dashboardNav").disable(false);
+                    $("#dashboardNav").disabled(false);
+                    $("#reserveBtn").disabled(false)
                 }
             },
             error: function (error) {
@@ -513,6 +514,7 @@
                 alert(jsObject.message);
             }
         });
+
     });
 
     $("#reserveBtn").click(function () {

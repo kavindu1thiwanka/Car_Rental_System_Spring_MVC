@@ -1,12 +1,15 @@
 package lk.ijse.easyCar.config;
 
+import lk.ijse.easyCar.advisor.AppWideExceptionHandler;
+import lk.ijse.easyCar.controller.HomePageController;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"lk.ijse.easyCar.controller"})
+@ComponentScan(basePackageClasses = {HomePageController.class, AppWideExceptionHandler.class})
 public class WebAppConfig {
+
 
 }

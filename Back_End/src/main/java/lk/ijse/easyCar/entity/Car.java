@@ -15,13 +15,14 @@ import javax.persistence.Id;
 @ToString
 public class Car {
     @Id
-    private String registrationNum;
-    private String brand;
+    private String registrationNo;
+    private String carBrand;
     private String carType;
-    private int passengers;
+    private int numberOfPassengers;
+    private String transmissionType;
     private String fuelType;
     private double dailyPrice;
     private double monthlyPrice;
-    private int extraKM;
+    private double priceForExtraKM;
     private String color;
 }
