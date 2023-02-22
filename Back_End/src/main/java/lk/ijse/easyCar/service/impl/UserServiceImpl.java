@@ -29,4 +29,12 @@ public class UserServiceImpl implements UserService {
     public ArrayList<UserDTO> getAllCustomers() {
         return mapper.map(userRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
     }
+
+    @Override
+    public void deleteCustomer(String userID) {
+        if (!userRepo.existsById(userID)){
+            throw new RuntimeException("Wrong ID..Please enter valid id..!");
+        }
+        userRepo.deleteById(userID);
+    }
 }

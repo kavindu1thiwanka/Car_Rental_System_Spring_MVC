@@ -1,13 +1,11 @@
 package lk.ijse.easyCar.controller;
 
 import lk.ijse.easyCar.service.CarService;
+import lk.ijse.easyCar.service.DriverService;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -18,6 +16,8 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private CarService carService;
+    @Autowired
+    private DriverService driverService;
 
     @GetMapping(path = "/user")
     public ResponseUtil getAllCustomers(){
@@ -28,4 +28,16 @@ public class AdminController {
     public ResponseUtil getAllCars(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,carService.getAllCars());
     }
+
+    @GetMapping(path = "/driver")
+    public ResponseUtil getAllDrivers(){
+        return new ResponseUtil("OK","Successfully Loaded. :" ,driverService.getAllDrivers());
+    }
+    @DeleteMapping(path = "/user",params = {"userID"})
+    public ResponseUtil deleteCustomer(@RequestParam String userID){
+        userService.deleteCustomer(userID);
+        System.out.println(userID);
+        return new ResponseUtil("OK","Successfully Deleted. :"+userID ,null);
+    }
+
 }

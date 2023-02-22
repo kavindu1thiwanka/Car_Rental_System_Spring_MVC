@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface UserService {
     void checkLogin(UserDTO userDTO);
     ArrayList<UserDTO> getAllCustomers();
+    void deleteCustomer(String userID);
 }
