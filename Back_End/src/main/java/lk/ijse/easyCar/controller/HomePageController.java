@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/home")
 public class HomePageController {
+
     @Autowired
     private UserService userService;
 

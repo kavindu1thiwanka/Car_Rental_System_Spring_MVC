@@ -5,7 +5,12 @@ import lk.ijse.easyCar.repo.UserRepo;
 import lk.ijse.easyCar.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;

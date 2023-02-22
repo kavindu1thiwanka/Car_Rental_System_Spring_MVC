@@ -17,6 +17,6 @@ public class Driver {
     @Id
     private String driverId;
     private String driverName;
-    private String driverContact;
+    private int driverContact;
     private String availability;
 }
