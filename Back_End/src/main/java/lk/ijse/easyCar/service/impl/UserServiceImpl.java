@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.service.impl;
 
+import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.repo.UserRepo;
 import lk.ijse.easyCar.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -13,7 +14,7 @@ public class UserServiceImpl implements UserService {
     private ModelMapper mapper;
 
     @Override
-    public void searchLogin() {
+    public void checkLogin(UserDTO userDTO) {
 
     }
 }

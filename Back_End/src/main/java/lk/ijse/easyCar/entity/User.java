@@ -24,4 +24,5 @@ public class User {
     private int userContact;
     @Id
     private String email;
+    private String role;
 }

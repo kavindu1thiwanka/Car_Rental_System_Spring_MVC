@@ -1,5 +1,8 @@
 package lk.ijse.easyCar.config;
 
+import lk.ijse.easyCar.repo.CarRepo;
+import lk.ijse.easyCar.repo.UserRepo;
+import lk.ijse.easyCar.service.impl.CarServiceImpl;
 import lk.ijse.easyCar.service.impl.UserServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +12,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(JPAConfig.class)
-@ComponentScan(basePackageClasses = {UserServiceImpl.class})
+@ComponentScan(basePackageClasses = {UserServiceImpl.class, CarServiceImpl.class, UserRepo.class, CarRepo.class})
 public class WebRootConfig {
     @Bean
     public ModelMapper modelMapper(){

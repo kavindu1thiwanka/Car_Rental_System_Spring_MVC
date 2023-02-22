@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Id;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -16,4 +18,5 @@ public class UserDTO {
     private String userNICNo;
     private int userContact;
     private String email;
+    private String role;
 }

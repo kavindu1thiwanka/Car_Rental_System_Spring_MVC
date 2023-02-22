@@ -458,6 +458,8 @@
                                     <img src="assets/icon/painting.png" style="height: 30px;width: 30px;" alt="icon">
                                 </div>
                                 <p id="colorOnModalDetails" class="h7 col-3">Color</p>
+                                <p class="h7 col-4" style="font-family: 'Josefin Sans', sans-serif;">Return Date :</p>
+                                <input class="col-3" type="date" id="returnDate" name="Return Date"7>
                             </div>
                         </div>
                     </div>
@@ -498,7 +500,7 @@
         var formData = $("#signInForm").serialize();
 
         $.ajax({
-            url: baseURL + "home/login",
+            url: baseURL + "home",
             method: "post",
             data: formData,
             dataType: "json",

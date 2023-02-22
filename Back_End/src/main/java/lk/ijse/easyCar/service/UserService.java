@@ -1,5 +1,7 @@
 package lk.ijse.easyCar.service;
 
+import lk.ijse.easyCar.dto.UserDTO;
+
 public interface UserService {
-    void searchLogin();
+    void checkLogin(UserDTO userDTO);
 }
