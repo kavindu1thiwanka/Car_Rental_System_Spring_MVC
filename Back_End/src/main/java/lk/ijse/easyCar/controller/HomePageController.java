@@ -19,5 +19,4 @@ public class HomePageController {
         return new ResponseUtil("OK","Successfully Loaded. :" ,null);
     }
 
-
 }

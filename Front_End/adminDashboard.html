@@ -228,8 +228,8 @@
 
 
                 <!--  booking table-->
-                <div class="col-8 overflow-auto">
-                    <table class="table shadow">
+                <div class="col-8">
+                    <table class="table shadow overflow-auto">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">RegNo</th>
@@ -247,20 +247,6 @@
                         </tr>
                         </thead>
                         <tbody id="tblCar">
-                        <tr>
-                            <th scope="row">KL-1234</th>
-                            <td>Suzuki Alto</td>
-                            <td>Genaral</td>
-                            <td>4</td>
-                            <td>Petrol</td>
-                            <td>Manual</td>
-                            <td>White</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>100</td>
-                            <td class="text-success">Good</td>
-                            <td class="text-success">Yes</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -328,14 +314,6 @@
                         </tr>
                         </thead>
                         <tbody id="tblCustomer">
-                        <tr>
-                            <th scope="row">CS-001</th>
-                            <td>Saman Kumara</td>
-                            <td>721/C, Galle</td>
-                            <td>200113203389</td>
-                            <td>contact@gmail.com</td>
-                            <td>0788899144</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -394,13 +372,6 @@
                         </tr>
                         </thead>
                         <tbody id="tblDriver">
-                        <tr>
-                            <th scope="row">DR-001</th>
-                            <td>B3203389</td>
-                            <td>Saman Kumara</td>
-                            <td>0788899144</td>
-                            <td class="text-success">Available</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -420,6 +391,12 @@
 <script src="assets/js/bootstrap.min.js"></script>
 
 <script>
+
+    let baseURL = "http://localhost:8080/easy/";
+
+    loadAllCustomers();
+    loadAllCar();
+
     $("#dashboardNav").click(function (){
         $("#dashboardPage").css("display" , "block");
         $("#carPage").css("display", "none");
@@ -448,61 +425,98 @@
         $("#driverPage").css("display", "block");
     });
 
-    $("#tblCustomer>tr").click(function () {
-        let cusName = $(this).children(":eq(1)").text();
-        let cusAddress = $(this).children(":eq(2)").text();
-        let cusNic = $(this).children(":eq(3)").text();
-        let cusEmail = $(this).children(":eq(4)").text();
-        let cusContact = $(this).children(":eq(5)").text();
-        // console.log(id, name, address, salary);
+    function loadAllCustomers() {
+        $("#tblCustomer").empty();
+        $.ajax({
+            url: baseURL+"admin/user",
+            dataType: "json",
+            success: function (resp) {
+                for (let cus of resp.data) {
+                    var row = '<tr><th scope="row">' + cus.userID + '</th><td>' + cus.userName + '</td><td>' + cus.userAddress + '</td><td>' + cus.userNICNo + '</td><td>' + cus.email + '</td><td>' + cus.userContact + '</td></tr>';
+                    $("#tblCustomer").append(row);
+                }
+                bindRowClickEventsUser();
+            }
+        });
+    }
 
-        //setting table details values to text fields
-        $('#txtcus_nic').val(cusNic);
-        $('#txtcus_name').val(cusName);
-        $('#txtcus_address').val(cusAddress);
-        $('#txtcus_contact').val(cusContact);
-        $('#txtcus_email').val(cusEmail);
+    function bindRowClickEventsUser() {
+        $("#tblCustomer>tr").click(function () {
+            let cusName = $(this).children(":eq(1)").text();
+            let cusAddress = $(this).children(":eq(2)").text();
+            let cusNic = $(this).children(":eq(3)").text();
+            let cusEmail = $(this).children(":eq(4)").text();
+            let cusContact = $(this).children(":eq(5)").text();
+            // console.log(id, name, address, salary);
 
-    });
+            //setting table details values to text fields
+            $('#txtcus_nic').val(cusNic);
+            $('#txtcus_name').val(cusName);
+            $('#txtcus_address').val(cusAddress);
+            $('#txtcus_contact').val(cusContact);
+            $('#txtcus_email').val(cusEmail);
+
+        });
+    }
+
+    function loadAllCar() {
+        $("#tblCar").empty();
+        $.ajax({
+            url: baseURL+"admin/car",
+            dataType: "json",
+            success: function (resp) {
+                for (let car of resp.data) {
+                    var row = '<tr><th scope="row">' + car.registrationNo + '</th><td>' + car.carBrand + '</td><td>' + car.carType + '</td><td>' + car.numberOfPassengers + '</td><td>' + car.fuelType + '</td><td>' + car.transmissionType + '</td><td>' + car.color + '</td><td>' + car.dailyPrice + '</td><td>' + car.monthlyPrice + '</td><td>' + car.priceForExtraKM + '</td><td class="text-success">' + car.status + '</td><td class="text-success">' + car.available + '</td></tr>';
+                    $("#tblCar").append(row);
+                }
+                bindRowClickEventsCar();
+            }
+        });
+    }
+
+    function bindRowClickEventsCar() {
+        $("#tblCar>tr").click(function (){
+            let carReg = $(this).find("th:eq(0)").text();
+            let carBrand =$(this).find("td:eq(0)").text();
+            let carType = $(this).find("td:eq(1)").text();
+            let carPas = $(this).find("td:eq(2)").text();
+            let carFuel = $(this).find("td:eq(3)").text();
+            let carTransmission = $(this).find("td:eq(4)").text();
+            let carColor = $(this).find("td:eq(5)").text();
+            let carDay = $(this).find("td:eq(6)").text();
+            let carMonth = $(this).find("td:eq(7)").text();
+            let carKm = $(this).find("td:eq(8)").text();
+
+            $('#regno').val(carReg);
+            $('#make').val(carBrand);
+            $('#category').val(carType);
+            $('#noOfPassengers').val(carPas);
+            $('#fuel').val(carFuel);
+            $('#transmission').val(carTransmission);
+            $('#color').val(carColor);
+            $('#priceDay').val(carDay);
+            $('#priceMonth').val(carMonth);
+            $('#priceKm').val(carKm);
+        });
+    }
+
+    function bindRowClickEventsDriver() {
+        $("#tblDriver>tr").click(function () {
+            let drId = $(this).find("th:eq(0)").text();
+            let drName = $(this).find("td:eq(1)").text();
+            let drLic = $(this).find("td:eq(0)").text();
+            let drContact = $(this).find("td:eq(2)").text();
+            let drAvail = $(this).find("td:eq(3)").text();
 
 
-    $("#tblCar>tr").click(function (){
-        let carReg = $(this).find("th:eq(0)").text();
-        let carBrand =$(this).find("td:eq(0)").text();
-        let carType = $(this).find("td:eq(1)").text();
-        let carPas = $(this).find("td:eq(2)").text();
-        let carFuel = $(this).find("td:eq(3)").text();
-        let carTransmission = $(this).find("td:eq(4)").text();
-        let carColor = $(this).find("td:eq(5)").text();
-        let carDay = $(this).find("td:eq(6)").text();
-        let carMonth = $(this).find("td:eq(7)").text();
-        let carKm = $(this).find("td:eq(8)").text();
+            $('#dr_lic').val(drLic);
+            $('#dr_name').val(drName);
+            $('#dr_contact').val(drContact);
 
-        $('#regno').val(carReg);
-        $('#make').val(carBrand);
-        $('#category').val(carType);
-        $('#noOfPassengers').val(carPas);
-        $('#fuel').val(carFuel);
-        $('#transmission').val(carTransmission);
-        $('#color').val(carColor);
-        $('#priceDay').val(carDay);
-        $('#priceMonth').val(carMonth);
-        $('#priceKm').val(carKm);
-    });
-
-    $("#tblDriver>tr").click(function () {
-        let drId = $(this).find("th:eq(0)").text();
-        let drName = $(this).find("td:eq(1)").text();
-        let drLic = $(this).find("td:eq(0)").text();
-        let drContact = $(this).find("td:eq(2)").text();
-        let drAvail = $(this).find("td:eq(3)").text();
+        });
+    }
 
 
-        $('#dr_lic').val(drLic);
-        $('#dr_name').val(drName);
-        $('#dr_contact').val(drContact);
-
-    });
 
     $("#btnSaveCus").click(function (){
         let formCusData = $("#fromCustomer").serialize();

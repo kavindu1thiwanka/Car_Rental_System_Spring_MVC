@@ -20,6 +20,6 @@ public class CarDTO {
     private double monthlyPrice;
     private double priceForExtraKM;
     private String color;
-    private boolean available;
+    private String available;
     private String status;
 }
