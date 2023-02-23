@@ -33,11 +33,5 @@ public class AdminController {
     public ResponseUtil getAllDrivers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,driverService.getAllDrivers());
     }
-    @DeleteMapping(path = "/user",params = {"userID"})
-    public ResponseUtil deleteCustomer(@RequestParam String userID){
-        userService.deleteCustomer(userID);
-        System.out.println(userID);
-        return new ResponseUtil("OK","Successfully Deleted. :"+userID ,null);
-    }
 
 }

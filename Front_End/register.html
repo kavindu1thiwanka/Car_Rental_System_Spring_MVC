@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Easy Car Rental</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <link rel="stylesheet" href="assets/fonts/css/all.min.css">-->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
 </head>
@@ -25,41 +25,48 @@
             <h2 class="text-center pt-3">Signup Now</h2>
             <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
 
-            <form class="row" action="#">
+            <form id="signUpForm">
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Name">
+                    <input id="nameInput" type="text" class="form-control" placeholder="Name">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                    <input type="text" class="form-control" placeholder="Contact Number">
+                    <input id="contactInput" type="text" class="form-control" placeholder="Contact Number">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-address-book"></i></span>
-                    <input type="text" class="form-control" placeholder="Address">
+                    <input id="addressInput" type="text" class="form-control" placeholder="Address">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input id="emailInput" type="text" class="form-control" placeholder="Email">
                 </div>
                 <div class="col-12 input-group mb-3">
-                    <span class="input-group-text"><i class="fa fa-list-numeric"></i></span>
-                    <input type="text" class="form-control" placeholder="Nic Number">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <select id="roleInput" class="form-control" id="role" >
+                        <option>User</option>
+                        <option>Driver</option>
+                    </select>
+                </div>
+                <div class="col-12 input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input id="nicNumInput" type="text" class="form-control" placeholder="Nic Number or License Number">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-file"></i></span>
-                    <input type="file" class="form-control" placeholder="Nic Photo Upload here">
+                    <input id="imgInput" type="file" class="form-control" placeholder="Nic or License Photo Upload here">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input id="pwdInput" type="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Confirm Password">
+                    <input id="confirmPwdInput" type="password" class="form-control" placeholder="Confirm Password">
                 </div>
                 <div class="col-12 mb-3">
-                    <button type="button" class="btn" style="background-color: #FB6011; color:white;">Sign Up</button>
+                    <button id="signUpBtn" type="button" class="btn col-12" style="background-color: #FB6011; color:white;">Sign Up</button>
                     <p class="text-center text-muted mt-2">When You Register by Clicking Signup Button, You Agree to our
                         <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
 
@@ -81,5 +88,10 @@
 </main>
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script>
+    $('#signUpBtn').click(function () {
+
+    });
+</script>
 </body>
 </html>

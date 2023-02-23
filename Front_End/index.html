@@ -79,12 +79,12 @@
                 <hr>
             </div>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Username</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="emailInput" class="form-label">Username</label>
+                <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="pwdInput" class="form-label">Password</label>
+                <input type="password" class="form-control" id="pwdInput">
             </div>
             <div class="mb-3">
                 <div class="row">
@@ -489,7 +489,7 @@
         </div>
     </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
 
@@ -497,25 +497,25 @@
 
     $("#btnSignIn").click(function () {
 
-        var formData = $("#signInForm").serialize();
-
-        $.ajax({
-            url: baseURL + "home",
-            method: "post",
-            data: formData,
-            dataType: "json",
-            success: function (res) {
-                if (res){
-                    $("#signInForm").css("display","none");
-                    $("#dashboardNav").disabled(false);
-                    $("#reserveBtn").disabled(false)
-                }
-            },
-            error: function (error) {
-                var jsObject = JSON.parse(error.responseText);
-                alert(jsObject.message);
-            }
-        });
+        // var formData = $("#signInForm").serialize();
+        //
+        // $.ajax({
+        //     url: baseURL + "home/login",
+        //     method: "get",
+        //     data: formData,
+        //     dataType: "json",
+        //     success: function (res) {
+        //         if (res){
+        //             $("#signInForm").css("display","none");
+        //             $("#dashboardNav").disabled(false);
+        //             $("#reserveBtn").disabled(false)
+        //         }
+        //     },
+        //     error: function (error) {
+        //         var jsObject = JSON.parse(error.responseText);
+        //         alert(jsObject.message);
+        //     }
+        // });
 
     });
 
