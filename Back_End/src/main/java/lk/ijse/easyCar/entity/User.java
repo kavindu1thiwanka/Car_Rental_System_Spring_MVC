@@ -12,10 +12,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @ToString
+@IdClass(UserLogin_PK.class)
 public class User {
 
     private String userName;
     private String userAddress;
+    @Id
     private String userNICNo;
     private int userContact;
     @Id

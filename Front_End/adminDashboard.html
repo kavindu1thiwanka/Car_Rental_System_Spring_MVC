@@ -11,24 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
 
     <style>
-        *{
+        * {
             scroll-behavior: smooth;
             transition: all 1s;
         }
 
-        #dashboardPage{
+        #dashboardPage {
             display: block;
         }
 
-        #carPage{
+        #carPage {
             display: none;
         }
 
-        #driverPage{
+        #driverPage {
             display: none;
         }
 
-        #customerPage{
+        #customerPage {
             display: none;
         }
     </style>
@@ -117,22 +117,34 @@
     <div class="jumbotron pt-5 mb-4 col-12 ml-3">
         <div class="row justify-content-center">
             <div class="col-12 bg-white row rounded-sm mb-3">
-                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">AVAILABLE CARS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">00</h2>
-                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">RESERVED CARS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">00</h2>
+                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                    AVAILABLE CARS :</h2>
+                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                    00</h2>
+                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                    RESERVED CARS :</h2>
+                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
+                    00</h2>
             </div>
             <div class="col-12 bg-white row rounded-sm mb-3">
-                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">AVAILABLE DRIVERS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">00</h2>
-                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">OCCUPIED DRIVERS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">00</h2>
+                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                    AVAILABLE DRIVERS :</h2>
+                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                    00</h2>
+                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                    OCCUPIED DRIVERS :</h2>
+                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
+                    00</h2>
             </div>
             <div class="col-12 bg-white row rounded-sm mb-3">
-                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">NEED MAINTENANCE :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">00</h2>
-                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">UNDER MAINTENANCE :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">00</h2>
+                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">NEED
+                    MAINTENANCE :</h2>
+                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                    00</h2>
+                <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">UNDER
+                    MAINTENANCE :</h2>
+                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
+                    00</h2>
             </div>
         </div>
     </div>
@@ -147,21 +159,21 @@
             <h1>Cars</h1>
             <div class="row ">
                 <div class="col-4">
-                    <form>
-                        <div class="row mt-4">
+                    <form id="carForm">
+                        <div class="row mt-4 form-group">
                             <div class="col">
                                 <label for="regno">Reg Number</label>
-                                <input type="text" class="form-control" id="regno" placeholder="ABC-1234">
+                                <input name="registrationNo" type="text" class="form-control" id="regno" placeholder="ABC-1234">
                             </div>
                             <div class="col">
                                 <label for="make">Brand</label>
-                                <input type="text" class="form-control" id="make" placeholder="Toyota, Suzuki, Honda">
+                                <input name="carBrand" type="text" class="form-control" id="make" placeholder="Toyota, Suzuki, Honda">
                             </div>
                         </div>
-                        <div class="row mt-4">
+                        <div class="row mt-4 form-group">
                             <div class="col">
                                 <label for="category">Category</label>
-                                <select class="form-control" id="category">
+                                <select name="carType" class="form-control" id="category">
                                     <option>Genaral</option>
                                     <option>Premium</option>
                                     <option>Luxury</option>
@@ -169,7 +181,7 @@
                             </div>
                             <div class="col">
                                 <label for="fuel">Fuel Type</label>
-                                <select class="form-control" id="fuel">
+                                <select name="fuelType" class="form-control" id="fuel">
                                     <option>Petrol</option>
                                     <option>Diesel</option>
                                     <option>Hybrid</option>
@@ -180,51 +192,49 @@
                         <div class="form-group row mt-4">
                             <div class="col">
                                 <label for="transmission">Transmission Type</label>
-                                <select class="form-control" id="transmission">
+                                <select name="transmissionType" class="form-control" id="transmission">
                                     <option>Auto</option>
                                     <option>Manual</option>
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="color">Color</label>
-                                <input type="text" class="form-control" id="color" placeholder="White, Wine Red">
+                                <input name="color" type="text" class="form-control" id="color" placeholder="White, Wine Red">
                             </div>
                             <div class="col">
                                 <label for="noOfPassengers">No Of Passengers</label>
-                                <input type="text" class="form-control" id="noOfPassengers" placeholder="4">
+                                <input name="numberOfPassengers" type="text" class="form-control" id="noOfPassengers" placeholder="4">
                             </div>
                         </div>
                         <div class="form-group row mt-4">
                             <div class="col">
                                 <label for="priceDay">Price per Day</label>
-                                <input type="text" class="form-control" id="priceDay" placeholder="Rs:">
+                                <input name="dailyPrice" type="text" class="form-control" id="priceDay" placeholder="Rs:">
                             </div>
                             <div class="col">
-                                <label for="priceMonth">Month</label>
-                                <input type="text" class="form-control" id="priceMonth" placeholder="Rs:">
+                                <label for="priceMonth">Price per Month</label>
+                                <input name="monthlyPrice" type="text" class="form-control" id="priceMonth" placeholder="Rs:">
                             </div>
                             <div class="col">
-                                <label for="priceKm">Extra Km</label>
-                                <input type="text" class="form-control" id="priceKm" placeholder="Rs:">
+                                <label for="priceKm">Price per Extra Km</label>
+                                <input name="priceForExtraKM" type="text" class="form-control" id="priceKm" placeholder="Rs:">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col">
                                 <label for="carImg">Car Image</label>
-                                <input type="file" class="form-control-file" id="carImg">
+                                <input name="img" type="file" class="form-control-file" id="carImg">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-9 btn-group">
-                                <button class="btn btn-success">Save</button>
-                                <button class="btn btn-warning">Update</button>
-                                <button class="btn btn-danger">Delete</button>
+                                <button id="btnSaveCar" class="btn btn-success">Save</button>
+                                <button id="btnUpdateCar" class="btn btn-warning">Update</button>
+                                <button id="btnDeleteCar" class="btn btn-danger">Delete</button>
                             </div>
                         </div>
                     </form>
-
                 </div>
-
 
 
                 <!--  car table-->
@@ -266,27 +276,32 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="user_name">Name</label>
-                                <input type="text" class="form-control" id="user_name" disabled placeholder="Pasan Kumara">
+                                <input type="text" class="form-control" id="user_name" disabled
+                                       placeholder="Pasan Kumara">
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="user_nic">NIC Number</label>
-                                <input type="text" class="form-control" id="user_nic" disabled placeholder="200236287348">
+                                <input type="text" class="form-control" id="user_nic" disabled
+                                       placeholder="200236287348">
                             </div>
                             <div class="col">
                                 <label for="user_address">Address</label>
-                                <input type="text" class="form-control" id="user_address" disabled placeholder="721/C, Galle.">
+                                <input type="text" class="form-control" id="user_address" disabled
+                                       placeholder="721/C, Galle.">
                             </div>
                         </div>
                         <div class="row mt-4 mb-5">
                             <div class="col">
                                 <label for="user_contact">Contact Number</label>
-                                <input type="text" class="form-control" id="user_contact" disabled placeholder="0712345678">
+                                <input type="text" class="form-control" id="user_contact" disabled
+                                       placeholder="0712345678">
                             </div>
                             <div class="col">
                                 <label for="user_email">Email</label>
-                                <input type="text" class="form-control" id="user_email" disabled placeholder="example@email.com">
+                                <input type="text" class="form-control" id="user_email" disabled
+                                       placeholder="example@email.com">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
@@ -297,7 +312,6 @@
                     </form>
 
                 </div>
-
 
 
                 <!--  Customer table-->
@@ -332,7 +346,8 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="dr_name">Name</label>
-                                <input type="text" class="form-control" id="dr_name" disabled placeholder="Pasan Kumara">
+                                <input type="text" class="form-control" id="dr_name" disabled
+                                       placeholder="Pasan Kumara">
                             </div>
                             <div class="col">
                                 <label for="dr_lic">License Number</label>
@@ -342,11 +357,13 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="dr_contact">Contact Number</label>
-                                <input type="text" class="form-control" id="dr_contact" disabled placeholder="0712345678">
+                                <input type="text" class="form-control" id="dr_contact" disabled
+                                       placeholder="0712345678">
                             </div>
                             <div class="col">
                                 <label for="dr_email">Email</label>
-                                <input type="text" class="form-control" id="dr_email" disabled placeholder="contac@gamil.com">
+                                <input type="text" class="form-control" id="dr_email" disabled
+                                       placeholder="contac@gamil.com">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
@@ -357,7 +374,6 @@
                     </form>
 
                 </div>
-
 
 
                 <!--  Driver table-->
@@ -399,30 +415,30 @@
     loadAllCar();
     loadAllDriver();
 
-    $("#dashboardNav").click(function (){
-        $("#dashboardPage").css("display" , "block");
+    $("#dashboardNav").click(function () {
+        $("#dashboardPage").css("display", "block");
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
 
     });
 
-    $("#carsNav").click(function (){
-        $("#dashboardPage").css("display" , "none");
+    $("#carsNav").click(function () {
+        $("#dashboardPage").css("display", "none");
         $("#carPage").css("display", "block");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
     });
 
-    $("#customersNav").click(function (){
-        $("#dashboardPage").css("display" , "none");
+    $("#customersNav").click(function () {
+        $("#dashboardPage").css("display", "none");
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "block");
         $("#driverPage").css("display", "none");
     });
 
-    $("#driversNav").click(function (){
-        $("#dashboardPage").css("display" , "none");
+    $("#driversNav").click(function () {
+        $("#dashboardPage").css("display", "none");
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "block");
@@ -433,7 +449,7 @@
     function loadAllCustomers() {
         $("#tblCustomer").empty();
         $.ajax({
-            url: baseURL+"admin/user",
+            url: baseURL + "user",
             dataType: "json",
             success: function (resp) {
                 for (let cus of resp.data) {
@@ -462,28 +478,29 @@
         });
     }
 
-    $("#btnDeleteUser").click(function (){
+    $("#btnDeleteUser").click(function () {
         let email = $("#user_email").val();
         $.ajax({
-            url: baseURL+"admin?email=" + email + "",
+            url: baseURL + "user?email=" + email + "",
             method: "delete",
-            dataType:"json",
+            dataType: "json",
             success: function (resp) {
                 alert(resp.message);
                 loadAllCustomers();
             },
-            error:function (error){
+            error: function (error) {
                 alert(JSON.parse(error.responseText).message);
             }
         });
     });
+
 
     // Car CRUD and Table Functions
 
     function loadAllCar() {
         $("#tblCar").empty();
         $.ajax({
-            url: baseURL+"admin/car",
+            url: baseURL + "car",
             dataType: "json",
             success: function (resp) {
                 for (let car of resp.data) {
@@ -496,9 +513,9 @@
     }
 
     function bindRowClickEventsCar() {
-        $("#tblCar>tr").click(function (){
+        $("#tblCar>tr").click(function () {
             let carReg = $(this).find("th:eq(0)").text();
-            let carBrand =$(this).find("td:eq(0)").text();
+            let carBrand = $(this).find("td:eq(0)").text();
             let carType = $(this).find("td:eq(1)").text();
             let carPas = $(this).find("td:eq(2)").text();
             let carFuel = $(this).find("td:eq(3)").text();
@@ -521,6 +538,27 @@
         });
     }
 
+    $("#btnSaveCar").click(function () {
+
+        var formCarData = $("#carForm").serialize();
+
+        console.log(formCarData);
+
+        $.ajax({
+            url: baseURL+"car",
+            method: "post",
+            data: formCarData,
+            dataType:"json",
+            success: function (res) {
+                alert(res.message);
+                loadAllCar();
+            },
+            error:function(error){
+                var jsObject=JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
+    });
 
 
     // Driver CRUD and Table Functions
@@ -528,7 +566,7 @@
     function loadAllDriver() {
         $("#tblDriver").empty();
         $.ajax({
-            url: baseURL+"admin/driver",
+            url: baseURL + "driver",
             dataType: "json",
             success: function (resp) {
                 for (let dri of resp.data) {
@@ -556,21 +594,22 @@
         });
     }
 
-    $("#btnDeleteDriver").click(function (){
+    $("#btnDeleteDriver").click(function () {
         let email = $("#dr_email").val();
         $.ajax({
-            url: baseURL+"admin?email=" + email + "",
+            url: baseURL + "driver?email=" + email + "",
             method: "delete",
-            dataType:"json",
+            dataType: "json",
             success: function (resp) {
                 alert(resp.message);
                 loadAllDriver();
             },
-            error:function (error){
+            error: function (error) {
                 alert(JSON.parse(error.responseText).message);
             }
         });
     });
+
 
 </script>
 </body>
