@@ -24,4 +24,10 @@ public class VehicleController {
         carService.saveCar(dto);
         return new ResponseUtil("OK","Successfully Registered.!",null);
     }
+
+    @DeleteMapping(params = {"registrationNo"})
+    public ResponseUtil deleteCustomer(@RequestParam String registrationNo){
+        carService.deleteCar(registrationNo);
+        return new ResponseUtil("OK","Successfully Deleted" ,null);
+    }
 }

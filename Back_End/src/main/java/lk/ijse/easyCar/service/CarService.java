@@ -12,4 +12,6 @@ public interface CarService {
     void addGeneralCars();
 
     void saveCar(CarDTO dto);
+
+    void deleteCar(String registrationNo);
 }

@@ -162,8 +162,8 @@
                     <form id="carForm">
                         <div class="row mt-4 form-group">
                             <div class="col">
-                                <label for="regno">Reg Number</label>
-                                <input name="registrationNo" type="text" class="form-control" id="regno" placeholder="ABC-1234">
+                                <label for="registrationNo">Reg Number</label>
+                                <input name="registrationNo" type="text" class="form-control" id="registrationNo" placeholder="ABC-1234">
                             </div>
                             <div class="col">
                                 <label for="make">Brand</label>
@@ -525,7 +525,7 @@
             let carMonth = $(this).find("td:eq(7)").text();
             let carKm = $(this).find("td:eq(8)").text();
 
-            $('#regno').val(carReg);
+            $('#registrationNo').val(carReg);
             $('#make').val(carBrand);
             $('#category').val(carType);
             $('#noOfPassengers').val(carPas);
@@ -554,6 +554,22 @@
             error:function(error){
                 var jsObject=JSON.parse(error.responseText);
                 alert(jsObject.message);
+            }
+        });
+    });
+
+    $("#btnDeleteCar").click(function () {
+        let registrationNo = $("#registrationNo").val();
+        $.ajax({
+            url: baseURL + "car?registrationNo=" + registrationNo + "",
+            method: "delete",
+            dataType: "json",
+            success: function (resp) {
+                alert(resp.message);
+                loadAllCar();
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
             }
         });
     });

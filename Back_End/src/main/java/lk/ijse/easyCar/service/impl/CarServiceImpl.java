@@ -85,4 +85,12 @@ public class CarServiceImpl implements CarService {
             throw new RuntimeException("Something went wrong! : "+e);
         }
     }
+
+    @Override
+    public void deleteCar(String registrationNo) {
+        if (!carRepo.existsById(registrationNo)){
+            throw new RuntimeException("Car Registration Number Does Not Exist..!");
+        }
+        carRepo.deleteById(registrationNo);
+    }
 }

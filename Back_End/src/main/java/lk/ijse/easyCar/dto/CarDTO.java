@@ -24,12 +24,4 @@ public class CarDTO {
     private String available;
     private String status;
     private MultipartFile img;
-
-    public void setImg(MultipartFile cr_img) {
-        this.img = cr_img;
-    }
-
-    public MultipartFile getImg() {
-        return img;
-    }
 }
