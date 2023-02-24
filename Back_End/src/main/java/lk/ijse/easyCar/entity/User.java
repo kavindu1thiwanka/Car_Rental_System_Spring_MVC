@@ -5,19 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
-@IdClass(UserLogin_PK.class)
 public class User {
-    @Id
-    private String userID;
+
     private String userName;
     private String userAddress;
     private String userNICNo;
@@ -25,4 +21,6 @@ public class User {
     @Id
     private String email;
     private String role;
+    private String img;
+    private String pwd;
 }

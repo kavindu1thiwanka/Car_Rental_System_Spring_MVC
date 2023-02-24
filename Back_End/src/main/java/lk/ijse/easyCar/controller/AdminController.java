@@ -1,7 +1,6 @@
 package lk.ijse.easyCar.controller;
 
 import lk.ijse.easyCar.service.CarService;
-import lk.ijse.easyCar.service.DriverService;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +13,13 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private CarService carService;
-    @Autowired
-    private DriverService driverService;
 
     @GetMapping(path = "/user")
     public ResponseUtil getAllCustomers(){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllCustomers());
+        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllUsers());
     }
 
     @GetMapping(path = "/car")
@@ -31,7 +29,7 @@ public class AdminController {
 
     @GetMapping(path = "/driver")
     public ResponseUtil getAllDrivers(){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,driverService.getAllDrivers());
+        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllDrivers());
     }
 
 }

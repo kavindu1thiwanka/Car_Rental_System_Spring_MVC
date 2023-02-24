@@ -5,6 +5,9 @@ import lk.ijse.easyCar.dto.UserDTO;
 import java.util.ArrayList;
 
 public interface UserService {
-    void checkLogin(UserDTO userDTO);
-    ArrayList<UserDTO> getAllCustomers();
+    ArrayList<UserDTO> getAllUsers();
+
+    void registerUser(UserDTO dto);
+
+    ArrayList<UserDTO> getAllDrivers();
 }

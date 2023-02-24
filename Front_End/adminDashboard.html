@@ -265,10 +265,6 @@
                     <form>
                         <div class="row mt-4">
                             <div class="col">
-                                <label for="txtcus_id">User ID</label>
-                                <input type="text" class="form-control" id="txtcus_id" disabled placeholder="U001">
-                            </div>
-                            <div class="col">
                                 <label for="txtcus_name">Name</label>
                                 <input type="text" class="form-control" id="txtcus_name" disabled placeholder="Pasan Kumara">
                             </div>
@@ -309,7 +305,6 @@
                     <table class="table shadow table-hover">
                         <thead class="thead-dark">
                         <tr class="table-primary">
-                            <th scope="col">User ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Address</th>
                             <th scope="col">NIC</th>
@@ -349,6 +344,10 @@
                                 <label for="dr_contact">Contact Number</label>
                                 <input type="text" class="form-control" id="dr_contact" disabled placeholder="0712345678">
                             </div>
+                            <div class="col">
+                                <label for="dr_email">Email</label>
+                                <input type="text" class="form-control" id="dr_email" disabled placeholder="contac@gamil.com">
+                            </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-6 btn-group">
@@ -366,10 +365,10 @@
                     <table class="table shadow table-hover">
                         <thead class="thead-dark">
                         <tr class="table-primary">
-                            <th scope="col">Id</th>
                             <th scope="col">License Number</th>
                             <th scope="col">Name</th>
                             <th scope="col">Contact</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Availability</th>
                         </tr>
                         </thead>
@@ -436,7 +435,7 @@
             dataType: "json",
             success: function (resp) {
                 for (let cus of resp.data) {
-                    var row = '<tr><th scope="row">' + cus.userID + '</th><td>' + cus.userName + '</td><td>' + cus.userAddress + '</td><td>' + cus.userNICNo + '</td><td>' + cus.email + '</td><td>' + cus.userContact + '</td></tr>';
+                    var row = '<tr><td>' + cus.userName + '</td><td>' + cus.userAddress + '</td><td>' + cus.userNICNo + '</td><td>' + cus.email + '</td><td>' + cus.userContact + '</td></tr>';
                     $("#tblCustomer").append(row);
                 }
                 bindRowClickEventsUser();
@@ -446,16 +445,12 @@
 
     function bindRowClickEventsUser() {
         $("#tblCustomer>tr").click(function () {
-            let cusId = $(this).children("th:eq(0)").text();
             let cusName = $(this).children("td:eq(0)").text();
             let cusAddress = $(this).children("td:eq(1)").text();
             let cusNic = $(this).children("td:eq(2)").text();
             let cusEmail = $(this).children("td:eq(3)").text();
             let cusContact = $(this).children("td:eq(4)").text();
-            // console.log(id, name, address, salary);
 
-            //setting table details values to text fields
-            $('#txtcus_id').val(cusId);
             $('#txtcus_nic').val(cusNic);
             $('#txtcus_name').val(cusName);
             $('#txtcus_address').val(cusAddress);
@@ -513,7 +508,7 @@
             dataType: "json",
             success: function (resp) {
                 for (let dri of resp.data) {
-                    var row = '<tr><th scope="row">' + dri.driverId + '</th><td>' + dri.license + '</td><td>' + dri.driverName + '</td><td>' + dri.driverContact + '</td><td class="text-success">' + dri.availability + '</td></tr>';
+                    var row = '<tr><td>' + dri.userNICNo + '</td><td>' + dri.userName + '</td><td>' + dri.userContact + '</td><td>' + dri.email + '</td></tr>';
                     $("#tblDriver").append(row);
                 }
                 bindRowClickEventsDriver();
@@ -526,11 +521,13 @@
             let drName = $(this).find("td:eq(1)").text();
             let drLic = $(this).find("td:eq(0)").text();
             let drContact = $(this).find("td:eq(2)").text();
+            let drEmail = $(this).find("td:eq(3)").text();
 
 
             $('#dr_lic').val(drLic);
             $('#dr_name').val(drName);
             $('#dr_contact').val(drContact);
+            $('#dr_email').val(drEmail);
 
         });
     }

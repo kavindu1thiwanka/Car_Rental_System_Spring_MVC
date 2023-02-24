@@ -1,7 +1,6 @@
 package lk.ijse.easyCar.config;
 
 import lk.ijse.easyCar.repo.CarRepo;
-import lk.ijse.easyCar.repo.DriverRepo;
 import lk.ijse.easyCar.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +22,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {UserRepo.class,CarRepo.class, DriverRepo.class})
+@EnableJpaRepositories(basePackageClasses = {UserRepo.class,CarRepo.class})
 @PropertySource("classpath:application.properties")
 public class JPAConfig {
 

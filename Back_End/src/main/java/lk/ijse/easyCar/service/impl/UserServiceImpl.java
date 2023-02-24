@@ -1,6 +1,7 @@
 package lk.ijse.easyCar.service.impl;
 
 import lk.ijse.easyCar.dto.UserDTO;
+import lk.ijse.easyCar.entity.User;
 import lk.ijse.easyCar.repo.UserRepo;
 import lk.ijse.easyCar.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -21,12 +22,20 @@ public class UserServiceImpl implements UserService {
     private ModelMapper mapper;
 
     @Override
-    public void checkLogin(UserDTO userDTO) {
-
+    public ArrayList<UserDTO> getAllUsers() {
+        return mapper.map(userRepo.findAllUsers(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
     }
 
     @Override
-    public ArrayList<UserDTO> getAllCustomers() {
-        return mapper.map(userRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+    public void registerUser(UserDTO dto) {
+        if (userRepo.existsById(dto.getEmail())){   //// existsByEmail
+            throw new RuntimeException("User Already Exist From This Email.Use Another Email..!");
+        }
+        userRepo.save(mapper.map(dto, User.class));
+    }
+
+    @Override
+    public ArrayList<UserDTO> getAllDrivers() {
+        return mapper.map(userRepo.findAllDrivers(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
     }
 }
