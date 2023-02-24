@@ -265,32 +265,32 @@
                     <form>
                         <div class="row mt-4">
                             <div class="col">
-                                <label for="txtcus_name">Name</label>
-                                <input type="text" class="form-control" id="txtcus_name" disabled placeholder="Pasan Kumara">
+                                <label for="user_name">Name</label>
+                                <input type="text" class="form-control" id="user_name" disabled placeholder="Pasan Kumara">
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col">
-                                <label for="txtcus_nic">NIC Number</label>
-                                <input type="text" class="form-control" id="txtcus_nic" disabled placeholder="200236287348">
+                                <label for="user_nic">NIC Number</label>
+                                <input type="text" class="form-control" id="user_nic" disabled placeholder="200236287348">
                             </div>
                             <div class="col">
-                                <label for="txtcus_address">Address</label>
-                                <input type="text" class="form-control" id="txtcus_address" disabled placeholder="721/C, Galle.">
+                                <label for="user_address">Address</label>
+                                <input type="text" class="form-control" id="user_address" disabled placeholder="721/C, Galle.">
                             </div>
                         </div>
                         <div class="row mt-4 mb-5">
                             <div class="col">
-                                <label for="txtcus_contact">Contact Number</label>
-                                <input type="text" class="form-control" id="txtcus_contact" disabled placeholder="0712345678">
+                                <label for="user_contact">Contact Number</label>
+                                <input type="text" class="form-control" id="user_contact" disabled placeholder="0712345678">
                             </div>
                             <div class="col">
-                                <label for="txtcus_email">Address</label>
-                                <input type="text" class="form-control" id="txtcus_email" disabled placeholder="example@email.com">
+                                <label for="user_email">Email</label>
+                                <input type="text" class="form-control" id="user_email" disabled placeholder="example@email.com">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
-                            <div class="col-3 btn-group">
+                            <div class="col-6 btn-group">
                                 <button id="btnDeleteUser" class="btn btn-danger">Delete</button>
                             </div>
                         </div>
@@ -351,7 +351,7 @@
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-6 btn-group">
-                                <button class="btn btn-danger">Delete</button>
+                                <button id="btnDeleteDriver" class="btn btn-danger">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -428,6 +428,8 @@
         $("#driverPage").css("display", "block");
     });
 
+    // Customer CRUD and Table Functions
+
     function loadAllCustomers() {
         $("#tblCustomer").empty();
         $.ajax({
@@ -451,14 +453,32 @@
             let cusEmail = $(this).children("td:eq(3)").text();
             let cusContact = $(this).children("td:eq(4)").text();
 
-            $('#txtcus_nic').val(cusNic);
-            $('#txtcus_name').val(cusName);
-            $('#txtcus_address').val(cusAddress);
-            $('#txtcus_contact').val(cusContact);
-            $('#txtcus_email').val(cusEmail);
+            $('#user_nic').val(cusNic);
+            $('#user_name').val(cusName);
+            $('#user_address').val(cusAddress);
+            $('#user_contact').val(cusContact);
+            $('#user_email').val(cusEmail);
 
         });
     }
+
+    $("#btnDeleteUser").click(function (){
+        let email = $("#user_email").val();
+        $.ajax({
+            url: baseURL+"admin?email=" + email + "",
+            method: "delete",
+            dataType:"json",
+            success: function (resp) {
+                alert(resp.message);
+                loadAllCustomers();
+            },
+            error:function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
+
+    // Car CRUD and Table Functions
 
     function loadAllCar() {
         $("#tblCar").empty();
@@ -501,6 +521,10 @@
         });
     }
 
+
+
+    // Driver CRUD and Table Functions
+
     function loadAllDriver() {
         $("#tblDriver").empty();
         $.ajax({
@@ -532,28 +556,21 @@
         });
     }
 
-    $("#btnDeleteUser").click(function (){
-        
-    });
-
-    $("#btnSaveCar").click(function (){
-        let formCarData = $("#formCar").serialize();
+    $("#btnDeleteDriver").click(function (){
+        let email = $("#dr_email").val();
         $.ajax({
-            url: baseURL+"car",
-            method:"post",
-            data: formCarData,
-            dataType: "json",
-            success: function (res){
-                alert("Success "+res.toString());
-                console.log("Success : "+res)
+            url: baseURL+"admin?email=" + email + "",
+            method: "delete",
+            dataType:"json",
+            success: function (resp) {
+                alert(resp.message);
+                loadAllDriver();
             },
-            error: function (err){
-                alert("Error" +err.toString());
-                console.log("Error : "+err)
+            error:function (error){
+                alert(JSON.parse(error.responseText).message);
             }
         });
     });
-
 
 </script>
 </body>

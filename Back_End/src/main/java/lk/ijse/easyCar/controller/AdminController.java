@@ -22,6 +22,12 @@ public class AdminController {
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllUsers());
     }
 
+    @DeleteMapping(params = {"email"})
+    public ResponseUtil deleteCustomer(@RequestParam String email){
+        userService.deleteUser(email);
+        return new ResponseUtil("OK","Successfully Deleted" ,null);
+    }
+
     @GetMapping(path = "/car")
     public ResponseUtil getAllCars(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,carService.getAllCars());

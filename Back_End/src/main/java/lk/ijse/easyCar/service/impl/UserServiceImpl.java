@@ -38,4 +38,12 @@ public class UserServiceImpl implements UserService {
     public ArrayList<UserDTO> getAllDrivers() {
         return mapper.map(userRepo.findAllDrivers(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
     }
+
+    @Override
+    public void deleteUser(String email) {
+        if (!userRepo.existsById(email)){
+            throw new RuntimeException("User Does Not Exist..!");
+        }
+        userRepo.deleteById(email);
+    }
 }

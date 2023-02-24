@@ -10,4 +10,6 @@ public interface UserService {
     void registerUser(UserDTO dto);
 
     ArrayList<UserDTO> getAllDrivers();
+
+    void deleteUser(String email);
 }
