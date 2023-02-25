@@ -22,45 +22,44 @@ public class VehicleController {
     @Autowired
     private CarService carService;
 
-    private static final ArrayList<String> allImages = new ArrayList<>();
-
     @GetMapping
     public ResponseUtil getAllCars() {
         return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllCars());
     }
 
+//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity uploadFileWithSpringWay(@RequestPart("registrationNo") String registrationNo, @RequestPart("carBrand") String carBrand, @RequestPart("carType") String carType, @RequestPart("numberOfPassengers") int numberOfPassengers, @RequestPart("transmissionType") String transmissionType, @RequestPart("fuelType") String fuelType, @RequestPart("dailyPrice") double dailyPrice, @RequestPart("monthlyPrice") double monthlyPrice, @RequestPart("priceForExtraKM") double priceForExtraKM, @RequestPart("color") String color, @RequestPart("available") String available, @RequestPart("status") String status, @RequestPart("imgFront") MultipartFile imgFront, @RequestPart("imgBack") MultipartFile imgBack, @RequestPart("imgSide") MultipartFile imgSide, @RequestPart("imgInside") MultipartFile imgInside) {
-        System.out.println("POST EKATA ENAWA");
-        try {
-            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
-            File uploadsDir = new File(projectPath + "/uploads");
-            System.out.println(projectPath);
-            uploadsDir.mkdir();
-            imgFront.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgFront.getOriginalFilename()));
-            imgBack.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgBack.getOriginalFilename()));
-            imgSide.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgSide.getOriginalFilename()));
-            imgInside.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgInside.getOriginalFilename()));
+    System.out.println("POST EKATA ENAWA");
+    try {
+        String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+        File uploadsDir = new File(projectPath + "/uploads");
+        System.out.println(projectPath);
+        uploadsDir.mkdir();
+        imgFront.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgFront.getOriginalFilename()));
+        imgBack.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgBack.getOriginalFilename()));
+        imgSide.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgSide.getOriginalFilename()));
+        imgInside.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + imgInside.getOriginalFilename()));
 
-            //save the path of the uploaded image in the temporary database
-            allImages.add("uploads/" + imgFront.getOriginalFilename());
-            allImages.add("uploads/" + imgBack.getOriginalFilename());
-            allImages.add("uploads/" + imgSide.getOriginalFilename());
-            allImages.add("uploads/" + imgInside.getOriginalFilename());
+        //save the path of the uploaded image in the temporary database
+//        allImages.add("uploads/" + imgFront.getOriginalFilename());
+//        allImages.add("uploads/" + imgBack.getOriginalFilename());
+//        allImages.add("uploads/" + imgSide.getOriginalFilename());
+//        allImages.add("uploads/" + imgInside.getOriginalFilename());
 
-            CarDTO carDTO = new CarDTO(registrationNo, carBrand, carType, numberOfPassengers, transmissionType, fuelType, dailyPrice, monthlyPrice, priceForExtraKM, color, available, status, "uploads/" + imgFront.getOriginalFilename(), "uploads/" + imgBack.getOriginalFilename(), "uploads/" + imgSide.getOriginalFilename(), "uploads/" + imgInside.getOriginalFilename());
+        CarDTO carDTO = new CarDTO(registrationNo, carBrand, carType, numberOfPassengers, transmissionType, fuelType, dailyPrice, monthlyPrice, priceForExtraKM, color, available, status, "uploads/" + imgFront.getOriginalFilename(), "uploads/" + imgBack.getOriginalFilename(), "uploads/" + imgSide.getOriginalFilename(), "uploads/" + imgInside.getOriginalFilename());
 
-            carService.saveCar(carDTO);
+        carService.saveCar(carDTO);
 
-            return ResponseEntity.ok(HttpStatus.OK);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return ResponseEntity.ok(HttpStatus.OK);
+    } catch (URISyntaxException e) {
+        e.printStackTrace();
+        return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+}
 
     @DeleteMapping(params = {"registrationNo"})
     public ResponseUtil deleteCar(@RequestParam String registrationNo) {

@@ -88,22 +88,22 @@
                         <div class="card-header" style="background: #FB6011">REGISTERED USERS</div>
                         <div class="card-body">
                             <div class="dash-tile-icon"><i class="fas fa-users"></i></div>
-                            <div class="dash-tile-text text-right text-black-50"><h2>00</h2></div>
+                            <div class="dash-tile-text text-right text-black-50"><h2 id="registeredUserCount">00</h2></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4 mb-2">
+                    <div class="card">
+                        <div class="card-header" style="background: #FB6011">REGISTERED DRIVERS</div>
+                        <div class="card-body">
+                            <div class="dash-tile-icon"><i class="fas fa-cubes"></i></div>
+                            <div class="dash-tile-text text-right text-black-50"><h2 id="registeredDriversCount">00</h2></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-xl-4 mb-2">
                     <div class="card">
                         <div class="card-header" style="background: #FB6011">BOOKING FOR THE DAY</div>
-                        <div class="card-body">
-                            <div class="dash-tile-icon"><i class="fas fa-cubes"></i></div>
-                            <div class="dash-tile-text text-right text-black-50"><h2>00</h2></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4 mb-2">
-                    <div class="card">
-                        <div class="card-header" style="background: #FB6011">ACTIVE BOOKING FOR THE DAY</div>
                         <div class="card-body">
                             <div class="dash-tile-icon"><i class="fas fa-shopping-cart"></i></div>
                             <div class="dash-tile-text text-right text-black-50"><h2>00</h2></div>
@@ -434,6 +434,25 @@
     loadAllCustomers();
     loadAllCar();
     loadAllDriver();
+    loadDataOnAdminDashboard();
+
+    function loadDataOnAdminDashboard() {
+        $.ajax({
+            url: baseURL + "admin/u",
+            dataType: "json",
+            success: function (resp) {
+                $('#registeredUserCount').text(resp.data);
+            }
+        });
+
+        $.ajax({
+            url: baseURL + "admin/d",
+            dataType: "json",
+            success: function (resp) {
+                $('#registeredDriversCount').text(resp.data);
+            }
+        });
+    }
 
     $("#dashboardNav").click(function () {
         $("#dashboardPage").css("display", "block");
@@ -591,25 +610,27 @@
         let imgFrontName = $("#imgFront")[0].files[0].name;
         formData.append("imgFront", imgFront, imgFrontName);
 
-        // let imgBack = $("#imgBack")[0].files[0];
-        // let imgBackName = $("#imgBack")[0].files[0].name;
-        // formData.append("imgBack", imgBack, imgBackName);
-        //
-        // let imgSide = $("#imgSide")[0].files[0];
-        // let imgSideName = $("#imgSide")[0].files[0].name;
-        // formData.append("imgSide", imgSide, imgSideName);
-        //
-        // let imgInside = $("#imgInside")[0].files[0];
-        // let imgInsideName = $("#imgInside")[0].files[0].name;
-        // formData.append("imgInside", imgInside, imgInsideName);
+        let imgBack = $("#imgBack")[0].files[0];
+        let imgBackName = $("#imgBack")[0].files[0].name;
+        formData.append("imgBack", imgBack, imgBackName);
+
+        let imgSide = $("#imgSide")[0].files[0];
+        let imgSideName = $("#imgSide")[0].files[0].name;
+        formData.append("imgSide", imgSide, imgSideName);
+
+        let imgInside = $("#imgInside")[0].files[0];
+        let imgInsideName = $("#imgInside")[0].files[0].name;
+        formData.append("imgInside", imgInside, imgInsideName);
 
         $.ajax({
             url: baseURL + "car",
-            method: 'post',
+            method: "post",
+            data: formData,
+            dataType: "json",
             async: true,
             contentType: false,
             processData: false,
-            data: formData,
+            enctype:"multipart/form-data",
             success: function (resp) {
                 alert("Successfully Uploaded");
                 // loadTheLastUploadedImage();

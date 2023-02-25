@@ -46,4 +46,28 @@ public class UserServiceImpl implements UserService {
         }
         userRepo.deleteById(email);
     }
+
+    @Override
+    public void saveUser(UserDTO userDTO) {
+        if (userRepo.existsById(userDTO.getEmail())) {
+            throw new RuntimeException("User already exists");
+        }
+
+        User map = mapper.map(userDTO, User.class);
+        userRepo.save(map);
+    }
+
+    @Override
+    public int getAllUsersCount() {
+        int count;
+        count=getAllUsers().size();
+        return count;
+    }
+
+    @Override
+    public Object getAllDriversCount() {
+        int count;
+        count=getAllDrivers().size();
+        return count;
+    }
 }

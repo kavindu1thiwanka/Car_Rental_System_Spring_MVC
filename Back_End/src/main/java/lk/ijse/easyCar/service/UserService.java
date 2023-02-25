@@ -12,4 +12,10 @@ public interface UserService {
     ArrayList<UserDTO> getAllDrivers();
 
     void deleteUser(String email);
+
+    void saveUser(UserDTO userDTO);
+
+    int getAllUsersCount();
+
+    Object getAllDriversCount();
 }

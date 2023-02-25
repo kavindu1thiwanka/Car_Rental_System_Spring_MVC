@@ -93,20 +93,49 @@
     let baseURL = "http://localhost:8080/easy/";
 
     $('#signUpBtn').click(function () {
-        var formData = $("#signUpForm").serialize();
+        let formData = new FormData();
 
+        let name = $("#userName").val();
+        let address = $("#userAddress").val();
+        let contact = $("#userContact").val();
+        let email = $("#email").val();
+        let nicNo = $("#userNICNo").val();
+        let pass = $("#pwd").val();
+        let role = $("#role").val();
+
+        formData.append("userName",name);
+        formData.append("userAddress",address);
+        formData.append("userNICNo",nicNo);
+        formData.append("userContact",contact);
+        formData.append("email",email);
+        formData.append("pwd",pass);
+        formData.append("role",role);
+
+        let file1 = $("#img")[0].files[0];
+        let fileName1 = $("#img")[0].files[0].name;
+
+        formData.append("img",file1,fileName1);
         if ($('#pwd').val()===$('#confirmPwd').val()){
             $.ajax({
-                url: baseURL+"reg",
+                url: baseURL + "user",
                 method: "post",
                 data: formData,
-                dataType:"json",
+                dataType: "json",
+                async: true,
+                contentType: false,
+                processData: false,
+                enctype: "multipart/form-data",
                 success: function (res) {
+                    console.log("Success Method Invoked")
+                    console.log(res);
                     alert(res.message);
+
                 },
-                error:function(error){
-                    var jsObject=JSON.parse(error.responseText);
-                    alert(jsObject.message);
+                error: function (error) {
+                    console.log("Error Method Invoked");
+                    console.log(JSON.parse(error.responseText));
+                    alert(JSON.parse(error.responseText).message);
+
                 }
             });
         }else {
