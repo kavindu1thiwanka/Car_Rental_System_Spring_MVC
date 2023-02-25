@@ -106,7 +106,7 @@
                         <div class="card-header" style="background: #FB6011">BOOKING FOR THE DAY</div>
                         <div class="card-body">
                             <div class="dash-tile-icon"><i class="fas fa-shopping-cart"></i></div>
-                            <div class="dash-tile-text text-right text-black-50"><h2>00</h2></div>
+                            <div class="dash-tile-text text-right text-black-50"><h2 id="bookingForDayCount">00</h2></div>
                         </div>
                     </div>
                 </div>
@@ -119,11 +119,11 @@
             <div class="col-12 bg-white row rounded-sm mb-3">
                 <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     AVAILABLE CARS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                <h2 id="availableCarCount" class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     00</h2>
                 <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     RESERVED CARS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
+                <h2 id="reservedCarCount" class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
                     00</h2>
             </div>
             <div class="col-12 bg-white row rounded-sm mb-3">
@@ -452,6 +452,23 @@
                 $('#registeredDriversCount').text(resp.data);
             }
         });
+
+        $.ajax({
+            url: baseURL + "admin/b",
+            dataType: "json",
+            success: function (resp) {
+                $('#bookingForDayCount').text(resp.data);
+            }
+        });
+
+        $.ajax({
+            url: baseURL + "car/availableCount",
+            dataType: "json",
+            success: function (resp) {
+                    $('#availableCarCount').text(resp.data[0]);
+                    $('#reservedCarCount').text(resp.data[1]);
+            }
+        });
     }
 
     $("#dashboardNav").click(function () {
@@ -459,7 +476,7 @@
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
-
+        loadDataOnAdminDashboard();
     });
 
     $("#carsNav").click(function () {

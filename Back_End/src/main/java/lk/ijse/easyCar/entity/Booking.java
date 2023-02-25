@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
@@ -17,7 +19,8 @@ import java.math.BigDecimal;
 public class Booking {
 
     @Id
-    private String bk_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long bk_id;
     private String bk_cusEmail;
     private String bk_car;
     private String bk_date;

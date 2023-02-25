@@ -16,4 +16,6 @@ public interface CarService {
     void deleteCar(String registrationNo);
 
     void updateCar(CarDTO dto);
+
+    ArrayList<Integer> getAvailableAndReservedCarCount();
 }

@@ -23,4 +23,8 @@ public class AdminController {
     public ResponseUtil getAllDrivers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllDriversCount());
     }
+    @GetMapping(path = "/b")
+    public ResponseUtil getBookingForDay(){
+        return new ResponseUtil("OK","Successfully Loaded. :" ,bookingService.getAllBookingForDayCount());
+    }
 }

@@ -24,4 +24,8 @@ public class User {
     private String role;
     private String img;
     private String pwd;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "availability",referencedColumnName = "email")
+    private Driver driver;
 }

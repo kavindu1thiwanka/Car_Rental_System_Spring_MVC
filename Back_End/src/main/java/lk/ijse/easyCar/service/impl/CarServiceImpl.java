@@ -14,8 +14,10 @@ import org.springframework.util.StringUtils;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -29,7 +31,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public ArrayList<CarDTO> getAllCars() {
-        return mapper.map(carRepo.findAll(),new TypeToken<ArrayList<CarDTO>>(){}.getType());
+        return mapper.map(carRepo.findAll(), new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
     }
 
     @Override
@@ -49,7 +52,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void saveCar(CarDTO dto) {
-        if(carRepo.existsById(dto.getRegistrationNo())){
+        if (carRepo.existsById(dto.getRegistrationNo())) {
             throw new RuntimeException("User already exist!");
         }
 
@@ -60,7 +63,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteCar(String registrationNo) {
-        if (!carRepo.existsById(registrationNo)){
+        if (!carRepo.existsById(registrationNo)) {
             throw new RuntimeException("Car Registration Number Does Not Exist..!");
         }
         carRepo.deleteById(registrationNo);
@@ -68,9 +71,24 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void updateCar(CarDTO dto) {
-        if (!carRepo.existsById(dto.getRegistrationNo())){
+        if (!carRepo.existsById(dto.getRegistrationNo())) {
             throw new RuntimeException("Car Registration Number Does Not Exist..!");
         }
         carRepo.save(mapper.map(dto, Car.class));
+    }
+
+    @Override
+    public ArrayList<Integer> getAvailableAndReservedCarCount() {
+        ArrayList<Integer> arrayList=new ArrayList();
+        int availableCount;
+        int reservedCount;
+        List<Car> available = carRepo.findByAvailable("Available");
+        availableCount = available.size();
+        List<Car> reserved = carRepo.findByAvailable("Reserved");
+        reservedCount = reserved.size();
+
+        arrayList.add(availableCount);
+        arrayList.add(reservedCount);
+        return arrayList;
     }
 }

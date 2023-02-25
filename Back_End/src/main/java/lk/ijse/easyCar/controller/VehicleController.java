@@ -27,6 +27,11 @@ public class VehicleController {
         return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllCars());
     }
 
+    @GetMapping(path = "/availableCount")
+    public ResponseUtil getAvailableAndReservedCarCount() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAvailableAndReservedCarCount());
+    }
+
 //    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity uploadFileWithSpringWay(@RequestPart("registrationNo") String registrationNo, @RequestPart("carBrand") String carBrand, @RequestPart("carType") String carType, @RequestPart("numberOfPassengers") int numberOfPassengers, @RequestPart("transmissionType") String transmissionType, @RequestPart("fuelType") String fuelType, @RequestPart("dailyPrice") double dailyPrice, @RequestPart("monthlyPrice") double monthlyPrice, @RequestPart("priceForExtraKM") double priceForExtraKM, @RequestPart("color") String color, @RequestPart("available") String available, @RequestPart("status") String status, @RequestPart("imgFront") MultipartFile imgFront, @RequestPart("imgBack") MultipartFile imgBack, @RequestPart("imgSide") MultipartFile imgSide, @RequestPart("imgInside") MultipartFile imgInside) {
