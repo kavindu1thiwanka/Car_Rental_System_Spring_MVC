@@ -23,5 +23,8 @@ public class CarDTO {
     private String color;
     private String available;
     private String status;
-    private MultipartFile img;
+    private String imgFront;
+    private String imgBack;
+    private String imgSide;
+    private String imgInside;
 }

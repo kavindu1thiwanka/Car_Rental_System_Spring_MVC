@@ -220,17 +220,30 @@
                                 <input name="priceForExtraKM" type="text" class="form-control" id="priceKm" placeholder="Rs:">
                             </div>
                         </div>
-                        <div class="form-group row mt-4 mb-5">
+                        <div class="form-group row mt-4 mb-0">
+                            <label class="col-12">Upload Car Images</label>
                             <div class="col">
-                                <label for="carImg">Car Image</label>
-                                <input name="img" type="file" class="form-control-file" id="carImg">
+                                <label for="imgFront">Front</label>
+                                <input name="img" type="file" class="form-control-file" id="imgFront">
+                            </div>
+                            <div class="col">
+                                <label for="imgBack">Back</label>
+                                <input name="img" type="file" class="form-control-file" id="imgBack">
+                            </div>
+                            <div class="col">
+                                <label for="imgSide">Side</label>
+                                <input name="img" type="file" class="form-control-file" id="imgSide">
+                            </div>
+                            <div class="col">
+                                <label for="imgInside">Inside</label>
+                                <input name="img" type="file" class="form-control-file" id="imgInside">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-9 btn-group">
-                                <button id="btnSaveCar" class="btn btn-success">Save</button>
-                                <button id="btnUpdateCar" class="btn btn-warning">Update</button>
-                                <button id="btnDeleteCar" class="btn btn-danger">Delete</button>
+                                <button id="btnSaveCar" type="button" class="btn btn-success">Save</button>
+                                <button id="btnUpdateCar" type="button" class="btn btn-warning">Update</button>
+                                <button id="btnDeleteCar" type="button" class="btn btn-danger">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -306,7 +319,7 @@
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-6 btn-group">
-                                <button id="btnDeleteUser" class="btn btn-danger">Delete</button>
+                                <button id="btnDeleteUser" type="button" class="btn btn-danger">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -368,7 +381,7 @@
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-6 btn-group">
-                                <button id="btnDeleteDriver" class="btn btn-danger">Delete</button>
+                                <button id="btnDeleteDriver" type="button" class="btn btn-danger">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -540,21 +553,114 @@
 
     $("#btnSaveCar").click(function () {
 
-        var formCarData = $("#carForm").serialize();
+        var formData = new FormData();
+        let registrationNo = $("#registrationNo").val();
+        let carBrand = $("#make").val();
+        let carType = $("#category").val();
+        let numberOfPassengers = $("#noOfPassengers").val();
+        let transmissionType = $("#transmission").val();
+        let fuelType = $("#fuel").val();
+        let dailyPrice = $("#priceDay").val();
+        let monthlyPrice = $("#priceMonth").val();
+        let priceForExtraKM = $("#priceKm").val();
+        let color = $("#color").val();
+        let available = "Available";
+        let status = "Good";
+
+        formData.append("registrationNo",registrationNo);
+        formData.append("carBrand",carBrand);
+        formData.append("carType",carType);
+        formData.append("numberOfPassengers",numberOfPassengers);
+        formData.append("transmissionType",transmissionType);
+        formData.append("fuelType",fuelType);
+        formData.append("dailyPrice",dailyPrice);
+        formData.append("monthlyPrice",monthlyPrice);
+        formData.append("priceForExtraKM",priceForExtraKM);
+        formData.append("color",color);
+        formData.append("available",available);
+        formData.append("status",status);
+
+        let imgFront = $("#imgFront")[0].files[0];
+        let imgFrontName = $("#imgFront")[0].files[0].name;
+        formData.append("imgFront", imgFront, imgFrontName);
+
+        let imgBack = $("#imgBack")[0].files[0];
+        let imgBackName = $("#imgBack")[0].files[0].name;
+        formData.append("imgBack", imgBack, imgBackName);
+
+        let imgSide = $("#imgSide")[0].files[0];
+        let imgSideName = $("#imgSide")[0].files[0].name;
+        formData.append("imgSide", imgSide, imgSideName);
+
+        let imgInside = $("#imgInside")[0].files[0];
+        let imgInsideName = $("#imgInside")[0].files[0].name;
+        formData.append("imgInside", imgInside, imgInsideName);
 
         $.ajax({
-            url: baseURL+"car",
-            method: "post",
-            data: formCarData,
+            url: baseURL + "car",
+            method: 'post',
+            async: true,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (resp) {
+                alert("Successfully Uploaded");
+                // loadTheLastUploadedImage();
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
+    $("#btnUpdateCar").click(function () {
+        let registrationNo = $("#registrationNo").val();
+        let carBrand = $("#make").val();
+        let carType = $("#category").val();
+        let numberOfPassengers = $("#noOfPassengers").val();
+        let transmissionType = $("#transmission").val();
+        let fuelType = $("#fuel").val();
+        let dailyPrice = $("#priceDay").val();
+        let monthlyPrice = $("#priceMonth").val();
+        let priceForExtraKM = $("#priceKm").val();
+        let color = $("#color").val();
+        let imgFront = $("#imgFront").val();
+        let imgBack = $("#imgBack").val();
+        let imgSide = $("#imgSide").val();
+        let imgInside = $("#imgInside").val();
+
+        var car = {
+            registrationNo: registrationNo,
+            carBrand: carBrand,
+            carType: carType,
+            numberOfPassengers: numberOfPassengers,
+            transmissionType: transmissionType,
+            fuelType: fuelType,
+            dailyPrice: dailyPrice,
+            monthlyPrice: monthlyPrice,
+            priceForExtraKM: priceForExtraKM,
+            color: color,
+            imgFront: imgFront,
+            imgBack: imgBack,
+            imgSide: imgSide,
+            imgInside: imgInside
+        }
+
+        $.ajax({
+            url: baseURL+'car',
+            method: 'put',
+            contentType:"application/json",
+            data:JSON.stringify(car),
             dataType:"json",
             success: function (res) {
                 alert(res.message);
                 loadAllCar();
             },
-            error:function(error){
-                var jsObject=JSON.parse(error.responseText);
-                alert(jsObject.message);
+            error:function (error){
+                let cause= JSON.parse(error.responseText).message;
+                alert(cause);
             }
+
         });
     });
 

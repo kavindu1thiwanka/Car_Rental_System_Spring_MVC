@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,4 +27,8 @@ public class Car {
     private String color;
     private String available;
     private String status;
+    private String imgFront;
+    private String imgBack;
+    private String imgSide;
+    private String imgInside;
 }
