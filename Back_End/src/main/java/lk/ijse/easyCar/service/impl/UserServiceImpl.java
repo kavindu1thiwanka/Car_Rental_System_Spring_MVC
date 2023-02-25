@@ -70,4 +70,9 @@ public class UserServiceImpl implements UserService {
         count=getAllDrivers().size();
         return count;
     }
+
+    @Override
+    public ArrayList<UserDTO> getAll() {
+        return mapper.map(userRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+    }
 }

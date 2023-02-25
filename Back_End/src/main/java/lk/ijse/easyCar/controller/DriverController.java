@@ -1,9 +1,12 @@
 package lk.ijse.easyCar.controller;
 
+import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @CrossOrigin
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class DriverController {
     @Autowired
     private UserService userService;
+
+    private static final ArrayList<UserDTO> user = new ArrayList<>();
 
     @GetMapping
     public ResponseUtil getAllDrivers(){

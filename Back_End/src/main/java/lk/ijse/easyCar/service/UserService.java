@@ -18,4 +18,6 @@ public interface UserService {
     int getAllUsersCount();
 
     Object getAllDriversCount();
+
+    ArrayList<UserDTO> getAll();
 }

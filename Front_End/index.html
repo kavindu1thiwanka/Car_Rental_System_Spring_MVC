@@ -88,7 +88,7 @@
             </div>
             <div class="mb-3">
                 <div class="row">
-                    <button id="btnSignIn" type="submit" class="btn btn-primary col-3 ml-3"
+                    <button id="btnSignIn" type="button" class="btn btn-primary col-3 ml-3"
                             style="background: #FB6011; border-color: #FB6011">Submit
                     </button>
                     <a id="btnSignUp" class="navbar-brand col-4 align-self-center" style="font-size: 14px" href="register.html">Don't
@@ -495,27 +495,46 @@
 
     let baseURL = "http://localhost:8080/easy/";
 
-    $("#btnSignIn").click(function () {
+    window.addEventListener("beforeunload" , ev => {
+        ev.preventDefault();
+        ev.returnValue = "";
+    })
 
-        // var formData = $("#signInForm").serialize();
-        //
-        // $.ajax({
-        //     url: baseURL + "home/login",
-        //     method: "get",
-        //     data: formData,
-        //     dataType: "json",
-        //     success: function (res) {
-        //         if (res){
-        //             $("#signInForm").css("display","none");
-        //             $("#dashboardNav").disabled(false);
-        //             $("#reserveBtn").disabled(false)
-        //         }
-        //     },
-        //     error: function (error) {
-        //         var jsObject = JSON.parse(error.responseText);
-        //         alert(jsObject.message);
-        //     }
-        // });
+    $("#btnSignIn").click(function () {
+        // window.location.href="registeredUserHomePage.html";
+
+        $.ajax({
+            url: baseURL + "home/login",
+            dataType: "json",
+            success: function (res) {
+                let count=0;
+                for (let x of res.data) {
+                    if (x.email === $('#emailInput').val() && x.pwd === $('#pwdInput').val()){
+                        if (x.role==="User"){
+                            window.location.href="registeredUserHomePage.html";
+                            break;
+                        }if (x.role==="Admin"){
+                            window.location.href="adminDashboard.html";
+                            break;
+                        }
+                        if (x.role==="Driver"){
+                            window.location.href="driverDashboard.html";
+                            break;
+                        }
+                    }else {
+                        count = count+1;
+                        if(count===res.data.length){
+                            alert("Your Email or Password is Incorrect...!")
+                        }
+                        continue;
+                    }
+                }
+            },
+            error: function (error) {
+                var jsObject = JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
 
     });
 
