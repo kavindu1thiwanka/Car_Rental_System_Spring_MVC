@@ -22,4 +22,6 @@ public interface CarService {
     ArrayList<CarDTO> getAllLuxuryCars();
     ArrayList<CarDTO> getAllGeneralCars();
     ArrayList<CarDTO> getAllPremiumCars();
+
+    ArrayList<CarDTO> getVehicleDetailsByID(String id);
 }

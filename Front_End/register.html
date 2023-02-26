@@ -143,6 +143,61 @@
         }
 
     });
+
+    //Add User
+    $("#signUpBtn").click(function () {
+
+
+        let formData = new FormData();
+
+        let userName = $("#userName").val();
+        let userAddress = $("#userAddress").val();
+        let userContact = $("#userContact").val();
+        let email = $("#email").val();
+        let userNICNo = $("#userNICNo").val();
+        let pwd = $("#pwd").val();
+        let role = $("#role").val();
+
+        formData.append("userName",userName);
+        formData.append("userAddress",userAddress);
+        formData.append("userNICNo",userNICNo);
+        formData.append("userContact",userContact);
+        formData.append("email",email);
+        formData.append("pwd",pwd);
+        formData.append("role",role);
+
+        let file1 = $("#file-1")[0].files[0];
+        let fileName1 = $("#file-1")[0].files[0].name;
+
+        formData.append("nic/licensePhoto",file1,fileName1);
+
+        $.ajax({
+            url: baseURL + "user",
+            method: "post",
+            data: formData,
+            dataType: "json",
+            async: true,
+            contentType: false,
+            processData: false,
+            enctype:"multipart/form-data",
+            success: function (res) {
+                // invoked if the response status code is in 200 range
+                console.log("Success Method Invoked")
+                console.log(res);
+                alert(res.message);
+                // getAllCustomers();
+
+            },
+            error: function (error) {
+                // invokes if status code range is 500 range or 400 range
+                console.log("Error Method Invoked");
+                console.log(JSON.parse(error.responseText));
+                alert(JSON.parse(error.responseText).message);
+
+            }
+        });
+
+    });
 </script>
 </body>
 </html>

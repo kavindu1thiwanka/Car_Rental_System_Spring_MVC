@@ -124,6 +124,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public ArrayList<CarDTO> getVehicleDetailsByID(String id) {
+        return mapper.map(carRepo.findByRegistrationNo(id), new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
+    }
+
+    @Override
     public ArrayList<CarDTO> getAllGeneralCars() {
         List<Car> carList = carRepo.findByCarType("General");
 //        for (Car c : carList) {

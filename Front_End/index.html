@@ -469,7 +469,6 @@
             url: baseURL + "car/luxury",
             dataType: "json",
             success: function (resp) {
-            console.log(resp.data);
                 for (let c of resp.data) {
                     content += `
                         <div class="col mb-2">
@@ -479,12 +478,13 @@
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">${c.carBrand}</h5>
+                                            <label id="carIdOnModal">${c.registrationNo}</label>
                                             <div class="row mt-4 card-text">
                                                 <div class="row col-7">
                                                     <p class="col-12">Rs ${c.dailyPrice} /-</p>
                                                     <p class="col-12" style="color:#32CD32;">${c.available}</p>
                                                 </div>
-                                                <button type="button" class="btn btn-primary col-4 align-self-center"
+                                                <button type="button" class="detailsBtn btn btn-primary col-4 align-self-center"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         style="background: #FB6011; border-color: #FB601100; height: 10%">Details >>
                                                 </button>
@@ -506,7 +506,6 @@
             url: baseURL + "car/premium",
             dataType: "json",
             success: function (resp) {
-                console.log(resp.data);
                 for (let c of resp.data) {
                     content += `
                         <div class="col mb-2">
@@ -516,12 +515,13 @@
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">${c.carBrand}</h5>
+                                            <label id="carIdOnModal">${c.registrationNo}</label>
                                             <div class="row mt-4 card-text">
                                                 <div class="row col-7">
                                                     <p class="col-12">Rs ${c.dailyPrice} /-</p>
                                                     <p class="col-12" style="color:#32CD32;">${c.available}</p>
                                                 </div>
-                                                <button type="button" class="btn btn-primary col-4 align-self-center"
+                                                <button type="button" class="detailsBtn btn btn-primary col-4 align-self-center"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         style="background: #FB6011; border-color: #FB601100; height: 10%">Details >>
                                                 </button>
@@ -540,7 +540,7 @@
         let content = '';
         $("#tblCustomer").empty();
         $.ajax({
-            url: baseURL + "car/general",
+            url: baseURL + "car",
             dataType: "json",
             success: function (resp) {
                 console.log(resp.data);
@@ -553,12 +553,13 @@
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">${c.carBrand}</h5>
+                                            <label id="carIdOnModal">${c.registrationNo}</label>
                                             <div class="row mt-4 card-text">
                                                 <div class="row col-7">
                                                     <p class="col-12">Rs ${c.dailyPrice} /-</p>
                                                     <p class="col-12" style="color:#32CD32;">${c.available}</p>
                                                 </div>
-                                                <button type="button" class="btn btn-primary col-4 align-self-center"
+                                                <button type="button" class="detailsBtn btn btn-primary col-4 align-self-center"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         style="background: #FB6011; border-color: #FB601100; height: 10%">Details >>
                                                 </button>
@@ -568,8 +569,25 @@
                                 </div>
                             `
                 }
-                document.querySelector("#generalCarsContainer").innerHTML = content;
+                    document.querySelector("#generalCarsContainer").innerHTML = content;
+                btnDetails();
             }
+        });
+    }
+
+    function btnDetails(){
+        $(".detailsBtn").click(function (){
+
+            let id = $("#carIdOnModal").val();
+            console.log(id);
+
+            $.ajax({
+                url: baseURL + "car?id=" + id + "",
+                dataType: "json",
+                success: function (resp) {
+                    console.log(resp.data);
+                }
+            });
         });
     }
 

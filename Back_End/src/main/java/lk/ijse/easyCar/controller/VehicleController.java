@@ -27,6 +27,12 @@ public class VehicleController {
         return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllCars());
     }
 
+    @GetMapping(params = {"id"})
+    public ResponseUtil getVehicleDetailsByID(@RequestParam String id) {
+        System.out.println("===============================================================");
+        return new ResponseUtil("OK", "Successfully Loaded. :", carService.getVehicleDetailsByID(id));
+    }
+
     @GetMapping(path = "/luxury")
     public ResponseUtil getAllLuxuryCars() {
         return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllLuxuryCars());
