@@ -1,7 +1,11 @@
 package lk.ijse.easyCar.service.impl;
 
+import lk.ijse.easyCar.dto.AllUserDTO;
 import lk.ijse.easyCar.dto.UserDTO;
+import lk.ijse.easyCar.entity.AllUsers;
 import lk.ijse.easyCar.entity.User;
+import lk.ijse.easyCar.repo.AllUsersRepo;
+import lk.ijse.easyCar.repo.DriverRepo;
 import lk.ijse.easyCar.repo.UserRepo;
 import lk.ijse.easyCar.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -19,16 +23,22 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
 
     @Autowired
+    private DriverRepo driverRepo;
+
+    @Autowired
+    private AllUsersRepo allUsersRepo;
+
+    @Autowired
     private ModelMapper mapper;
 
     @Override
     public ArrayList<UserDTO> getAllUsers() {
-        return mapper.map(userRepo.findAllUsers(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+        return mapper.map(userRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
     }
 
     @Override
     public void registerUser(UserDTO dto) {
-        if (userRepo.existsById(dto.getEmail())){   //// existsByEmail
+        if (userRepo.existsById(dto.getUserEmail())){
             throw new RuntimeException("User Already Exist From This Email.Use Another Email..!");
         }
         userRepo.save(mapper.map(dto, User.class));
@@ -36,7 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ArrayList<UserDTO> getAllDrivers() {
-        return mapper.map(userRepo.findAllDrivers(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+        return mapper.map(driverRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
     }
 
     @Override
@@ -49,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(UserDTO userDTO) {
-        if (userRepo.existsById(userDTO.getEmail())) {
+        if (userRepo.existsById(userDTO.getUserEmail())) {
             throw new RuntimeException("User already exists");
         }
 
@@ -60,19 +70,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getAllUsersCount() {
         int count;
-        count=getAllUsers().size();
+        count= getAllUsers().size();
         return count;
     }
 
     @Override
     public Object getAllDriversCount() {
         int count;
-        count=getAllDrivers().size();
+        count= getAllDrivers().size();
         return count;
     }
 
     @Override
     public ArrayList<UserDTO> getAll() {
-        return mapper.map(userRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+        return mapper.map(allUsersRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+    }
+
+    @Override
+    public void deleteDriver(String email) {
+        if (!driverRepo.existsById(email)){
+            throw new RuntimeException("Driver Does Not Exist..!");
+        }
+        driverRepo.deleteById(email);
+    }
+
+    @Override
+    public void saveToAllUser(AllUserDTO allUserDTO) {
+        if (allUsersRepo.existsById(allUserDTO.getEmail())) {
+            throw new RuntimeException("User already exists");
+        }
+
+        AllUsers map = mapper.map(allUserDTO, AllUsers.class);
+        allUsersRepo.save(map);
     }
 }

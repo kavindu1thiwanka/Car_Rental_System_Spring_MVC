@@ -29,7 +29,6 @@ public class VehicleController {
 
     @GetMapping(params = {"id"})
     public ResponseUtil getVehicleDetailsByID(@RequestParam String id) {
-        System.out.println("===============================================================");
         return new ResponseUtil("OK", "Successfully Loaded. :", carService.getVehicleDetailsByID(id));
     }
 

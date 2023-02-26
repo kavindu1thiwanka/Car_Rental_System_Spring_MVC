@@ -1,6 +1,6 @@
 package lk.ijse.easyCar.controller;
 
-import lk.ijse.easyCar.dto.UserDTO;
+import lk.ijse.easyCar.dto.AdminDTO;
 import lk.ijse.easyCar.service.BookingService;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
@@ -18,11 +18,11 @@ public class AdminController {
     @Autowired
     private BookingService bookingService;
 
-    private static final ArrayList<UserDTO> user = new ArrayList<>();
+    private static final ArrayList<AdminDTO> user = new ArrayList<>();
 
 
     @PostMapping(path = "/set")
-    public void getSetAdmin(UserDTO dto){
+    public void getSetAdmin(AdminDTO dto){
         user.add(dto);
     }
 

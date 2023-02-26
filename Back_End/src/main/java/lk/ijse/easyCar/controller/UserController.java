@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.controller;
 
+import lk.ijse.easyCar.dto.AllUserDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
@@ -29,35 +30,41 @@ public class UserController {
     }
 
     @PostMapping(path = "/rem")
-    public void getRemoveAdmin(){
+    public void getRemoveUser(){
         user.clear();
     }
 
     @GetMapping
-    public ResponseUtil getAllCustomers(){
+    public ResponseUtil getAllUsers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllUsers());
     }
 
     @DeleteMapping(params = {"email"})
-    public ResponseUtil deleteCustomer(@RequestParam String email){
+    public ResponseUtil deleteUsers(@RequestParam String email){
         userService.deleteUser(email);
         return new ResponseUtil("OK","Successfully Deleted" ,null);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseUtil saveUser(@RequestPart("userName") String userName,@RequestPart("userAddress") String userAddress, @RequestPart("userNICNo") String userNICNo,
-                                 @RequestPart("userContact") int userContact, @RequestPart("email") String email, @RequestPart("role") String role,
-                                 @RequestPart("img") MultipartFile file1,@RequestPart("pwd") String pwd) {
-
+    @PostMapping(consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseUtil saveCustomer(UserDTO userDTO, @RequestPart("img") MultipartFile file1) {
+        System.out.println("ONNA awa kollo maduwa");
         try {
             String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
             File uploadsDir = new File(projectPath + "/uploads");
-//            System.out.println(projectPath);
+
             uploadsDir.mkdir();
             file1.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
 
-            UserDTO userDTO = new UserDTO(userName,userAddress,userNICNo,userContact,email,role,"uploads/"+file1.getOriginalFilename(),pwd);
+            userDTO.setImg("uploads/"+file1.getOriginalFilename());
+
             userService.saveUser(userDTO);
+
+            AllUserDTO allUserDTO = new AllUserDTO(userDTO.getUserEmail(), userDTO.getUserPwd(), "User");
+
+            userService.saveToAllUser(allUserDTO);
+
+            System.out.println(allUserDTO);
+
 
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();

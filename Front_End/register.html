@@ -40,15 +40,15 @@
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input name="email" id="email" type="text" class="form-control" placeholder="Email">
+                    <input name="userEmail" id="userEmail" type="text" class="form-control" placeholder="Email">
                 </div>
-                <div class="col-12 input-group mb-3">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <select name="role" id="role" class="form-control" >
-                        <option>User</option>
-                        <option>Driver</option>
-                    </select>
-                </div>
+<!--                <div class="col-12 input-group mb-3">-->
+<!--                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>-->
+<!--                    <select name="role" id="role" class="form-control" >-->
+<!--                        <option>User</option>-->
+<!--                        <option>Driver</option>-->
+<!--                    </select>-->
+<!--                </div>-->
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                     <input name="userNICNo" id="userNICNo" type="text" class="form-control" placeholder="Nic Number or License Number">
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                    <input name="pwd" id="pwd" type="password" class="form-control" placeholder="Password">
+                    <input name="userPwd" id="pwd" type="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
@@ -92,30 +92,34 @@
 
     let baseURL = "http://localhost:8080/easy/";
 
-    $('#signUpBtn').click(function () {
+    //Add User
+    $("#signUpBtn").click(function () {
+
+
         let formData = new FormData();
 
-        let name = $("#userName").val();
-        let address = $("#userAddress").val();
-        let contact = $("#userContact").val();
-        let email = $("#email").val();
-        let nicNo = $("#userNICNo").val();
-        let pass = $("#pwd").val();
-        let role = $("#role").val();
+        let userName = $("#userName").val();
+        let userAddress = $("#userAddress").val();
+        let userContact = $("#userContact").val();
+        let userEmail = $("#userEmail").val();
+        let userNICNo = $("#userNICNo").val();
+        let pwd = $("#pwd").val();
 
-        formData.append("userName",name);
-        formData.append("userAddress",address);
-        formData.append("userNICNo",nicNo);
-        formData.append("userContact",contact);
-        formData.append("email",email);
-        formData.append("pwd",pass);
-        formData.append("role",role);
+        formData.append("userName",userName);
+        formData.append("userAddress",userAddress);
+        formData.append("userNICNo",userNICNo);
+        formData.append("userContact",userContact);
+        formData.append("userEmail",userEmail);
+        formData.append("pwd",pwd);
 
         let file1 = $("#img")[0].files[0];
         let fileName1 = $("#img")[0].files[0].name;
 
         formData.append("img",file1,fileName1);
-        if ($('#pwd').val()===$('#confirmPwd').val()){
+
+        console.log(formData);
+
+        if (pwd === $("#confirmPwd").val()){
             $.ajax({
                 url: baseURL + "user",
                 method: "post",
@@ -124,7 +128,7 @@
                 async: true,
                 contentType: false,
                 processData: false,
-                enctype: "multipart/form-data",
+                enctype:"multipart/form-data",
                 success: function (res) {
                     console.log("Success Method Invoked")
                     console.log(res);
@@ -139,64 +143,8 @@
                 }
             });
         }else {
-            alert("Check the password..!")
+            alert("Please Check Your Password..!")
         }
-
-    });
-
-    //Add User
-    $("#signUpBtn").click(function () {
-
-
-        let formData = new FormData();
-
-        let userName = $("#userName").val();
-        let userAddress = $("#userAddress").val();
-        let userContact = $("#userContact").val();
-        let email = $("#email").val();
-        let userNICNo = $("#userNICNo").val();
-        let pwd = $("#pwd").val();
-        let role = $("#role").val();
-
-        formData.append("userName",userName);
-        formData.append("userAddress",userAddress);
-        formData.append("userNICNo",userNICNo);
-        formData.append("userContact",userContact);
-        formData.append("email",email);
-        formData.append("pwd",pwd);
-        formData.append("role",role);
-
-        let file1 = $("#file-1")[0].files[0];
-        let fileName1 = $("#file-1")[0].files[0].name;
-
-        formData.append("nic/licensePhoto",file1,fileName1);
-
-        $.ajax({
-            url: baseURL + "user",
-            method: "post",
-            data: formData,
-            dataType: "json",
-            async: true,
-            contentType: false,
-            processData: false,
-            enctype:"multipart/form-data",
-            success: function (res) {
-                // invoked if the response status code is in 200 range
-                console.log("Success Method Invoked")
-                console.log(res);
-                alert(res.message);
-                // getAllCustomers();
-
-            },
-            error: function (error) {
-                // invokes if status code range is 500 range or 400 range
-                console.log("Error Method Invoked");
-                console.log(JSON.parse(error.responseText));
-                alert(JSON.parse(error.responseText).message);
-
-            }
-        });
-
     });
 </script>
 </body>

@@ -15,7 +15,6 @@ public class RegisterController {
 
     @PostMapping
     public ResponseUtil registerUser(@ModelAttribute UserDTO dto){
-        System.out.println(dto);
         service.registerUser(dto);
         return new ResponseUtil("OK","Successfully Registered.!",null);
     }

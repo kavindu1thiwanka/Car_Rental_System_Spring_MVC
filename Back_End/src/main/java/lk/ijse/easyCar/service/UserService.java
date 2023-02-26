@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.service;
 
+import lk.ijse.easyCar.dto.AllUserDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 
 import java.util.ArrayList;
@@ -20,4 +21,8 @@ public interface UserService {
     Object getAllDriversCount();
 
     ArrayList<UserDTO> getAll();
+
+    void deleteDriver(String email);
+
+    void saveToAllUser(AllUserDTO allUserDTO);
 }

@@ -14,18 +14,15 @@ import javax.persistence.*;
 @ToString
 //@IdClass(UserLogin_PK.class)
 public class User {
-
+    @Id
+    private String userEmail;
     private String userName;
     private String userAddress;
-    private String userNICNo;
+    private String userNICorLicenceNo;
     private int userContact;
-    @Id
-    private String email;
-    private String role;
     private String img;
-    private String pwd;
+    private String userPwd;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "availability",referencedColumnName = "email")
-    private Driver driver;
+    private AllUsers allUsers;
 }

@@ -11,12 +11,11 @@ import lombok.ToString;
 @Data
 @ToString
 public class UserDTO {
+    private String userEmail;
     private String userName;
     private String userAddress;
-    private String userNICNo;
+    private String userNICorLicenceNo;
     private int userContact;
-    private String email;
-    private String role;
     private String img;
-    private String pwd;
+    private String userPwd;
 }

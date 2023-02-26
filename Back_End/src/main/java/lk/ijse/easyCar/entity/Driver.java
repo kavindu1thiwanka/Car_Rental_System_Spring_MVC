@@ -14,6 +14,15 @@ import javax.persistence.*;
 @ToString
 public class Driver {
     @Id
-    private String email;
-    private String availability;
+    private String driverEmail;
+    private String driverName;
+    private String driverAddress;
+    private String driverNICorLicenceNo;
+    private int driverContact;
+    private String img;
+    private String driverPwd;
+    private String available;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private AllUsers allUsers;
 }
