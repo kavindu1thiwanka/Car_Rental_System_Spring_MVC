@@ -91,4 +91,51 @@ public class CarServiceImpl implements CarService {
         arrayList.add(reservedCount);
         return arrayList;
     }
+
+    @Override
+    public ArrayList<CarDTO> getAllLuxuryCars() {
+        List<Car> carList = carRepo.findByCarType("Luxury");
+//        for (Car c : carList) {
+//            for (Car x : carList) {
+//                if (c.getCarBrand().equals(x.getCarBrand())){
+//                    carList.remove(c);
+//                }else {
+//                    continue;
+//                }
+//            }
+//        }
+        return mapper.map(carList, new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
+    }
+
+    public ArrayList<CarDTO> getAllPremiumCars() {
+        List<Car> carList = carRepo.findByCarType("Premium");
+//        for (Car c : carList) {
+//            for (Car x : carList) {
+//                if (c.getCarBrand().equals(x.getCarBrand())){
+//                    carList.remove(c);
+//                }else {
+//                    continue;
+//                }
+//            }
+//        }
+        return mapper.map(carList, new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public ArrayList<CarDTO> getAllGeneralCars() {
+        List<Car> carList = carRepo.findByCarType("General");
+//        for (Car c : carList) {
+//            for (Car x : carList) {
+//                if (c.getCarBrand().equals(x.getCarBrand())){
+//                    carList.remove(c);
+//                }else {
+//                    continue;
+//                }
+//            }
+//        }
+        return mapper.map(carList, new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
+    }
 }

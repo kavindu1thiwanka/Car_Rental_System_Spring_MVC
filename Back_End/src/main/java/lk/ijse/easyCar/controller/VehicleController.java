@@ -27,6 +27,21 @@ public class VehicleController {
         return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllCars());
     }
 
+    @GetMapping(path = "/luxury")
+    public ResponseUtil getAllLuxuryCars() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllLuxuryCars());
+    }
+
+    @GetMapping(path = "/premium")
+    public ResponseUtil getAllPremiumCars() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllPremiumCars());
+    }
+
+    @GetMapping(path = "/general")
+    public ResponseUtil getAllGeneralCars() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAllGeneralCars());
+    }
+
     @GetMapping(path = "/availableCount")
     public ResponseUtil getAvailableAndReservedCarCount() {
         return new ResponseUtil("OK", "Successfully Loaded. :", carService.getAvailableAndReservedCarCount());

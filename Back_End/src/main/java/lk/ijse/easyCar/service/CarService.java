@@ -18,4 +18,8 @@ public interface CarService {
     void updateCar(CarDTO dto);
 
     ArrayList<Integer> getAvailableAndReservedCarCount();
+
+    ArrayList<CarDTO> getAllLuxuryCars();
+    ArrayList<CarDTO> getAllGeneralCars();
+    ArrayList<CarDTO> getAllPremiumCars();
 }

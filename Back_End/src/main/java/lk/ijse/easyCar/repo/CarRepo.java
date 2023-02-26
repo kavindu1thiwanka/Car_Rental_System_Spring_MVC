@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CarRepo extends JpaRepository<Car,String> {
     List<Car> findByAvailable(String status);
+    List<Car> findByCarType(String type);
 }
