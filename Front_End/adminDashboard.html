@@ -70,7 +70,7 @@
                     <a class="nav-link" href="#">INCOME</a>
                 </li>
                 <li class="nav-item ml-3 mr-3">
-                    <a class="nav-link" href="index.html">SIGN OUT</a>
+                    <a id="signOutNav" class="nav-link" href="#">SIGN OUT</a>
                 </li>
             </ul>
         </div>
@@ -435,6 +435,19 @@
     loadAllCar();
     loadAllDriver();
     loadDataOnAdminDashboard();
+
+    $("#signOutNav").click(function () {
+        $.ajax({
+            url: baseURL + "admin/rem",
+            method: "post",
+            success: function (resp) {
+                window.location.href = "index.html";
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
 
     function loadDataOnAdminDashboard() {
         $.ajax({

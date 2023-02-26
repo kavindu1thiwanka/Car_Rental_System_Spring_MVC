@@ -23,6 +23,11 @@ public class DriverController {
         System.out.println(user);
     }
 
+    @PostMapping(path = "/rem")
+    public void getRemoveDriver(){
+        user.clear();
+    }
+
     @GetMapping
     public ResponseUtil getAllDrivers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllDrivers());

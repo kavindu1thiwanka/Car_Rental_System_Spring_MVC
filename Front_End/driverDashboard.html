@@ -28,11 +28,10 @@
       <div class="collapse navbar-collapse ml-5 col-2" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item ml-3 mr-3">
-            <a class="nav-link" href="#">SIGN OUT</a>
+            <a id="signOutNav" class="nav-link" href="#">SIGN OUT</a>
           </li>
         </ul>
       </div>
-      <!--                  <button type="button" class="btn btn-warning">Sign in</button>-->
     </div>
   </nav>
 
@@ -91,7 +90,19 @@
 <script src="assets/js/jquery-3.6.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
-
+  $("#signOutNav").click(function () {
+    alert("hari")
+    $.ajax({
+      url: baseURL + "driver/rem",
+      method: "post",
+      success: function (resp) {
+        window.location.href = "index.html";
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+  });
 </script>
 </body>
 </html>

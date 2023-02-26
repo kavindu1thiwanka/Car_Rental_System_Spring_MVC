@@ -20,10 +20,15 @@ public class AdminController {
 
     private static final ArrayList<UserDTO> user = new ArrayList<>();
 
+
     @PostMapping(path = "/set")
     public void getSetAdmin(UserDTO dto){
         user.add(dto);
-        System.out.println(user);
+    }
+
+    @PostMapping(path = "/rem")
+    public void getRemoveAdmin(){
+        user.clear();
     }
 
     @GetMapping(path = "/u")

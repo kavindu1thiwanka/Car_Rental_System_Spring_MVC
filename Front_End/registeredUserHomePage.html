@@ -27,7 +27,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-lg bg-white">
         <div class="container-fluid row">
-            <a class="navbar-brand col-8 ml-5" href="index.html">
+            <a class="navbar-brand col-7 ml-5" href="index.html">
                 <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50"
                      class="d-inline-block align-text-top">
             </a>
@@ -35,7 +35,7 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse ml-5" id="navbarNav">
+            <div class="collapse navbar-collapse ml-5 mr-0 pr-0 flex-grow-0" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item ml-3 mr-3">
                         <a id="homeNav" class="nav-link active" aria-current="page" href="#home">HOME</a>
@@ -50,7 +50,7 @@
                         <a id="dashboardNav" class="nav-link" href="#">DASHBOARD</a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
-                        <a id="signOutNav" class="nav-link" href="index.html">SIGN OUT</a>
+                        <a id="signOutNav" class="nav-link" href="#">SIGN OUT</a>
                     </li>
                 </ul>
             </div>
@@ -494,10 +494,18 @@
 
     let baseURL = "http://localhost:8080/easy/";
 
-    window.addEventListener("beforeunload", ev => {
-        ev.preventDefault();
-        ev.returnValue = "";
-    })
+    $("#signOutNav").click(function () {
+        $.ajax({
+            url: baseURL + "user/rem",
+            method: "post",
+            success: function (resp) {
+                window.location.href = "index.html";
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
 
 
     $("#reserveBtn").click(function () {

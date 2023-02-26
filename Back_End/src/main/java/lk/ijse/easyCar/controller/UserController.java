@@ -28,6 +28,11 @@ public class UserController {
         System.out.println(user);
     }
 
+    @PostMapping(path = "/rem")
+    public void getRemoveAdmin(){
+        user.clear();
+    }
+
     @GetMapping
     public ResponseUtil getAllCustomers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllUsers());
