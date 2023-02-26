@@ -20,6 +20,12 @@ public class AdminController {
 
     private static final ArrayList<UserDTO> user = new ArrayList<>();
 
+    @PostMapping(path = "/set")
+    public void getSetAdmin(UserDTO dto){
+        user.add(dto);
+        System.out.println(user);
+    }
+
     @GetMapping(path = "/u")
     public ResponseUtil getAllUsers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllUsersCount());

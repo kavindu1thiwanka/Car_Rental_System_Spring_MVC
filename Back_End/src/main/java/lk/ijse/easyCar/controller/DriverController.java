@@ -17,6 +17,12 @@ public class DriverController {
 
     private static final ArrayList<UserDTO> user = new ArrayList<>();
 
+    @PostMapping(path = "/set")
+    public void getSetDriver(UserDTO dto){
+        user.add(dto);
+        System.out.println(user);
+    }
+
     @GetMapping
     public ResponseUtil getAllDrivers(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllDrivers());
