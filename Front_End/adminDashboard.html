@@ -503,9 +503,7 @@
         $("#carPage").css("display", "block");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
-
-        // $("#carsNav").css("background","rgba(168,182,243,0.24)");
-        // $("#carsNav").css("border-radius","5px");
+        loadAllCar();
     });
 
     $("#customersNav").click(function () {
@@ -513,6 +511,7 @@
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "block");
         $("#driverPage").css("display", "none");
+        loadAllCustomers();
     });
 
     $("#driversNav").click(function () {
@@ -520,6 +519,7 @@
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "block");
+        loadAllDriver();
     });
 
     // Customer CRUD and Table Functions

@@ -458,6 +458,23 @@
                                 <p class="h7 col-4" style="font-family: 'Josefin Sans', sans-serif;">Return Date :</p>
                                 <input class="col-3" type="date" id="returnDate" name="Return Date" 7>
                             </div>
+                            <div class="col-12 row " style="right: 0">
+                                <div class="col-12 row">
+                                    <div class="form-check ml-3">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Self Drive
+                                        </label>
+                                    </div>
+                                    <div class="form-check ml-2">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            With Driver
+                                        </label>
+                                    </div>
+                                </div>
+                                <p class="col-12" style="font-size: x-small;">Driver Charge Rs 1000/- per Day Additionally</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -500,6 +517,15 @@
                             <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Return Date :</p>
                             <p id="returnDateModal2" class="h7">15/02/2023</p>
                         </div>
+                        <div class="col-12 row mt-2">
+                            <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Customer Name :</p>
+                            <p id="customerModal2" class="h7">Customer Name</p>
+                        </div>
+                        <div class="col-12 row">
+                            <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Customer Email :</p>
+                            <p id="customerEmailModal2" class="h7">example@gmail.com</p>
+                        </div>
+
                         <div class="col-11 ml-2" style="background: #bbd9fa; border-radius: 5px;">
                             <div class="row mt-2 mb-2">
                                 <p class="h8 col-12 ml-3" style="color: red">Make a payment before reservation</p>
@@ -542,14 +568,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 row mt-2">
-                            <p class="h7 col-5" style="font-family: 'Josefin Sans', sans-serif;">Customer Name :</p>
-                            <p id="customerModal2" class="h7">Customer Name</p>
-                        </div>
-                        <div class="col-12 row">
-                            <p class="h7 col-5" style="font-family: 'Josefin Sans', sans-serif;">Customer Email :</p>
-                            <p id="customerEmailModal2" class="h7">example@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -744,19 +762,20 @@
         let total =0;
         const diffInMs   = new Date($('#returnDate').val()) - new Date(date);
         const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+        const remainDays = diffInDays % 30;
+        const month = (diffInDays-remainDays)/30;
+        let driverCharge = 0;
+
+        if ($("#exampleRadios2").is(":checked")){
+            driverCharge = 1000 * diffInDays ;
+        }else if($("#exampleRadios1").is(":checked")){
+            driverCharge = 0;
+        }
 
         for (let c of car) {
             $("#carNameModal2").text(c.carBrand);
             $("#carRegisterNumModal2").text(c.registrationNo);
-            // if (diffInDays===30){
-            //     total=c.monthlyPrice;
-            // }
-            // if (diffInDays<30){
-            //     total=diffInDays*c.dailyPrice;
-            // }
-            // if (diffInDays>30){
-            //
-            // }
+            total = (remainDays * c.dailyPrice)+(month * c.monthlyPrice) + driverCharge;
         }
         $("#totalModal2").text("Rs " + total + "/-");
         $("#todayModal2").text(date);
