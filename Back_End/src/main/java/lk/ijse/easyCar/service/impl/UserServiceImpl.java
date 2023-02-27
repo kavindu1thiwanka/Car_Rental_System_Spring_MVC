@@ -107,4 +107,9 @@ public class UserServiceImpl implements UserService {
         AllUsers map = mapper.map(allUserDTO, AllUsers.class);
         allUsersRepo.save(map);
     }
+
+    @Override
+    public ArrayList<UserDTO> getUserDetails(String userEmail) {
+        return mapper.map(userRepo.findByUserEmail(userEmail),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+    }
 }

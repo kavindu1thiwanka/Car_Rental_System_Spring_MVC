@@ -482,40 +482,74 @@
                     <div class="row">
                         <div class="col-12 row">
                             <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Car :</p>
-                            <p id="carNameModal2" class="h7 col-3">Car Name</p>
+                            <p id="carNameModal2" class="h7">Car Name</p>
                         </div>
                         <div class="col-12 row">
                             <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Register Number :</p>
-                            <p id="carRegisterNumModal2" class="h7 col-3">C000</p>
+                            <p id="carRegisterNumModal2" class="h7">C000</p>
                         </div>
                         <div class="col-12 row">
                             <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Total :</p>
-                            <p id="totalModal2" class="h7 col-3">Rs 0000/-</p>
+                            <p id="totalModal2" class="h7">Rs 0000/-</p>
                         </div>
                         <div class="col-12 row">
-                            <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Date :</p>
-                            <p id="todayModal2" class="h7 col-3">12/02/2023</p>
+                            <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Pick Up Date :</p>
+                            <p id="todayModal2" class="h7">12/02/2023</p>
                         </div>
                         <div class="col-12 row">
                             <p class="h7 col-6" style="font-family: 'Josefin Sans', sans-serif;">Return Date :</p>
-                            <p id="returnDateModal2" class="h7 col-3">15/02/2023</p>
+                            <p id="returnDateModal2" class="h7">15/02/2023</p>
                         </div>
                         <div class="col-11 ml-2" style="background: #bbd9fa; border-radius: 5px;">
                             <div class="row mt-2 mb-2">
-                                <p class="h8 col-12" style="color: red">Make a payment before reservation</p>
-                                <p class="h6 col-12">Bank Details</p>
-                                <p class="h6 col-12">Bank Name : Commercial Bank</p>
-                                <p class="h6 col-12">Account Name : Easy Car Rental</p>
-                                <p class="h6 col-12">Account Number : 8007231654</p>
+                                <p class="h8 col-12 ml-3" style="color: red">Make a payment before reservation</p>
+                                <p class="h6 col-12 ml-3">Bank Details</p>
+                                <div class="col-12 mt-2">
+                                    <div id="bankDetailsCarousel" class="carousel slide" style="height: 100px">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div>
+                                                    <p class="h6 col-12">Bank Name : Commercial Bank</p>
+                                                    <p class="h6 col-12">Account Name : Easy Car Rental</p>
+                                                    <p class="h6 col-12">Account Number : 8007231654</p>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div>
+                                                    <p class="h6 col-12">Bank Name : Peoples Bank</p>
+                                                    <p class="h6 col-12">Account Name : Easy Car Rental</p>
+                                                    <p class="h6 col-12">Account Number : 2001387454</p>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div>
+                                                    <p class="h6 col-12">Bank Name : Bank of Ceylon</p>
+                                                    <p class="h6 col-12">Account Name : Easy Car Rental</p>
+                                                    <p class="h6 col-12">Account Number : 204567004</p>
+                                                </div>
+                                            </div>
+                                            <button class="carousel-control-prev btn" type="button" data-target="#bankDetailsCarousel"
+                                                    data-slide="prev" style="box-shadow: transparent">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden"></span>
+                                            </button>
+                                            <button class="carousel-control-next btn" type="button" data-target="#bankDetailsCarousel"
+                                                    data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 row mt-2">
                             <p class="h7 col-5" style="font-family: 'Josefin Sans', sans-serif;">Customer Name :</p>
-                            <p id="customerModal2" class="h7 col-4">Customer Name</p>
+                            <p id="customerModal2" class="h7">Customer Name</p>
                         </div>
                         <div class="col-12 row">
                             <p class="h7 col-5" style="font-family: 'Josefin Sans', sans-serif;">Customer Email :</p>
-                            <p id="customerEmailModal2" class="h7 col-4">example@gmail.com</p>
+                            <p id="customerEmailModal2" class="h7">example@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -551,6 +585,9 @@
 <script>
 
     let baseURL = "http://localhost:8080/easy/";
+
+    let car;
+    let date = new Date().toJSON().slice(0, 10);
 
     loadAllLuxuryCars();
     loadAllPremiumCars();
@@ -674,6 +711,8 @@
             url: baseURL + "car?id=" + id + "",
             dataType: "json",
             success: function (resp) {
+                car=null;
+                car=resp.data;
                 for (let x of resp.data) {
                     $("#carNameOnModal").text(x.carBrand);
                     $("#carTypeOnModal").text(x.carType);
@@ -702,6 +741,36 @@
     });
 
     $("#calculateReserveBtn").click(function () {
+        let total =0;
+        const diffInMs   = new Date($('#returnDate').val()) - new Date(date);
+        const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+        for (let c of car) {
+            $("#carNameModal2").text(c.carBrand);
+            $("#carRegisterNumModal2").text(c.registrationNo);
+            // if (diffInDays===30){
+            //     total=c.monthlyPrice;
+            // }
+            // if (diffInDays<30){
+            //     total=diffInDays*c.dailyPrice;
+            // }
+            // if (diffInDays>30){
+            //
+            // }
+        }
+        $("#totalModal2").text("Rs " + total + "/-");
+        $("#todayModal2").text(date);
+        $("#returnDateModal2").text($('#returnDate').val());
+        $.ajax({
+            url: baseURL + "user/get",
+            dataType: "json",
+            success: function (resp) {
+                for (let x of resp.data) {
+                    $("#customerModal2").text(x.userName);
+                    $("#customerEmailModal2").text(x.userEmail);
+                }
+            }
+        });
     });
 
     $("#reserveBtn").click(function () {

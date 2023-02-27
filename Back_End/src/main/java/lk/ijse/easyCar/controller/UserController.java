@@ -2,6 +2,7 @@ package lk.ijse.easyCar.controller;
 
 import lk.ijse.easyCar.dto.AllUserDTO;
 import lk.ijse.easyCar.dto.UserDTO;
+import lk.ijse.easyCar.entity.User;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,10 @@ public class UserController {
 
     private static final ArrayList<UserDTO> user = new ArrayList<>();
 
+    @GetMapping(path = "/get")
+    public ResponseUtil getOnlineUser(){
+        return new ResponseUtil("OK"," " ,userService.getUserDetails(user.get(0).getUserEmail()));
+    }
     @PostMapping(path = "/set")
     public void getSetUser(UserDTO dto){
         user.add(dto);

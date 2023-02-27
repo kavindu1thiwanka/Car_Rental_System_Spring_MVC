@@ -1,6 +1,7 @@
 package lk.ijse.easyCar.controller;
 
 import lk.ijse.easyCar.dto.CarDTO;
+import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.CarService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;

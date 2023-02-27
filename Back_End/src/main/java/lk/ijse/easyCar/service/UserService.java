@@ -26,4 +26,6 @@ public interface UserService {
     void deleteDriver(String email);
 
     void saveToAllUser(AllUserDTO allUserDTO);
+
+    ArrayList<UserDTO> getUserDetails(String userEmail);
 }
