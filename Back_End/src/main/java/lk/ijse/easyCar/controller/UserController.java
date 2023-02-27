@@ -45,33 +45,10 @@ public class UserController {
         return new ResponseUtil("OK","Successfully Deleted" ,null);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseUtil saveCustomer(UserDTO userDTO, @RequestPart("img") MultipartFile file1) {
-        System.out.println("ONNA awa kollo maduwa");
-        try {
-            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
-            File uploadsDir = new File(projectPath + "/uploads");
-
-            uploadsDir.mkdir();
-            file1.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
-
-            userDTO.setImg("uploads/"+file1.getOriginalFilename());
-
-            userService.saveUser(userDTO);
-
-            AllUserDTO allUserDTO = new AllUserDTO(userDTO.getUserEmail(), userDTO.getUserPwd(), "User");
-
-            userService.saveToAllUser(allUserDTO);
-
-            System.out.println(allUserDTO);
-
-
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-            return new ResponseUtil("Ok", "Successfully Saved", null);
-        }
-
-        return new ResponseUtil("Ok", "Successfully Saved", null);
+    @PostMapping(path = "/save")
+    public ResponseUtil saveCustomer(UserDTO dto) {
+        userService.saveUser(dto);
+        return new ResponseUtil("OK", "Successfully Registered..!", null);
     }
 
 }

@@ -13,7 +13,7 @@ public class HomePageController {
     private UserService userService;
 
     @GetMapping(path = "/login")
-    public ResponseUtil getAllUsers(){
+    public ResponseUtil getAll(){
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAll());
     }
 

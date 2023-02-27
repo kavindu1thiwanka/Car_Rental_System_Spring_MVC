@@ -20,7 +20,6 @@ public class Driver {
     private String driverNICorLicenceNo;
     private int driverContact;
     private String img;
-    private String driverPwd;
     private String available;
 
     @OneToOne(cascade = CascadeType.ALL)

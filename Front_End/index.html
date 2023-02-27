@@ -478,11 +478,11 @@
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">${c.carBrand}</h5>
-                                            <label id="carIdOnModal">${c.registrationNo}</label>
                                             <div class="row mt-4 card-text">
                                                 <div class="row col-7">
                                                     <p class="col-12">Rs ${c.dailyPrice} /-</p>
                                                     <p class="col-12" style="color:#32CD32;">${c.available}</p>
+                                                    <label class="carIdOnModal" hidden>${c.registrationNo}</label>
                                                 </div>
                                                 <button type="button" class="detailsBtn btn btn-primary col-4 align-self-center"
                                                         data-toggle="modal" data-target="#exampleModal"
@@ -515,11 +515,11 @@
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">${c.carBrand}</h5>
-                                            <label id="carIdOnModal">${c.registrationNo}</label>
                                             <div class="row mt-4 card-text">
                                                 <div class="row col-7">
                                                     <p class="col-12">Rs ${c.dailyPrice} /-</p>
                                                     <p class="col-12" style="color:#32CD32;">${c.available}</p>
+                                                    <label class="carIdOnModal" hidden>${c.registrationNo}</label>
                                                 </div>
                                                 <button type="button" class="detailsBtn btn btn-primary col-4 align-self-center"
                                                         data-toggle="modal" data-target="#exampleModal"
@@ -540,56 +540,59 @@
         let content = '';
         $("#tblCustomer").empty();
         $.ajax({
-            url: baseURL + "car",
+            url: baseURL + "car/general",
             dataType: "json",
             success: function (resp) {
                 console.log(resp.data);
                 for (let c of resp.data) {
                     content += `
                         <div class="col mb-2">
-                                    <div class="card h-100 shadow-sm">
-                                        <div class="card-img-top" style="width: 348px; height: 245px">
-                                            <img src="assets/img/car/Perodua__Daihatsu__Axia_-_Auto-removebg-preview.png" class="card-img-top" alt="General Car Image">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-img-top" style="width: 348px; height: 245px">
+                                    <img src="assets/img/car/Perodua__Daihatsu__Axia_-_Auto-removebg-preview.png" class="card-img-top" alt="General Car Image">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">${c.carBrand}</h5>
+                                    <div class="row mt-4 card-text">
+                                        <div class="row col-7">
+                                            <p class="col-12">Rs ${c.dailyPrice} /-</p>
+                                            <p class="col-12" style="color:#32CD32;">${c.available}</p>
+                                            <label class="carIdOnModal" hidden>${c.registrationNo}</label>
                                         </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title">${c.carBrand}</h5>
-                                            <label id="carIdOnModal">${c.registrationNo}</label>
-                                            <div class="row mt-4 card-text">
-                                                <div class="row col-7">
-                                                    <p class="col-12">Rs ${c.dailyPrice} /-</p>
-                                                    <p class="col-12" style="color:#32CD32;">${c.available}</p>
-                                                </div>
-                                                <button type="button" class="detailsBtn btn btn-primary col-4 align-self-center"
+                                        <button type="button" class="detailsBtn btn btn-primary col-4 align-self-center"
                                                         data-toggle="modal" data-target="#exampleModal"
                                                         style="background: #FB6011; border-color: #FB601100; height: 10%">Details >>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                             `
                 }
-                    document.querySelector("#generalCarsContainer").innerHTML = content;
-                btnDetails();
+                document.querySelector("#generalCarsContainer").innerHTML = content;
             }
         });
     }
 
-    function btnDetails(){
-        $(".detailsBtn").click(function (){
-
-            let id = $("#carIdOnModal").val();
-            console.log(id);
-
-            $.ajax({
-                url: baseURL + "car?id=" + id + "",
-                dataType: "json",
-                success: function (resp) {
-                    console.log(resp.data);
+    $(document).on('click', '.detailsBtn', function () {
+        let id = $(this).closest('div').find('label').text();
+        $.ajax({
+            url: baseURL + "car?id=" + id + "",
+            dataType: "json",
+            success: function (resp) {
+                for (let x of resp.data) {
+                    $("#carNameOnModal").text(x.carBrand);
+                    $("#carTypeOnModal").text(x.carType);
+                    $("#passengerOnModalDetails").text(x.numberOfPassengers);
+                    $("#dailyOnModalDetails").text("Rs "+ x.dailyPrice + "/-");
+                    $("#transmissionOnModalDetails").text(x.transmissionType);
+                    $("#monthlyOnModalDetails").text("Rs "+ x.monthlyPrice + "/-");
+                    $("#fuelOnModalDetails").text(x.fuelType);
+                    $("#extraKmOnModalDetails").text("Rs "+ x.priceForExtraKM + "/-");
                 }
-            });
+            }
         });
-    }
+    });
 
     $("#btnSignIn").click(function () {
 
@@ -599,7 +602,7 @@
             success: function (res) {
                 let count = 0;
                 for (let x of res.data) {
-                    if (x.email === $('#emailInput').val() && x.pwd === $('#pwdInput').val()) {
+                    if (x.userEmail === $('#emailInput').val() && x.userPwd === $('#pwdInput').val()) {
                         if (x.role === "User") {
                             $.ajax({
                                 url: baseURL + "user/set",
@@ -650,7 +653,7 @@
                         if (count === res.data.length) {
                             alert("Your Email or Password is Incorrect...!")
                         }
-                        continue;
+
                     }
                 }
             },

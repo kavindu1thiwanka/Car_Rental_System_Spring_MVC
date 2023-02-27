@@ -21,7 +21,6 @@ public class User {
     private String userNICorLicenceNo;
     private int userContact;
     private String img;
-    private String userPwd;
 
     @OneToOne(cascade = CascadeType.ALL)
     private AllUsers allUsers;

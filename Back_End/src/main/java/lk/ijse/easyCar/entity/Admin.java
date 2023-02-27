@@ -19,7 +19,7 @@ public class Admin {
     @Id
     private String adminEmail;
     private String adminName;
-    private String adminPwd;
+    private String adminNICno;
 
     @OneToOne(cascade = CascadeType.ALL)
     private AllUsers allUsers;

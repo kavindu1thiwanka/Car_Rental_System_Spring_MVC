@@ -14,8 +14,9 @@ import javax.persistence.Id;
 @Data
 @ToString
 public class AllUsers {
+    private String userId;
     @Id
-    private String email;
-    private String pwd;
+    private String userEmail;
+    private String userPwd;
     private String role;
 }

@@ -1,6 +1,7 @@
 package lk.ijse.easyCar.service.impl;
 
 import lk.ijse.easyCar.dto.AllUserDTO;
+import lk.ijse.easyCar.dto.DriverDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.entity.AllUsers;
 import lk.ijse.easyCar.entity.User;
@@ -12,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -45,8 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ArrayList<UserDTO> getAllDrivers() {
-        return mapper.map(driverRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+    public ArrayList<DriverDTO> getAllDrivers() {
+        return mapper.map(driverRepo.findAll(),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
     }
 
     @Override
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
         if (!userRepo.existsById(email)){
             throw new RuntimeException("User Does Not Exist..!");
         }
+        allUsersRepo.deleteById(email);
         userRepo.deleteById(email);
     }
 
@@ -82,8 +85,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ArrayList<UserDTO> getAll() {
-        return mapper.map(allUsersRepo.findAll(),new TypeToken<ArrayList<UserDTO>>(){}.getType());
+    public ArrayList<AllUserDTO> getAll() {
+        return mapper.map(allUsersRepo.findAll(),new TypeToken<ArrayList<AllUserDTO>>(){}.getType());
     }
 
     @Override
@@ -91,12 +94,13 @@ public class UserServiceImpl implements UserService {
         if (!driverRepo.existsById(email)){
             throw new RuntimeException("Driver Does Not Exist..!");
         }
+        allUsersRepo.deleteById(email);
         driverRepo.deleteById(email);
     }
 
     @Override
-    public void saveToAllUser(AllUserDTO allUserDTO) {
-        if (allUsersRepo.existsById(allUserDTO.getEmail())) {
+    public void saveToAllUser(@RequestBody AllUserDTO allUserDTO) {
+        if (allUsersRepo.existsById(allUserDTO.getUserEmail())) {
             throw new RuntimeException("User already exists");
         }
 

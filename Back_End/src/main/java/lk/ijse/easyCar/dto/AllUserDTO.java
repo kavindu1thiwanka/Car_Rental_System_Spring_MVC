@@ -10,7 +10,8 @@ import lombok.ToString;
 @Data
 @ToString
 public class AllUserDTO {
-    private String email;
-    private String pwd;
+    private String userId;
+    private String userEmail;
+    private String userPwd;
     private String role;
 }

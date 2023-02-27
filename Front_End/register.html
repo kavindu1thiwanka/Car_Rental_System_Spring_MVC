@@ -51,7 +51,7 @@
 <!--                </div>-->
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input name="userNICNo" id="userNICNo" type="text" class="form-control" placeholder="Nic Number or License Number">
+                    <input name="userNICorLicenceNo" id="userNICorLicenceNo" type="text" class="form-control" placeholder="Nic Number or License Number">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-file"></i></span>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                    <input name="userPwd" id="pwd" type="password" class="form-control" placeholder="Password">
+                    <input name="userPwd" id="userPwd" type="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
@@ -92,59 +92,60 @@
 
     let baseURL = "http://localhost:8080/easy/";
 
-    //Add User
-    $("#signUpBtn").click(function () {
-
-
-        let formData = new FormData();
-
-        let userName = $("#userName").val();
-        let userAddress = $("#userAddress").val();
-        let userContact = $("#userContact").val();
-        let userEmail = $("#userEmail").val();
-        let userNICNo = $("#userNICNo").val();
-        let pwd = $("#pwd").val();
-
-        formData.append("userName",userName);
-        formData.append("userAddress",userAddress);
-        formData.append("userNICNo",userNICNo);
-        formData.append("userContact",userContact);
-        formData.append("userEmail",userEmail);
-        formData.append("pwd",pwd);
-
-        let file1 = $("#img")[0].files[0];
-        let fileName1 = $("#img")[0].files[0].name;
-
-        formData.append("img",file1,fileName1);
-
-        console.log(formData);
-
-        if (pwd === $("#confirmPwd").val()){
+    $("#signUpBtn").click(function (){
+        if ($('#userPwd').val()===$('#confirmPwd').val()){
+            let formCusData = $("#signUpForm").serialize();
+            console.log(formCusData);
             $.ajax({
-                url: baseURL + "user",
+                url: baseURL + "user/save",
                 method: "post",
-                data: formData,
+                data: formCusData,
                 dataType: "json",
-                async: true,
-                contentType: false,
-                processData: false,
-                enctype:"multipart/form-data",
                 success: function (res) {
-                    console.log("Success Method Invoked")
-                    console.log(res);
+
                     alert(res.message);
 
+                    console.log("Success : " + res.message);
+                    // setCusTxtField("", "", "", "", "");
                 },
-                error: function (error) {
-                    console.log("Error Method Invoked");
-                    console.log(JSON.parse(error.responseText));
-                    alert(JSON.parse(error.responseText).message);
+                error: function (err) {
+                    let message = JSON.parse(err.responseText).message;
+                    alert(message);
+                    console.log("Error : " + message)
+                }
+            });
 
+            var cusLogObj = {
+                userId: $("#userNICorLicenceNo").val(),
+                userEmail : $("#userEmail").val(),
+                userPwd : $("#userPwd").val(),
+                role  : "User"
+            }
+
+            console.log(cusLogObj);
+
+            $.ajax({
+                url: baseURL + "reg/user",
+                method: "post",
+                data: JSON.stringify(cusLogObj),
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    alert(res.message);
+                    console.log("Success : " + res.message);
+                    $(location).attr('href', 'index.html');
+                },
+                error: function (err) {
+                    let message = JSON.parse(err.responseText).message;
+                    alert(message);
+                    console.log("Error : " + message)
                 }
             });
         }else {
-            alert("Please Check Your Password..!")
+            alert("Check Your Password..!")
         }
+
+
     });
 </script>
 </body>

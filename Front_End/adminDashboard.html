@@ -366,28 +366,30 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="dr_name">Name</label>
-                                <input type="text" class="form-control" id="dr_name" disabled
+                                <input type="text" class="form-control" id="dr_name"
                                        placeholder="Pasan Kumara">
                             </div>
                             <div class="col">
                                 <label for="dr_lic">License Number</label>
-                                <input type="text" class="form-control" id="dr_lic" disabled placeholder="B12345678">
+                                <input type="text" class="form-control" id="dr_lic" placeholder="B12345678">
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="dr_contact">Contact Number</label>
-                                <input type="text" class="form-control" id="dr_contact" disabled
+                                <input type="text" class="form-control" id="dr_contact"
                                        placeholder="0712345678">
                             </div>
                             <div class="col">
                                 <label for="dr_email">Email</label>
-                                <input type="text" class="form-control" id="dr_email" disabled
+                                <input type="text" class="form-control" id="dr_email"
                                        placeholder="contac@gamil.com">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
-                            <div class="col-6 btn-group">
+                            <div class="col-8 btn-group">
+                                <button id="btnAddDriver" type="button" class="btn btn-success">Add</button>
+                                <button id="btnUpdateDriver" type="button" class="btn btn-warning">Update</button>
                                 <button id="btnDeleteDriver" type="button" class="btn btn-danger">Delete</button>
                             </div>
                         </div>
@@ -490,6 +492,10 @@
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
         loadDataOnAdminDashboard();
+
+        // $("#dashboardNav").css("background","rgba(168,182,243,0.24)");
+        // $("#dashboardNav").css("border-radius","5px");
+
     });
 
     $("#carsNav").click(function () {
@@ -497,6 +503,9 @@
         $("#carPage").css("display", "block");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
+
+        // $("#carsNav").css("background","rgba(168,182,243,0.24)");
+        // $("#carsNav").css("border-radius","5px");
     });
 
     $("#customersNav").click(function () {
@@ -522,7 +531,7 @@
             dataType: "json",
             success: function (resp) {
                 for (let cus of resp.data) {
-                    var row = '<tr><td>' + cus.userName + '</td><td>' + cus.userAddress + '</td><td>' + cus.userNICNo + '</td><td>' + cus.email + '</td><td>' + cus.userContact + '</td></tr>';
+                    var row = '<tr><td>' + cus.userName + '</td><td>' + cus.userAddress + '</td><td>' + cus.userNICorLicenceNo + '</td><td>' + cus.userEmail + '</td><td>' + cus.userContact + '</td></tr>';
                     $("#tblCustomer").append(row);
                 }
                 bindRowClickEventsUser();
@@ -748,7 +757,7 @@
             dataType: "json",
             success: function (resp) {
                 for (let dri of resp.data) {
-                    var row = '<tr><td>' + dri.userNICNo + '</td><td>' + dri.userName + '</td><td>' + dri.userContact + '</td><td>' + dri.email + '</td></tr>';
+                    var row = '<tr><td>' + dri.driverNICorLicenceNo + '</td><td>' + dri.driverName + '</td><td>' + dri.driverContact + '</td><td>' + dri.driverEmail + '</td><td>' + dri.available + '</td></tr>';
                     $("#tblDriver").append(row);
                 }
                 bindRowClickEventsDriver();
