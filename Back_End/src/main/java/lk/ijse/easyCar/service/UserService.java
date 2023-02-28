@@ -13,6 +13,8 @@ public interface UserService {
 
     ArrayList<DriverDTO> getAllDrivers();
 
+    ArrayList<DriverDTO> getAllAvailableDrivers();
+
     void deleteUser(String email);
 
     void saveUser(UserDTO userDTO);

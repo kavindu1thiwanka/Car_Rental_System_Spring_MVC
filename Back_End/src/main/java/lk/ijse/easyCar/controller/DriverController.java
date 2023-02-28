@@ -34,6 +34,11 @@ public class DriverController {
         return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllDrivers());
     }
 
+    @GetMapping(path = "/available")
+    public ResponseUtil getAllAvailableDrivers(){
+        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllAvailableDrivers());
+    }
+
     @DeleteMapping(params = {"email"})
     public ResponseUtil deleteDriver(@RequestParam String email){
         userService.deleteDriver(email);

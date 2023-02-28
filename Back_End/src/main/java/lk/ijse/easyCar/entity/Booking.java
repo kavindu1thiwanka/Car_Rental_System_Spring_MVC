@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
@@ -26,5 +25,6 @@ public class Booking {
     private String bk_date;
     private String bk_returnDate; //end date
     private double bk_total;
+    private String bk_driver;
     private String bk_status;
 }

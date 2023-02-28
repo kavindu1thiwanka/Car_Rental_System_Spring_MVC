@@ -455,25 +455,33 @@
                                     <img src="assets/icon/painting.png" style="height: 30px;width: 30px;" alt="icon">
                                 </div>
                                 <p id="colorOnModalDetails" class="h7 col-3">Color</p>
-                                <p class="h7 col-4" style="font-family: 'Josefin Sans', sans-serif;">Return Date :</p>
-                                <input class="col-3" type="date" id="returnDate" name="Return Date" 7>
                             </div>
-                            <div class="col-12 row " style="right: 0">
-                                <div class="col-12 row">
-                                    <div class="form-check ml-3">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
-                                            Self Drive
-                                        </label>
+                            <div class="col-11">
+                                <div class="col-12 row ml-2" style="background: #bbd9fa; border-radius: 5px;">
+                                    <div class="col-6 mt-3">
+                                        <p class="h7 col" style="font-family: 'Josefin Sans', sans-serif;">Pick Up Date :</p>
+                                        <input class="col" type="date" id="pickUpDate" name="Pick Up Date">
                                     </div>
-                                    <div class="form-check ml-2">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                        <label class="form-check-label" for="exampleRadios2">
-                                            With Driver
-                                        </label>
+                                    <div class="col-6 mt-3">
+                                        <p class="h7 col" style="font-family: 'Josefin Sans', sans-serif;">Return Date :</p>
+                                        <input class="col" type="date" id="returnDate" name="Return Date">
                                     </div>
+                                    <div class="col-12 mt-4 row">
+                                        <div class="form-check ml-3">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Self Drive
+                                            </label>
+                                        </div>
+                                        <div class="form-check ml-2">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                With Driver
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p class="col-12" style="font-size: x-small;">Driver Charge Rs 1000/- per Day Additionally</p>
                                 </div>
-                                <p class="col-12" style="font-size: x-small;">Driver Charge Rs 1000/- per Day Additionally</p>
                             </div>
                         </div>
                     </div>
@@ -528,7 +536,7 @@
 
                         <div class="col-11 ml-2" style="background: #bbd9fa; border-radius: 5px;">
                             <div class="row mt-2 mb-2">
-                                <p class="h8 col-12 ml-3" style="color: red">Make a payment before reservation</p>
+                                <p class="h8 col-12 ml-3" style="color: red">Make a payment before reservation..!</p>
                                 <p class="h6 col-12 ml-3">Bank Details</p>
                                 <div class="col-12 mt-2">
                                     <div id="bankDetailsCarousel" class="carousel slide" style="height: 100px">
@@ -554,7 +562,7 @@
                                                     <p class="h6 col-12">Account Number : 204567004</p>
                                                 </div>
                                             </div>
-                                            <button class="carousel-control-prev btn" type="button" data-target="#bankDetailsCarousel"
+                                            <button class="carousel-control-prev btn" type="button" hidden data-target="#bankDetailsCarousel"
                                                     data-slide="prev" style="box-shadow: transparent">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                 <span class="visually-hidden"></span>
@@ -567,6 +575,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <p class="col-12 ml-3" style="color: #95999c; font-size: small">After payment , Click the Reserve Button Below.</p>
                             </div>
                         </div>
                     </div>
@@ -778,7 +787,7 @@
             total = (remainDays * c.dailyPrice)+(month * c.monthlyPrice) + driverCharge;
         }
         $("#totalModal2").text("Rs " + total + "/-");
-        $("#todayModal2").text(date);
+        $("#todayModal2").text($('#pickUpDate').val());
         $("#returnDateModal2").text($('#returnDate').val());
         $.ajax({
             url: baseURL + "user/get",
@@ -793,6 +802,34 @@
     });
 
     $("#reserveBtn").click(function () {
+        let dEmail;
+        let bookingStatus;
+        $.ajax({
+            url: baseURL + "driver/available",
+            dataType: "json",
+            success: function (resp) {
+                for (let x of resp.data) {
+                    dEmail = x.driverEmail;
+                    break;
+                }
+            }
+        });
+
+        if ($("#todayModal2").text() === date){
+            bookingStatus = "Active";
+        }else {
+            bookingStatus = "Pending";
+        }
+
+        var reserveObj = {
+            bk_cusEmail: $("#customerEmailModal2").text(),
+            bk_car : $("#carNameModal2").text(),
+            bk_date : $("#todayModal2").text(),
+            bk_returnDate  : $("#returnDateModal2").text(),
+            bk_total  : $("#totalModal2").text(),
+            bk_driver  : dEmail,
+            bk_status  : bookingStatus
+        }
     });
 </script>
 </body>

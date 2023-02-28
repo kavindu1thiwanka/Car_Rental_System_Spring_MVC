@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ArrayList<DriverDTO> getAllAvailableDrivers() {
+        return mapper.map(driverRepo.findByAvailable("Available"),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
+    }
+
+    @Override
     public void deleteUser(String email) {
         if (!userRepo.existsById(email)){
             throw new RuntimeException("User Does Not Exist..!");
