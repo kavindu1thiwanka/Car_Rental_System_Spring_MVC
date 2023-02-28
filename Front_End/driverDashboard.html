@@ -39,18 +39,20 @@
     <!--work schedule and the details of the rental requests-->
     <div class="bg-white" style="width: 100vw; height: 10%;"></div>
     <h1 class="h1 mb-3 mt-5" style="font-family: 'Josefin Sans', sans-serif;">WORK SCHEDULE</h1>
-    <table class="table table-striped table-hover mt-5">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-      </thead>
-      <tbody id="driverTable">
-      </tbody>
-    </table>
+    <div class="table-responsive" style="height: 61vh; overflow-y: scroll;">
+      <table class="table shadow table-hover">
+        <thead class="thead-dark">
+        <tr class="table-primary">
+          <th scope="col">Customer Name</th>
+          <th scope="col">Pick Up Date</th>
+          <th scope="col">Return Date</th>
+          <th scope="col">Car Reg No</th>
+        </tr>
+        </thead>
+        <tbody id="tblDriverDashboard">
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>
@@ -75,6 +77,8 @@
 <script>
   let baseURL = "http://localhost:8080/easy/";
 
+  loadDriverWorkShedule();
+
   $("#signOutNav").click(function () {
     $.ajax({
       url: baseURL + "driver/rem",
@@ -87,6 +91,45 @@
       }
     });
   });
+
+  function loadDriverWorkShedule() {
+
+    $.ajax({
+      url: baseURL + "driver/get",
+      dataType: "json",
+      success: function (res) {
+        for (let dr of res.data) {
+          let drEmail = dr.driverEmail;
+          $.ajax({
+            url: baseURL + "driver?driverEmail=" + drEmail + "",
+            dataType: "json",
+            success: function (resp) {
+              for (let d of resp.data) {
+                let userEmail=d.bkCusEmail;
+                $.ajax({
+                  url: baseURL + "user?userEmail=" + userEmail + "",
+                  dataType: "json",
+                  success: function (res) {
+                    for (let u of res.data) {
+                      var row = '<tr><td>' + u.userName + '</td><td>' + d.bkDate + '</td><td>' + d.bkReturnDate + '</td><td>' + d.bkCar + '</td></tr>';
+                      $("#tblDriverDashboard").append(row);
+                    }
+                  },
+                  error: function (err) {
+                    console.log(err);
+                  }
+                });
+              }
+              bindRowClickEventsUser();
+            }
+          });
+        }
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+  }
 </script>
 </body>
 </html>

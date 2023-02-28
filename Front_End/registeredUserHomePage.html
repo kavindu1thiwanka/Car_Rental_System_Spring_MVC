@@ -831,14 +831,14 @@
                             dEmail = "Self Drive";
                         }
                         var reserveObj = {
-                            bk_id: "BK_"+bookingId,
-                            bk_cusEmail: $("#customerEmailModal2").text(),
-                            bk_car : $("#carNameModal2").text(),
-                            bk_date : $("#todayModal2").text(),
-                            bk_returnDate  : $("#returnDateModal2").text(),
-                            bk_total  : $("#totalModal2").text(),
-                            bk_driver  : dEmail,
-                            bk_status  : bookingStatus
+                            bkId: "BK_"+bookingId,
+                            bkCusEmail: $("#customerEmailModal2").text(),
+                            bkCar : $("#carRegisterNumModal2").text(),
+                            bkDate : $("#todayModal2").text(),
+                            bkReturnDate  : $("#returnDateModal2").text(),
+                            bkTotal  : $("#totalModal2").text(),
+                            bkDriver  : dEmail,
+                            bkStatus  : bookingStatus
                         }
                         $.ajax({
                             url: baseURL + "booking",

@@ -28,6 +28,12 @@ public class UserController {
     public ResponseUtil getOnlineUser(){
         return new ResponseUtil("OK"," " ,userService.getUserDetails(user.get(0).getUserEmail()));
     }
+
+    @GetMapping(params = {"userEmail"})
+    public ResponseUtil getUserDetails(@RequestParam String userEmail){
+        return new ResponseUtil("OK"," " ,userService.getUserDetails(userEmail));
+    }
+
     @PostMapping(path = "/set")
     public void getSetUser(UserDTO dto){
         user.add(dto);

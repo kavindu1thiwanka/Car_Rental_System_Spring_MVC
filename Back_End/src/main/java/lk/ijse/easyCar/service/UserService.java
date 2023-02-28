@@ -30,4 +30,6 @@ public interface UserService {
     void saveToAllUser(AllUserDTO allUserDTO);
 
     ArrayList<UserDTO> getUserDetails(String userEmail);
+
+    ArrayList<DriverDTO> getDriverDetails(String driverEmail);
 }

@@ -117,4 +117,9 @@ public class UserServiceImpl implements UserService {
     public ArrayList<UserDTO> getUserDetails(String userEmail) {
         return mapper.map(userRepo.findByUserEmail(userEmail),new TypeToken<ArrayList<UserDTO>>(){}.getType());
     }
+
+    @Override
+    public ArrayList<DriverDTO> getDriverDetails(String driverEmail) {
+        return mapper.map(driverRepo.findById(driverEmail),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
+    }
 }

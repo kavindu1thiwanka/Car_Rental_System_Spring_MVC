@@ -5,17 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
 public class BookingDTO {
-    private String bk_id;
-    private String bk_cusEmail;
-    private String bk_car;
-    private String bk_date;
-    private String bk_returnDate; //end date
-    private double bk_total;
-    private String bk_status;
+    private String bkId;
+    private String bkCusEmail;
+    private String bkCar;
+    private String bkDate;
+    private String bkReturnDate;
+    private double bkTotal;
+    private String bkDriver;
+    private String bkStatus;
 }
