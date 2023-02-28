@@ -769,7 +769,7 @@
 
     $("#calculateReserveBtn").click(function () {
         let total =0;
-        const diffInMs   = new Date($('#returnDate').val()) - new Date(date);
+        const diffInMs   = new Date($('#returnDate').val()) - new Date($('#pickUpDate').val());
         const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
         const remainDays = diffInDays % 30;
         const month = (diffInDays-remainDays)/30;
@@ -786,7 +786,7 @@
             $("#carRegisterNumModal2").text(c.registrationNo);
             total = (remainDays * c.dailyPrice)+(month * c.monthlyPrice) + driverCharge;
         }
-        $("#totalModal2").text("Rs " + total + "/-");
+        $("#totalModal2").text(total);
         $("#todayModal2").text($('#pickUpDate').val());
         $("#returnDateModal2").text($('#returnDate').val());
         $.ajax({
@@ -804,16 +804,7 @@
     $("#reserveBtn").click(function () {
         let dEmail;
         let bookingStatus;
-        $.ajax({
-            url: baseURL + "driver/available",
-            dataType: "json",
-            success: function (resp) {
-                for (let x of resp.data) {
-                    dEmail = x.driverEmail;
-                    break;
-                }
-            }
-        });
+        let bookingId;
 
         if ($("#todayModal2").text() === date){
             bookingStatus = "Active";
@@ -821,15 +812,60 @@
             bookingStatus = "Pending";
         }
 
-        var reserveObj = {
-            bk_cusEmail: $("#customerEmailModal2").text(),
-            bk_car : $("#carNameModal2").text(),
-            bk_date : $("#todayModal2").text(),
-            bk_returnDate  : $("#returnDateModal2").text(),
-            bk_total  : $("#totalModal2").text(),
-            bk_driver  : dEmail,
-            bk_status  : bookingStatus
-        }
+        $.ajax({
+            url: baseURL + "booking",
+            dataType: "json",
+            success: function (res) {
+                bookingId=1;
+                bookingId=bookingId + res.data.length;
+                $.ajax({
+                    url: baseURL + "driver/available",
+                    dataType: "json",
+                    success: function (resp) {
+                        if ($("#exampleRadios2").is(":checked")){
+                            for (let x of resp.data) {
+                                dEmail = x.driverEmail;
+                                break;
+                            }
+                        }else if($("#exampleRadios1").is(":checked")){
+                            dEmail = "Self Drive";
+                        }
+                        var reserveObj = {
+                            bk_id: "BK_"+bookingId,
+                            bk_cusEmail: $("#customerEmailModal2").text(),
+                            bk_car : $("#carNameModal2").text(),
+                            bk_date : $("#todayModal2").text(),
+                            bk_returnDate  : $("#returnDateModal2").text(),
+                            bk_total  : $("#totalModal2").text(),
+                            bk_driver  : dEmail,
+                            bk_status  : bookingStatus
+                        }
+                        $.ajax({
+                            url: baseURL + "booking",
+                            method: "post",
+                            data: JSON.stringify(reserveObj),
+                            contentType: "application/json",
+                            dataType: "json",
+                            success: function (res) {
+                                alert(res.message);
+                                console.log("Success : " + res.message);
+                            },
+                            error: function (err) {
+                                let message = JSON.parse(err.responseText).message;
+                                alert(message);
+                                console.log("Error : " + message)
+                            }
+                        });
+                    }
+                });
+            },
+            error: function (err) {
+                let message = JSON.parse(err.responseText).message;
+                alert(message);
+                console.log("Error : " + message)
+            }
+        });
+
     });
 </script>
 </body>
