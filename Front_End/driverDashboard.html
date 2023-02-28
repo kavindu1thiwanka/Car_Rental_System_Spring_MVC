@@ -76,7 +76,7 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
   let baseURL = "http://localhost:8080/easy/";
-
+  //
   loadDriverWorkShedule();
 
   $("#signOutNav").click(function () {
@@ -93,7 +93,6 @@
   });
 
   function loadDriverWorkShedule() {
-
     $.ajax({
       url: baseURL + "driver/get",
       dataType: "json",
@@ -105,9 +104,9 @@
             dataType: "json",
             success: function (resp) {
               for (let d of resp.data) {
-                let userEmail=d.bkCusEmail;
+                let bkDriver=d.bkCusEmail;
                 $.ajax({
-                  url: baseURL + "user?userEmail=" + userEmail + "",
+                  url: baseURL + "user?userEmail=" + bkDriver + "",
                   dataType: "json",
                   success: function (res) {
                     for (let u of res.data) {
@@ -120,7 +119,7 @@
                   }
                 });
               }
-              bindRowClickEventsUser();
+              // bindRowClickEventsUser();
             }
           });
         }

@@ -120,6 +120,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ArrayList<DriverDTO> getDriverDetails(String driverEmail) {
-        return mapper.map(driverRepo.findById(driverEmail),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
+        return mapper.map(driverRepo.findByDriverEmail(driverEmail),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
     }
 }

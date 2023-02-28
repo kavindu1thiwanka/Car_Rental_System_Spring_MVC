@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DriverRepo extends JpaRepository<Driver,String> {
     List<Driver> findByAvailable(String status);
+    List<Driver> findByDriverEmail(String driverEmail);
 }

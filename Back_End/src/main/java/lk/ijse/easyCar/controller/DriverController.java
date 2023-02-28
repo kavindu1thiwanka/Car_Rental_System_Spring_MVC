@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.controller;
 
+import lk.ijse.easyCar.dto.AdminDTO;
 import lk.ijse.easyCar.dto.DriverDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.BookingService;
@@ -19,17 +20,16 @@ public class DriverController {
     @Autowired
     private BookingService bookingService;
 
-    private static final ArrayList<DriverDTO> user = new ArrayList<>();
+    private static final ArrayList<UserDTO> driver = new ArrayList<>();
 
     @PostMapping(path = "/set")
-    public void getSetDriver(DriverDTO dto){
-        user.add(dto);
-        System.out.println(user);
+    public void getSetUser(UserDTO dto){
+        driver.add(dto);
     }
 
     @PostMapping(path = "/rem")
     public void getRemoveDriver(){
-        user.clear();
+        driver.clear();
     }
 
     @GetMapping
@@ -39,12 +39,12 @@ public class DriverController {
 
     @GetMapping(path = "/get")
     public ResponseUtil getOnlineUser(){
-        return new ResponseUtil("OK"," " ,userService.getDriverDetails(user.get(0).getDriverEmail()));
+        return new ResponseUtil("OK"," " ,userService.getDriverDetails(driver.get(0).getUserEmail()));
     }
 
-    @GetMapping(params = {"bkDriver"})
-    public ResponseUtil getDriverWorkShedule(@RequestParam String bkDriver){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,bookingService.getDriverWorkShedule(bkDriver));
+    @GetMapping(params = {"driverEmail"})
+    public ResponseUtil getDriverWorkShedule(@RequestParam String driverEmail){
+        return new ResponseUtil("OK","Successfully Loaded. :" ,bookingService.getDriverWorkShedule(driverEmail));
     }
 
     @GetMapping(path = "/available")
