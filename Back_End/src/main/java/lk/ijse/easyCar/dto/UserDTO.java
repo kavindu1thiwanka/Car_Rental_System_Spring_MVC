@@ -16,6 +16,4 @@ public class UserDTO {
     private String userAddress;
     private String userNICorLicenceNo;
     private int userContact;
-    private String img;
-    private String userPwd;
 }

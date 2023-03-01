@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-file"></i></span>
-                    <input name="img" id="img" type="file" class="form-control" placeholder="Nic or License Photo Upload here">
+                    <input name="cus_img" id="cus_img" type="file" class="form-control" placeholder="Nic or License Photo Upload here">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
@@ -102,7 +102,31 @@
                 data: formCusData,
                 dataType: "json",
                 success: function (res) {
+                    let cusImgFormData = new FormData();
 
+                    let file1 = $("#cus_img")[0].files[0];
+                    let fileName1 = $("#cus_img")[0].files[0].name;
+
+                    cusImgFormData.append("imageId", $("#userNICorLicenceNo").val());
+                    cusImgFormData.append("imageType", "nic");
+                    cusImgFormData.append("imageFile" ,file1, fileName1);
+
+                    $.ajax({
+                        url: baseURL + "image/save",
+                        method: "post",
+                        data: cusImgFormData,
+                        dataType: "json",
+                        async: true,
+                        contentType: false,
+                        processData: false,
+                        enctype: "multipart/form-data",
+                        success: function (res) {
+                            console.log(res.message);
+                        },
+                        error: function (err){
+                            console.log("Can't Save Image : "+JSON.parse(err.responseText).message);
+                        }
+                    });
                 },
                 error: function (err) {
                     let message = JSON.parse(err.responseText).message;

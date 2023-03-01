@@ -15,6 +15,5 @@ public class DriverDTO {
     private String driverAddress;
     private String driverNICorLicenceNo;
     private int driverContact;
-    private String img;
     private String available;
 }

@@ -19,7 +19,6 @@ public class Driver {
     private String driverAddress;
     private String driverNICorLicenceNo;
     private int driverContact;
-    private String img;
     private String available;
 
     @OneToOne(cascade = CascadeType.ALL)

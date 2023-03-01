@@ -335,10 +335,9 @@
                             </div>
                         </div>
                     </form>
-
+                    <div id="userImg" style="width: 20vw;height: 18vh">
+                    </div>
                 </div>
-
-
                 <!--  Customer table-->
                 <div class="col-8 table-responsive" style="height: 61vh; overflow-y: scroll;">
                     <table class="table shadow table-hover">
@@ -424,7 +423,7 @@
     </div>
 </div>
 
-<!--Driver Management-->
+<!--Booking Management-->
 <div class="mb-5 mt-5" id="bookingPage">
     <div class="container-fluid">
         <div class="mt-md-4 mb-md-4">
@@ -722,7 +721,18 @@
             $('#user_address').val(cusAddress);
             $('#user_contact').val(cusContact);
             $('#user_email').val(cusEmail);
-
+            $.ajax({
+                url: baseURL + "image/findimage?imageId="+cusNic,
+                method: 'get',
+                dataType: 'json',
+                success: function (res){
+                    $('#userImg').empty();
+                    $('#userImg').append("<img src="+baseURL+res.data.imageUrl+" width='100'>");
+                },
+                error: function (err){
+                    console.log("Can't Load Image : "+JSON.parse(err.responseText).message);
+                }
+            });
         });
     }
 
