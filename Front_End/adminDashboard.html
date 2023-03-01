@@ -5,8 +5,8 @@
     <title>Easy Car Rental</title>
     <meta content="width=device-width initial-scale=1" name="viewport">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
 
@@ -40,37 +40,37 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-lg bg-white col-12">
     <div class="container-fluid row">
         <a class="navbar-brand col-5 ml-5" href="index.html">
-            <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50"
-                 class="d-inline-block align-text-top">
+            <img alt="Logo" class="d-inline-block align-text-top" height="50" src="assets/img/Easy Car Rental Logo.jpg"
+                 width="100">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse ml-5 mr-0 pr-0 flex-grow-0" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item ml-3 mr-3">
-                    <button id="pendingReqBtn" type="button" class="btn btn-primary"
-                            style="background: #FB6011; border-color: #FB6011">Pending Request
+                    <button class="btn btn-primary" id="pendingReqBtn" style="background: #FB6011; border-color: #FB6011"
+                            type="button">Pending Request
                     </button>
                 </li>
                 <li class="nav-item ml-3 mr-3">
-                    <a id="dashboardNav" class="nav-link" href="#">DASHBOARD</a>
+                    <a class="nav-link" href="#" id="dashboardNav">DASHBOARD</a>
                 </li>
                 <li class="nav-item ml-3 mr-3">
-                    <a id="carsNav" class="nav-link" href="#">CAR</a>
+                    <a class="nav-link" href="#" id="carsNav">CAR</a>
                 </li>
                 <li class="nav-item ml-3 mr-3">
-                    <a id="customersNav" class="nav-link" href="#">USER</a>
+                    <a class="nav-link" href="#" id="customersNav">USER</a>
                 </li>
                 <li class="nav-item ml-3 mr-3">
-                    <a id="driversNav" class="nav-link" href="#">DRIVER</a>
+                    <a class="nav-link" href="#" id="driversNav">DRIVER</a>
                 </li>
                 <li class="nav-item ml-3 mr-3">
-                    <a class="nav-link" href="#">INCOME</a>
+                    <a class="nav-link" href="#" id="bookingNav">BOOKINGS</a>
                 </li>
                 <li class="nav-item ml-3 mr-3">
-                    <a id="signOutNav" class="nav-link" href="#">SIGN OUT</a>
+                    <a class="nav-link" href="#" id="signOutNav">SIGN OUT</a>
                 </li>
             </ul>
         </div>
@@ -78,7 +78,7 @@
 </nav>
 
 <!--Dashboard-->
-<div id="dashboardPage" class="container-fluid bg-white row">
+<div class="container-fluid bg-white row" id="dashboardPage">
 
     <div class="jumbotron pt-md-5 mt-2 col-12 ml-3">
         <div id="home-tiles">
@@ -88,7 +88,8 @@
                         <div class="card-header" style="background: #FB6011">REGISTERED USERS</div>
                         <div class="card-body">
                             <div class="dash-tile-icon"><i class="fas fa-users"></i></div>
-                            <div class="dash-tile-text text-right text-black-50"><h2 id="registeredUserCount">00</h2></div>
+                            <div class="dash-tile-text text-right text-black-50"><h2 id="registeredUserCount">00</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,7 +98,8 @@
                         <div class="card-header" style="background: #FB6011">REGISTERED DRIVERS</div>
                         <div class="card-body">
                             <div class="dash-tile-icon"><i class="fas fa-cubes"></i></div>
-                            <div class="dash-tile-text text-right text-black-50"><h2 id="registeredDriversCount">00</h2></div>
+                            <div class="dash-tile-text text-right text-black-50"><h2 id="registeredDriversCount">00</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +108,8 @@
                         <div class="card-header" style="background: #FB6011">BOOKING FOR THE DAY</div>
                         <div class="card-body">
                             <div class="dash-tile-icon"><i class="fas fa-shopping-cart"></i></div>
-                            <div class="dash-tile-text text-right text-black-50"><h2 id="bookingForDayCount">00</h2></div>
+                            <div class="dash-tile-text text-right text-black-50"><h2 id="bookingForDayCount">00</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,11 +122,13 @@
             <div class="col-12 bg-white row rounded-sm mb-3">
                 <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     AVAILABLE CARS :</h2>
-                <h2 id="availableCarCount" class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                <h2 class="h2 col-2 mb-4 mt-4" id="availableCarCount"
+                    style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     00</h2>
                 <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     RESERVED CARS :</h2>
-                <h2 id="reservedCarCount" class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
+                <h2 class="h2 col-2 mb-4 mt-4" id="reservedCarCount"
+                    style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
                     00</h2>
             </div>
             <div class="col-12 bg-white row rounded-sm mb-3">
@@ -153,7 +158,7 @@
 </div>
 
 <!--Car Management-->
-<div id="carPage" class="mt-5 mb-5">
+<div class="mt-5 mb-5" id="carPage">
     <div class="container-fluid">
         <div class="mt-md-4 mb-md-4">
             <h1>Cars</h1>
@@ -163,19 +168,19 @@
                         <div class="row mt-4 form-group">
                             <div class="col">
                                 <label for="registrationNo">Reg Number</label>
-                                <input name="registrationNo" type="text" class="form-control" id="registrationNo"
-                                       placeholder="ABC-1234">
+                                <input class="form-control" id="registrationNo" name="registrationNo" placeholder="ABC-1234"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="make">Brand</label>
-                                <input name="carBrand" type="text" class="form-control" id="make"
-                                       placeholder="Toyota, Suzuki, Honda">
+                                <input class="form-control" id="make" name="carBrand" placeholder="Toyota, Suzuki, Honda"
+                                       type="text">
                             </div>
                         </div>
                         <div class="row mt-4 form-group">
                             <div class="col">
                                 <label for="category">Category</label>
-                                <select name="carType" class="form-control" id="category">
+                                <select class="form-control" id="category" name="carType">
                                     <option>Genaral</option>
                                     <option>Premium</option>
                                     <option>Luxury</option>
@@ -183,7 +188,7 @@
                             </div>
                             <div class="col">
                                 <label for="fuel">Fuel Type</label>
-                                <select name="fuelType" class="form-control" id="fuel">
+                                <select class="form-control" id="fuel" name="fuelType">
                                     <option>Petrol</option>
                                     <option>Diesel</option>
                                     <option>Hybrid</option>
@@ -194,63 +199,63 @@
                         <div class="form-group row mt-4">
                             <div class="col">
                                 <label for="transmission">Transmission Type</label>
-                                <select name="transmissionType" class="form-control" id="transmission">
+                                <select class="form-control" id="transmission" name="transmissionType">
                                     <option>Auto</option>
                                     <option>Manual</option>
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="color">Color</label>
-                                <input name="color" type="text" class="form-control" id="color"
-                                       placeholder="White, Wine Red">
+                                <input class="form-control" id="color" name="color" placeholder="White, Wine Red"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="noOfPassengers">No Of Passengers</label>
-                                <input name="numberOfPassengers" type="text" class="form-control" id="noOfPassengers"
-                                       placeholder="4">
+                                <input class="form-control" id="noOfPassengers" name="numberOfPassengers" placeholder="4"
+                                       type="text">
                             </div>
                         </div>
                         <div class="form-group row mt-4">
                             <div class="col">
                                 <label for="priceDay">Price per Day</label>
-                                <input name="dailyPrice" type="text" class="form-control" id="priceDay"
-                                       placeholder="Rs:">
+                                <input class="form-control" id="priceDay" name="dailyPrice" placeholder="Rs:"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="priceMonth">Price per Month</label>
-                                <input name="monthlyPrice" type="text" class="form-control" id="priceMonth"
-                                       placeholder="Rs:">
+                                <input class="form-control" id="priceMonth" name="monthlyPrice" placeholder="Rs:"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="priceKm">Price per Extra Km</label>
-                                <input name="priceForExtraKM" type="text" class="form-control" id="priceKm"
-                                       placeholder="Rs:">
+                                <input class="form-control" id="priceKm" name="priceForExtraKM" placeholder="Rs:"
+                                       type="text">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-0">
                             <label class="col-12">Upload Car Images</label>
                             <div class="col">
                                 <label for="imgFront">Front</label>
-                                <input name="img" type="file" class="form-control-file" id="imgFront">
+                                <input class="form-control-file" id="imgFront" name="img" type="file">
                             </div>
                             <div class="col">
                                 <label for="imgBack">Back</label>
-                                <input name="img" type="file" class="form-control-file" id="imgBack">
+                                <input class="form-control-file" id="imgBack" name="img" type="file">
                             </div>
                             <div class="col">
                                 <label for="imgSide">Side</label>
-                                <input name="img" type="file" class="form-control-file" id="imgSide">
+                                <input class="form-control-file" id="imgSide" name="img" type="file">
                             </div>
                             <div class="col">
                                 <label for="imgInside">Inside</label>
-                                <input name="img" type="file" class="form-control-file" id="imgInside">
+                                <input class="form-control-file" id="imgInside" name="img" type="file">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-9 btn-group">
-                                <button id="btnSaveCar" type="button" class="btn btn-success">Save</button>
-                                <button id="btnUpdateCar" type="button" class="btn btn-warning">Update</button>
-                                <button id="btnDeleteCar" type="button" class="btn btn-danger">Delete</button>
+                                <button class="btn btn-success" id="btnSaveCar" type="button">Save</button>
+                                <button class="btn btn-warning" id="btnUpdateCar" type="button">Update</button>
+                                <button class="btn btn-danger" id="btnDeleteCar" type="button">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -286,7 +291,7 @@
 </div>
 
 <!--Customer Management-->
-<div id="customerPage" class="mb-5 mt-5">
+<div class="mb-5 mt-5" id="customerPage">
     <div class="container-fluid">
         <div class="mt-md-4 mb-md-4">
             <h1>Users</h1>
@@ -296,37 +301,37 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="user_name">Name</label>
-                                <input type="text" class="form-control" id="user_name" disabled
-                                       placeholder="Pasan Kumara">
+                                <input class="form-control" disabled id="user_name" placeholder="Pasan Kumara"
+                                       type="text">
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="user_nic">NIC Number</label>
-                                <input type="text" class="form-control" id="user_nic" disabled
-                                       placeholder="200236287348">
+                                <input class="form-control" disabled id="user_nic" placeholder="200236287348"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="user_address">Address</label>
-                                <input type="text" class="form-control" id="user_address" disabled
-                                       placeholder="721/C, Galle.">
+                                <input class="form-control" disabled id="user_address" placeholder="721/C, Galle."
+                                       type="text">
                             </div>
                         </div>
                         <div class="row mt-4 mb-5">
                             <div class="col">
                                 <label for="user_contact">Contact Number</label>
-                                <input type="text" class="form-control" id="user_contact" disabled
-                                       placeholder="0712345678">
+                                <input class="form-control" disabled id="user_contact" placeholder="0712345678"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="user_email">Email</label>
-                                <input type="text" class="form-control" id="user_email" disabled
-                                       placeholder="example@email.com">
+                                <input class="form-control" disabled id="user_email" placeholder="example@email.com"
+                                       type="text">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-6 btn-group">
-                                <button id="btnDeleteUser" type="button" class="btn btn-danger">Delete</button>
+                                <button class="btn btn-danger" id="btnDeleteUser" type="button">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -356,7 +361,7 @@
 </div>
 
 <!--Driver Management-->
-<div id="driverPage" class="mb-5 mt-5">
+<div class="mb-5 mt-5" id="driverPage">
     <div class="container-fluid">
         <div class="mt-md-4 mb-md-4">
             <h1>Drivers</h1>
@@ -366,31 +371,31 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="dr_name">Name</label>
-                                <input type="text" class="form-control" id="dr_name"
-                                       placeholder="Pasan Kumara">
+                                <input class="form-control" id="dr_name" placeholder="Pasan Kumara"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="dr_lic">License Number</label>
-                                <input type="text" class="form-control" id="dr_lic" placeholder="B12345678">
+                                <input class="form-control" id="dr_lic" placeholder="B12345678" type="text">
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col">
                                 <label for="dr_contact">Contact Number</label>
-                                <input type="text" class="form-control" id="dr_contact"
-                                       placeholder="0712345678">
+                                <input class="form-control" id="dr_contact" placeholder="0712345678"
+                                       type="text">
                             </div>
                             <div class="col">
                                 <label for="dr_email">Email</label>
-                                <input type="text" class="form-control" id="dr_email"
-                                       placeholder="contac@gamil.com">
+                                <input class="form-control" id="dr_email" placeholder="contac@gamil.com"
+                                       type="text">
                             </div>
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-8 btn-group">
-                                <button id="btnAddDriver" type="button" class="btn btn-success">Add</button>
-                                <button id="btnUpdateDriver" type="button" class="btn btn-warning">Update</button>
-                                <button id="btnDeleteDriver" type="button" class="btn btn-danger">Delete</button>
+                                <button class="btn btn-success" id="btnAddDriver" type="button">Add</button>
+                                <button class="btn btn-warning" id="btnUpdateDriver" type="button">Update</button>
+                                <button class="btn btn-danger" id="btnDeleteDriver" type="button">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -419,10 +424,77 @@
     </div>
 </div>
 
+<!--Driver Management-->
+<div class="mb-5 mt-5" id="bookingPage">
+    <div class="container-fluid">
+        <div class="mt-md-4 mb-md-4">
+            <!--  Driver table-->
+            <div class="table-responsive" style="height: 67vh; overflow-y: scroll;">
+                <table class="table shadow table-hover">
+                    <thead class="thead-dark">
+                    <tr class="table-primary">
+                        <th scope="col">Booking ID</th>
+                        <th scope="col">Customer Email</th>
+                        <th scope="col">Car</th>
+                        <th scope="col">Pick Up Date</th>
+                        <th scope="col">Return Date</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Driver</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tblBooking">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal-->
+<div aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" class="modal fade" id="exampleModalToggle2"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" style="width: 65vw;">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 col-12"
+                    style="font-family: 'Josefin Sans', sans-serif; font-size: 40px; font-style: italic">Pending
+                    Request</h1>
+            </div>
+            <div class="modal-body position-relative">
+                <!--  Pending Request table-->
+                <div class="table-responsive" style="height: 40vh; overflow-y: scroll;">
+                    <table class="table shadow table-hover">
+                        <thead class="thead-dark">
+                        <tr class="table-primary">
+                            <th scope="col">Booking ID</th>
+                            <th scope="col">Customer Email</th>
+                            <th scope="col">Car</th>
+                            <th scope="col">Pick Up Date</th>
+                            <th scope="col">Return Date</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Driver</th>
+                            <th scope="col">Options</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tblPendingReq">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" data-target="#exampleModal"
+                        data-toggle="modal"
+                        type="button">Go Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer>
     <div class="container-fluid" style="background: #1C201F">
         <div class="row">
-            <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" class="">
+            <img alt="Logo" class="" src="assets/img/Easy Car Rental Logo.jpg">
         </div>
     </div>
 </footer>
@@ -436,7 +508,34 @@
     loadAllCustomers();
     loadAllCar();
     loadAllDriver();
+    loadAllBookings();
     loadDataOnAdminDashboard();
+
+    $("#pendingReqBtn").click(function () {
+        loadPendingData();
+        $('#exampleModalToggle2').modal('show');
+    });
+
+    function loadPendingData() {
+        $("#tblPendingReq").empty();
+        $.ajax({
+            url: baseURL + "booking",
+            dataType: "json",
+            success: function (resp) {
+                for (let cus of resp.data) {
+                    if (cus.bkAdminStatus === "Unapproved"){
+                        var row = '<tr><td>' + cus.bkId + '</td><td>' + cus.bkCusEmail + '</td><td>' + cus.bkCar + '</td><td>' + cus.bkDate + '</td><td>' + cus.bkReturnDate + '</td><td>' + cus.bkTotal + '</td><td>' + cus.bkDriver + '</td><td>' + `<button class="btn btn-success btnApprove" type="button">Approve</button><button class="btn btn-danger ml-2 btnReject" type="button">Reject</button>` + '</td></tr>';
+                        $("#tblPendingReq").append(row);
+                    }
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    $("#bookingPage").css("display", "none");
 
     $("#signOutNav").click(function () {
         $.ajax({
@@ -480,8 +579,8 @@
             url: baseURL + "car/availableCount",
             dataType: "json",
             success: function (resp) {
-                    $('#availableCarCount').text(resp.data[0]);
-                    $('#reservedCarCount').text(resp.data[1]);
+                $('#availableCarCount').text(resp.data[0]);
+                $('#reservedCarCount').text(resp.data[1]);
             }
         });
     }
@@ -491,6 +590,7 @@
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
+        $("#bookingPage").css("display", "none");
         loadDataOnAdminDashboard();
 
         // $("#dashboardNav").css("background","rgba(168,182,243,0.24)");
@@ -503,6 +603,7 @@
         $("#carPage").css("display", "block");
         $("#customerPage").css("display", "none");
         $("#driverPage").css("display", "none");
+        $("#bookingPage").css("display", "none");
         loadAllCar();
     });
 
@@ -511,6 +612,7 @@
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "block");
         $("#driverPage").css("display", "none");
+        $("#bookingPage").css("display", "none");
         loadAllCustomers();
     });
 
@@ -518,9 +620,37 @@
         $("#dashboardPage").css("display", "none");
         $("#carPage").css("display", "none");
         $("#customerPage").css("display", "none");
+        $("#bookingPage").css("display", "none");
         $("#driverPage").css("display", "block");
         loadAllDriver();
     });
+
+    $("#bookingNav").click(function () {
+        $("#dashboardPage").css("display", "none");
+        $("#carPage").css("display", "none");
+        $("#customerPage").css("display", "none");
+        $("#driverPage").css("display", "none");
+        $("#bookingPage").css("display", "block");
+        loadAllBookings();
+    });
+
+    // Booking Table Functions
+
+    function loadAllBookings() {
+        $("#tblBooking").empty();
+        $.ajax({
+            url: baseURL + "booking",
+            dataType: "json",
+            success: function (resp) {
+                for (let cus of resp.data) {
+                    if (cus.bkAdminStatus === "Approved") {
+                        var row = '<tr><td>' + cus.bkId + '</td><td>' + cus.bkCusEmail + '</td><td>' + cus.bkCar + '</td><td>' + cus.bkDate + '</td><td>' + cus.bkReturnDate + '</td><td>' + cus.bkTotal + '</td><td>' + cus.bkDriver + '</td></tr>';
+                        $("#tblBooking").append(row);
+                    }
+                }
+            }
+        });
+    }
 
     // Customer CRUD and Table Functions
 
@@ -669,7 +799,7 @@
             async: true,
             contentType: false,
             processData: false,
-            enctype:"multipart/form-data",
+            enctype: "multipart/form-data",
             success: function (resp) {
                 alert("Successfully Uploaded");
                 // loadTheLastUploadedImage();

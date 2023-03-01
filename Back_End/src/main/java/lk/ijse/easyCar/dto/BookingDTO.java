@@ -18,4 +18,5 @@ public class BookingDTO {
     private double bkTotal;
     private String bkDriver;
     private String bkStatus;
+    private String bkAdminStatus;
 }

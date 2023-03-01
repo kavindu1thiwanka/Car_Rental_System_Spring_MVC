@@ -14,7 +14,6 @@ import javax.persistence.Id;
 @Data
 @ToString
 public class Booking {
-
     @Id
     private String bkId;
     private String bkCusEmail;
@@ -24,4 +23,5 @@ public class Booking {
     private double bkTotal;
     private String bkDriver;
     private String bkStatus;
+    private String bkAdminStatus;
 }

@@ -634,6 +634,7 @@
                                 <th scope="col">Car</th>
                                 <th scope="col">Pick Up Date</th>
                                 <th scope="col">Return Date</th>
+                                <th scope="col">Driver</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Options</th>
                             </tr>
@@ -739,8 +740,10 @@
     loadAllLuxuryCars();
     loadAllPremiumCars();
     loadAllGeneralCars();
+    loadUserData();
 
     $("#dashboardNav").click(function () {
+        loadUserData();
         $('#dashboardModal').modal('show');
     });
 
@@ -856,6 +859,37 @@
         });
     }
 
+    function loadUserData() {
+        $("#bookingTbl").empty();
+        $.ajax({
+            url: baseURL + "user/get",
+            dataType: "json",
+            success: function (resp) {
+                for (let x of resp.data) {
+                    $("#userName").val(x.userName);
+                    $("#userEmail").val(x.userEmail);
+                    $("#userAddress").val(x.userAddress);
+                    $("#userNICorLicenceNo").val(x.userNICorLicenceNo);
+                    $("#userContact").val(x.userContact);
+                    $.ajax({
+                        url: baseURL + "booking",
+                        dataType: "json",
+                        success: function (resp) {
+                            for (let b of resp.data) {
+                                if (b.bkCusEmail ===  x.userEmail){
+                                    var row = '<tr><td>' + b.bkCar + '</td><td>' + b.bkDate + '</td><td>' + b.bkReturnDate + '</td><td>' + b.bkDriver + '</td><td>' + b.bkStatus + '</td><td>' + `<button class="btn btn-success btnReturnVehicle" type="button">Return</button><button class="btn btn-danger ml-2 cancelReservation" type="button">Cancel</button>` + '</td></tr>';
+                                    $("#bookingTbl").append(row);
+                                }else{
+                                    continue;
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     $(document).on('click', '.detailsBtn', function () {
         let id = $(this).closest('div').find('label').text();
         $.ajax({
@@ -962,7 +996,8 @@
                             bkReturnDate: $("#returnDateModal2").text(),
                             bkTotal: $("#totalModal2").text(),
                             bkDriver: dEmail,
-                            bkStatus: bookingStatus
+                            bkStatus: bookingStatus,
+                            bkAdminStatus: "Unapproved"
                         }
                         $.ajax({
                             url: baseURL + "booking",
