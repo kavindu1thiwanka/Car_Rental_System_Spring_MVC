@@ -35,7 +35,8 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public ArrayList<ImageDTO> getAllImages() {
-        ArrayList<ImageDTO> allList=mapper.map(repo.findAll(),new TypeToken<ArrayList<ImageDTO>>(){}.getType());
+        ArrayList<ImageDTO> allList = mapper.map(repo.findAll(), new TypeToken<ArrayList<ImageDTO>>() {
+        }.getType());
         return allList;
     }
 

@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CarRepo extends JpaRepository<Car,String> {
+public interface CarRepo extends JpaRepository<Car, String> {
     List<Car> findByAvailable(String status);
+
     List<Car> findByCarType(String type);
 
     List<Car> findByRegistrationNo(String id);

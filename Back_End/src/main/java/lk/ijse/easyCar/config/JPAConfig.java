@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {UserRepo.class,CarRepo.class, BookingRepo.class, DriverRepo.class, ImageRepo.class,AllUsersRepo.class})
+@EnableJpaRepositories(basePackageClasses = {UserRepo.class, CarRepo.class, BookingRepo.class, DriverRepo.class, ImageRepo.class, AllUsersRepo.class})
 @PropertySource("classpath:application.properties")
 public class JPAConfig {
 
@@ -29,7 +29,7 @@ public class JPAConfig {
     private Environment env;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds, JpaVendorAdapter va){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds, JpaVendorAdapter va) {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPackagesToScan(env.getRequiredProperty("pro.entity"));
         factoryBean.setDataSource(ds);
@@ -38,8 +38,8 @@ public class JPAConfig {
     }
 
     @Bean
-    public DataSource dataSource(){
-        DriverManagerDataSource ds= new DriverManagerDataSource();
+    public DataSource dataSource() {
+        DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(env.getRequiredProperty("pro.driver"));
         ds.setUrl(env.getRequiredProperty("pro.url"));
         ds.setUsername(env.getRequiredProperty("pro.username"));
@@ -49,8 +49,8 @@ public class JPAConfig {
 
 
     @Bean
-    public JpaVendorAdapter jpaVendorAdapter(){
-        HibernateJpaVendorAdapter va= new HibernateJpaVendorAdapter();
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
         va.setDatabasePlatform(env.getRequiredProperty("pro.dial"));
         va.setDatabase(Database.MYSQL);
         va.setGenerateDdl(true);
@@ -60,7 +60,7 @@ public class JPAConfig {
 
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
-       return new JpaTransactionManager(emf);
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+        return new JpaTransactionManager(emf);
     }
 }

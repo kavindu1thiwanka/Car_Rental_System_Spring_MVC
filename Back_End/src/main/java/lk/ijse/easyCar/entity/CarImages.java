@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

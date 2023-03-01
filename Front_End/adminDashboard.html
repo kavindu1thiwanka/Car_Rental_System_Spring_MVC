@@ -50,7 +50,8 @@
         <div class="collapse navbar-collapse ml-5 mr-0 pr-0 flex-grow-0" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item ml-3 mr-3">
-                    <button class="btn btn-primary" id="pendingReqBtn" style="background: #FB6011; border-color: #FB6011"
+                    <button class="btn btn-primary" id="pendingReqBtn"
+                            style="background: #FB6011; border-color: #FB6011"
                             type="button">Pending Request
                     </button>
                 </li>
@@ -168,12 +169,14 @@
                         <div class="row mt-4 form-group">
                             <div class="col">
                                 <label for="registrationNo">Reg Number</label>
-                                <input class="form-control" id="registrationNo" name="registrationNo" placeholder="ABC-1234"
+                                <input class="form-control" id="registrationNo" name="registrationNo"
+                                       placeholder="ABC-1234"
                                        type="text">
                             </div>
                             <div class="col">
                                 <label for="make">Brand</label>
-                                <input class="form-control" id="make" name="carBrand" placeholder="Toyota, Suzuki, Honda"
+                                <input class="form-control" id="make" name="carBrand"
+                                       placeholder="Toyota, Suzuki, Honda"
                                        type="text">
                             </div>
                         </div>
@@ -211,7 +214,8 @@
                             </div>
                             <div class="col">
                                 <label for="noOfPassengers">No Of Passengers</label>
-                                <input class="form-control" id="noOfPassengers" name="numberOfPassengers" placeholder="4"
+                                <input class="form-control" id="noOfPassengers" name="numberOfPassengers"
+                                       placeholder="4"
                                        type="text">
                             </div>
                         </div>
@@ -525,7 +529,7 @@
             dataType: "json",
             success: function (resp) {
                 for (let cus of resp.data) {
-                    if (cus.bkAdminStatus === "Unapproved"){
+                    if (cus.bkAdminStatus === "Unapproved") {
                         var row = '<tr><td>' + cus.bkId + '</td><td>' + cus.bkCusEmail + '</td><td>' + cus.bkCar + '</td><td>' + cus.bkDate + '</td><td>' + cus.bkReturnDate + '</td><td>' + cus.bkTotal + '</td><td>' + cus.bkDriver + '</td><td>' + cus.bkStatus + '</td><td>' + `<button class="btn btn-success btnApprove" type="button">Approve</button><button class="btn btn-danger ml-2 btnReject" type="button">Reject</button>` + '</td></tr>';
                         $("#tblPendingReq").append(row);
                     }
@@ -561,16 +565,16 @@
         }
 
         $.ajax({
-            url: baseURL+'booking',
+            url: baseURL + 'booking',
             method: 'put',
-            contentType:"application/json",
-            data:JSON.stringify(reserveObj),
-            dataType:"json",
+            contentType: "application/json",
+            data: JSON.stringify(reserveObj),
+            dataType: "json",
             success: function (res) {
                 loadPendingData();
             },
-            error:function (error){
-                let cause= JSON.parse(error.responseText).message;
+            error: function (error) {
+                let cause = JSON.parse(error.responseText).message;
                 alert(cause);
             }
 
@@ -722,15 +726,15 @@
             $('#user_contact').val(cusContact);
             $('#user_email').val(cusEmail);
             $.ajax({
-                url: baseURL + "image/findimage?imageId="+cusNic,
+                url: baseURL + "image/findimage?imageId=" + cusNic,
                 method: 'get',
                 dataType: 'json',
-                success: function (res){
+                success: function (res) {
                     $('#userImg').empty();
-                    $('#userImg').append("<img src="+baseURL+res.data.imageUrl+" width='100'>");
+                    $('#userImg').append("<img src=" + baseURL + res.data.imageUrl + " width='100'>");
                 },
-                error: function (err){
-                    console.log("Can't Load Image : "+JSON.parse(err.responseText).message);
+                error: function (err) {
+                    console.log("Can't Load Image : " + JSON.parse(err.responseText).message);
                 }
             });
         });

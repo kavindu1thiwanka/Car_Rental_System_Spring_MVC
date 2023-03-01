@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public interface ImageService {
 
-    public void saveImage(ImageDTO dto);
+    void saveImage(ImageDTO dto);
 
-    public void deleteImage(String id);
+    void deleteImage(String id);
 
-    public ArrayList<ImageDTO> getAllImages();
+    ArrayList<ImageDTO> getAllImages();
 
-    public ImageDTO findImageById(String imageId);
+    ImageDTO findImageById(String imageId);
 }

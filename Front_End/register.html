@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Easy Car Rental</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,8 +13,8 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-lg bg-white">
     <div class="container-fluid row">
         <a class="navbar-brand col-10 ml-5" href="index.html">
-            <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50"
-                 class="d-inline-block align-text-top">
+            <img alt="Logo" class="d-inline-block align-text-top" height="50" src="assets/img/Easy Car Rental Logo.jpg"
+                 width="100">
         </a>
     </div>
 </nav>
@@ -28,45 +28,50 @@
             <form id="signUpForm">
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-user"></i></span>
-                    <input name="userName" id="userName" type="text" class="form-control" placeholder="Name">
+                    <input class="form-control" id="userName" name="userName" placeholder="Name" type="text">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                    <input name="userContact" id="userContact" type="text" class="form-control" placeholder="Contact Number">
+                    <input class="form-control" id="userContact" name="userContact" placeholder="Contact Number"
+                           type="text">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-address-book"></i></span>
-                    <input name="userAddress" id="userAddress" type="text" class="form-control" placeholder="Address">
+                    <input class="form-control" id="userAddress" name="userAddress" placeholder="Address" type="text">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input name="userEmail" id="userEmail" type="text" class="form-control" placeholder="Email">
+                    <input class="form-control" id="userEmail" name="userEmail" placeholder="Email" type="text">
                 </div>
-<!--                <div class="col-12 input-group mb-3">-->
-<!--                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>-->
-<!--                    <select name="role" id="role" class="form-control" >-->
-<!--                        <option>User</option>-->
-<!--                        <option>Driver</option>-->
-<!--                    </select>-->
-<!--                </div>-->
+                <!--                <div class="col-12 input-group mb-3">-->
+                <!--                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>-->
+                <!--                    <select name="role" id="role" class="form-control" >-->
+                <!--                        <option>User</option>-->
+                <!--                        <option>Driver</option>-->
+                <!--                    </select>-->
+                <!--                </div>-->
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input name="userNICorLicenceNo" id="userNICorLicenceNo" type="text" class="form-control" placeholder="Nic Number or License Number">
+                    <input class="form-control" id="userNICorLicenceNo" name="userNICorLicenceNo" placeholder="Nic Number or License Number"
+                           type="text">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-file"></i></span>
-                    <input name="cus_img" id="cus_img" type="file" class="form-control" placeholder="Nic or License Photo Upload here">
+                    <input class="form-control" id="cus_img" name="cus_img" placeholder="Nic or License Photo Upload here"
+                           type="file">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                    <input name="userPwd" id="userPwd" type="password" class="form-control" placeholder="Password">
+                    <input class="form-control" id="userPwd" name="userPwd" placeholder="Password" type="password">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                    <input id="confirmPwd" type="password" class="form-control" placeholder="Confirm Password">
+                    <input class="form-control" id="confirmPwd" placeholder="Confirm Password" type="password">
                 </div>
                 <div class="col-12 mb-3">
-                    <button id="signUpBtn" type="button" class="btn col-12" style="background-color: #FB6011; color:white;">Sign Up</button>
+                    <button class="btn col-12" id="signUpBtn" style="background-color: #FB6011; color:white;"
+                            type="button">Sign Up
+                    </button>
                     <p class="text-center text-muted mt-2">When You Register by Clicking Signup Button, You Agree to our
                         <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
 
@@ -92,8 +97,8 @@
 
     let baseURL = "http://localhost:8080/easy/";
 
-    $("#signUpBtn").click(function (){
-        if ($('#userPwd').val()===$('#confirmPwd').val()){
+    $("#signUpBtn").click(function () {
+        if ($('#userPwd').val() === $('#confirmPwd').val()) {
             let formCusData = $("#signUpForm").serialize();
             console.log(formCusData);
             $.ajax({
@@ -109,7 +114,7 @@
 
                     cusImgFormData.append("imageId", $("#userNICorLicenceNo").val());
                     cusImgFormData.append("imageType", "nic");
-                    cusImgFormData.append("imageFile" ,file1, fileName1);
+                    cusImgFormData.append("imageFile", file1, fileName1);
 
                     $.ajax({
                         url: baseURL + "image/save",
@@ -123,8 +128,8 @@
                         success: function (res) {
                             console.log(res.message);
                         },
-                        error: function (err){
-                            console.log("Can't Save Image : "+JSON.parse(err.responseText).message);
+                        error: function (err) {
+                            console.log("Can't Save Image : " + JSON.parse(err.responseText).message);
                         }
                     });
                 },
@@ -137,9 +142,9 @@
 
             var cusLogObj = {
                 userId: $("#userNICorLicenceNo").val(),
-                userEmail : $("#userEmail").val(),
-                userPwd : $("#userPwd").val(),
-                role  : "User"
+                userEmail: $("#userEmail").val(),
+                userPwd: $("#userPwd").val(),
+                role: "User"
             }
 
 
@@ -159,7 +164,7 @@
                     console.log("Error : " + message)
                 }
             });
-        }else {
+        } else {
             alert("Check Your Password..!")
         }
 

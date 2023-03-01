@@ -15,20 +15,20 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping
-    public ResponseUtil placeBooking(@RequestBody Booking dto){
+    public ResponseUtil placeBooking(@RequestBody Booking dto) {
         bookingService.placeBooking(dto);
-        return new ResponseUtil("OK","Reservation Successful.!",null);
+        return new ResponseUtil("OK", "Reservation Successful.!", null);
     }
 
     @GetMapping
-    public ResponseUtil getAllBookingDetails(){
-        return new ResponseUtil("OK","Successful",bookingService.getAllBookingDetails());
+    public ResponseUtil getAllBookingDetails() {
+        return new ResponseUtil("OK", "Successful", bookingService.getAllBookingDetails());
     }
 
     @PutMapping
-    public ResponseUtil setAdminStatus(@RequestBody BookingDTO dto){
+    public ResponseUtil setAdminStatus(@RequestBody BookingDTO dto) {
         bookingService.setAdminStatus(dto);
-        return new ResponseUtil("OK","Successful",null);
+        return new ResponseUtil("OK", "Successful", null);
     }
 
 }

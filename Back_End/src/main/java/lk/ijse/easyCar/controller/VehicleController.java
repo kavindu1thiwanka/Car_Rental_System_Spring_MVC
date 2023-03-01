@@ -1,20 +1,10 @@
 package lk.ijse.easyCar.controller;
 
 import lk.ijse.easyCar.dto.CarDTO;
-import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.CarService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 @RestController
 @CrossOrigin

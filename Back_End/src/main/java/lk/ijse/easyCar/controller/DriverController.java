@@ -1,7 +1,5 @@
 package lk.ijse.easyCar.controller;
 
-import lk.ijse.easyCar.dto.AdminDTO;
-import lk.ijse.easyCar.dto.DriverDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.BookingService;
 import lk.ijse.easyCar.service.UserService;
@@ -15,46 +13,45 @@ import java.util.ArrayList;
 @CrossOrigin
 @RequestMapping("/driver")
 public class DriverController {
+    private static final ArrayList<UserDTO> driver = new ArrayList<>();
     @Autowired
     private UserService userService;
     @Autowired
     private BookingService bookingService;
 
-    private static final ArrayList<UserDTO> driver = new ArrayList<>();
-
     @PostMapping(path = "/set")
-    public void getSetUser(UserDTO dto){
+    public void getSetUser(UserDTO dto) {
         driver.add(dto);
     }
 
     @PostMapping(path = "/rem")
-    public void getRemoveDriver(){
+    public void getRemoveDriver() {
         driver.clear();
     }
 
     @GetMapping
-    public ResponseUtil getAllDrivers(){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllDrivers());
+    public ResponseUtil getAllDrivers() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", userService.getAllDrivers());
     }
 
     @GetMapping(path = "/get")
-    public ResponseUtil getOnlineUser(){
-        return new ResponseUtil("OK"," " ,userService.getDriverDetails(driver.get(0).getUserEmail()));
+    public ResponseUtil getOnlineUser() {
+        return new ResponseUtil("OK", " ", userService.getDriverDetails(driver.get(0).getUserEmail()));
     }
 
     @GetMapping(params = {"driverEmail"})
-    public ResponseUtil getDriverWorkShedule(@RequestParam String driverEmail){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,bookingService.getDriverWorkShedule(driverEmail));
+    public ResponseUtil getDriverWorkShedule(@RequestParam String driverEmail) {
+        return new ResponseUtil("OK", "Successfully Loaded. :", bookingService.getDriverWorkShedule(driverEmail));
     }
 
     @GetMapping(path = "/available")
-    public ResponseUtil getAllAvailableDrivers(){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllAvailableDrivers());
+    public ResponseUtil getAllAvailableDrivers() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", userService.getAllAvailableDrivers());
     }
 
     @DeleteMapping(params = {"email"})
-    public ResponseUtil deleteDriver(@RequestParam String email){
+    public ResponseUtil deleteDriver(@RequestParam String email) {
         userService.deleteDriver(email);
-        return new ResponseUtil("OK","Successfully Deleted" ,null);
+        return new ResponseUtil("OK", "Successfully Deleted", null);
     }
 }

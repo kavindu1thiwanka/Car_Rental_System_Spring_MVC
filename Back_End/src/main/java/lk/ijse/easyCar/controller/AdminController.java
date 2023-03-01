@@ -13,34 +13,34 @@ import java.util.ArrayList;
 @CrossOrigin
 @RequestMapping("/admin")
 public class AdminController {
+    private static final ArrayList<AdminDTO> user = new ArrayList<>();
     @Autowired
     private UserService userService;
     @Autowired
     private BookingService bookingService;
 
-    private static final ArrayList<AdminDTO> user = new ArrayList<>();
-
-
     @PostMapping(path = "/set")
-    public void getSetAdmin(AdminDTO dto){
+    public void getSetAdmin(AdminDTO dto) {
         user.add(dto);
     }
 
     @PostMapping(path = "/rem")
-    public void getRemoveAdmin(){
+    public void getRemoveAdmin() {
         user.clear();
     }
 
     @GetMapping(path = "/u")
-    public ResponseUtil getAllUsers(){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllUsersCount());
+    public ResponseUtil getAllUsers() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", userService.getAllUsersCount());
     }
+
     @GetMapping(path = "/d")
-    public ResponseUtil getAllDrivers(){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,userService.getAllDriversCount());
+    public ResponseUtil getAllDrivers() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", userService.getAllDriversCount());
     }
+
     @GetMapping(path = "/b")
-    public ResponseUtil getBookingForDay(){
-        return new ResponseUtil("OK","Successfully Loaded. :" ,bookingService.getAllBookingForDayCount());
+    public ResponseUtil getBookingForDay() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", bookingService.getAllBookingForDayCount());
     }
 }

@@ -1,7 +1,6 @@
 package lk.ijse.easyCar.controller;
 
 import lk.ijse.easyCar.dto.ImageDTO;
-import lk.ijse.easyCar.repo.ImageRepo;
 import lk.ijse.easyCar.service.ImageService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class ImageController {
     @Autowired
     private ImageService service;
 
-    @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseUtil saveImage(ImageDTO imgDTO, @RequestPart("imageFile") MultipartFile file1) {
         try {
             String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
@@ -29,7 +28,7 @@ public class ImageController {
             uploadsDir.mkdir();
             file1.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
 
-            imgDTO.setImageUrl("uploads/"+file1.getOriginalFilename());
+            imgDTO.setImageUrl("uploads/" + file1.getOriginalFilename());
             service.saveImage(imgDTO);
 
         } catch (IOException | URISyntaxException e) {
@@ -40,18 +39,18 @@ public class ImageController {
     }
 
     @DeleteMapping(path = "/delete")
-    public ResponseUtil deleteImage(String imageId){
+    public ResponseUtil deleteImage(String imageId) {
         service.deleteImage(imageId);
         return new ResponseUtil("Ok", "Successfully Image Deleted", null);
     }
 
     @GetMapping(path = "/getall")
-    public ResponseUtil getAllImages(){
+    public ResponseUtil getAllImages() {
         return new ResponseUtil("Ok", "Successfully loaded!", service.getAllImages());
     }
 
     @GetMapping(path = "/findimage")
-    public ResponseUtil findImageById(String imageId){
+    public ResponseUtil findImageById(String imageId) {
         return new ResponseUtil("Ok", "Successfully loaded!", service.findImageById(imageId));
     }
 

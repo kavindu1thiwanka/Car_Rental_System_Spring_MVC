@@ -14,8 +14,8 @@ public class RegisterController {
     private UserService service;
 
     @PostMapping(path = "/user")
-    public ResponseUtil registerUser(@RequestBody AllUserDTO dto){
+    public ResponseUtil registerUser(@RequestBody AllUserDTO dto) {
         service.saveToAllUser(dto);
-        return new ResponseUtil("OK","Successfully Registered.!",null);
+        return new ResponseUtil("OK", "Successfully Registered.!", null);
     }
 }

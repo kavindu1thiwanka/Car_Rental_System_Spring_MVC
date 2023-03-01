@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
 @ComponentScan(basePackageClasses = {UserServiceImpl.class, CarServiceImpl.class, BookingServiceImpl.class, ImageServiceImpl.class})
 public class WebRootConfig {
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 }

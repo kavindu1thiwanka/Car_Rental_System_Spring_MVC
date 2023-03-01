@@ -4,18 +4,12 @@ import lk.ijse.easyCar.dto.CarDTO;
 import lk.ijse.easyCar.entity.Car;
 import lk.ijse.easyCar.repo.CarRepo;
 import lk.ijse.easyCar.service.CarService;
-import lk.ijse.easyCar.util.ResponseUtil;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +73,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public ArrayList<Integer> getAvailableAndReservedCarCount() {
-        ArrayList<Integer> arrayList=new ArrayList();
+        ArrayList<Integer> arrayList = new ArrayList();
         int availableCount;
         int reservedCount;
         List<Car> available = carRepo.findByAvailable("Available");

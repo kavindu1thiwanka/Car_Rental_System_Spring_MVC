@@ -25,18 +25,19 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Object getAllBookingForDayCount() {
         int count;
-        count=getAllBookingDetails().size();
+        count = getAllBookingDetails().size();
         return count;
     }
 
     @Override
     public ArrayList<BookingDTO> getAllBookingDetails() {
-        return mapper.map(bookingRepo.findAll(),new TypeToken<ArrayList<BookingDTO>>(){}.getType());
+        return mapper.map(bookingRepo.findAll(), new TypeToken<ArrayList<BookingDTO>>() {
+        }.getType());
     }
 
     @Override
     public void placeBooking(Booking dto) {
-        if (bookingRepo.existsById(dto.getBkId())){
+        if (bookingRepo.existsById(dto.getBkId())) {
             throw new RuntimeException("User Already Exist From This Email.Use Another Email..!");
         }
         bookingRepo.save(mapper.map(dto, Booking.class));
@@ -44,12 +45,13 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public ArrayList<BookingDTO> getDriverWorkShedule(String bkDriver) {
-        return mapper.map(bookingRepo.findByBkDriver(bkDriver),new TypeToken<ArrayList<BookingDTO>>(){}.getType());
+        return mapper.map(bookingRepo.findByBkDriver(bkDriver), new TypeToken<ArrayList<BookingDTO>>() {
+        }.getType());
     }
 
     @Override
     public void setAdminStatus(BookingDTO dto) {
-        if (!bookingRepo.existsById(dto.getBkId())){
+        if (!bookingRepo.existsById(dto.getBkId())) {
             throw new RuntimeException("Booking Not Exist..!");
         }
         bookingRepo.save(mapper.map(dto, Booking.class));

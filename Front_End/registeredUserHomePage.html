@@ -686,7 +686,8 @@
                                         <input class="form-control" id="newPwd" placeholder="New Password" type="text">
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control" id="confirmNewPwd" placeholder="Confirm New Password" type="text">
+                                        <input class="form-control" id="confirmNewPwd"
+                                               placeholder="Confirm New Password" type="text">
                                     </div>
 
                                 </div>
@@ -876,11 +877,11 @@
                         dataType: "json",
                         success: function (resp) {
                             for (let b of resp.data) {
-                                if (b.bkCusEmail ===  x.userEmail){
+                                if (b.bkCusEmail === x.userEmail) {
                                     var row = '<tr><td>' + b.bkCar + '</td><td>' + b.bkDate + '</td><td>' + b.bkReturnDate + '</td><td>' + b.bkDriver + '</td><td>' + b.bkStatus + '</td><td>' + `<button class="btn btn-success btnReturnVehicle" type="button">Return</button><button class="btn btn-danger ml-2 cancelReservation" type="button">Cancel</button>` + '</td></tr>';
                                     $("#bookingTbl").append(row);
-                                }else{
-                                    continue;
+                                } else {
+
                                 }
                             }
                         }

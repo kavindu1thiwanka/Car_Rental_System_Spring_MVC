@@ -5,8 +5,8 @@
     <title>Easy Car Rental</title>
     <meta content="width=device-width initial-scale=1" name="viewport">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
@@ -28,26 +28,26 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-lg bg-white">
         <div class="container-fluid row">
             <a class="navbar-brand col-8 ml-5" href="index.html">
-                <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" width="100" height="50"
-                     class="d-inline-block align-text-top">
+                <img alt="Logo" class="d-inline-block align-text-top" height="50" src="assets/img/Easy Car Rental Logo.jpg"
+                     width="100">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                    data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse ml-5" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item ml-3 mr-3">
-                        <a id="homeNav" class="nav-link active" aria-current="page" href="#home">HOME</a>
+                        <a aria-current="page" class="nav-link active" href="#home" id="homeNav">HOME</a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
-                        <a id="aboutNav" class="nav-link" href="#about_us">ABOUT US</a>
+                        <a class="nav-link" href="#about_us" id="aboutNav">ABOUT US</a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
-                        <a id="contactNav" class="nav-link" href="#contact_us">CONTACT</a>
+                        <a class="nav-link" href="#contact_us" id="contactNav">CONTACT</a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
-                        <a id="dashboardNav" class="nav-link disabled">DASHBOARD</a>
+                        <a class="nav-link disabled" id="dashboardNav">DASHBOARD</a>
                     </li>
                 </ul>
             </div>
@@ -55,9 +55,9 @@
     </nav>
 
     <!--Home-->
-    <div id="home" class="row position-relative">
-        <img src="assets/img/doi-luang-chiang-dao-mountains-sunrise-chiang-mai-thailand.jpg"
-             class="img-fluid background" style="height: 75vh; width: 100vw;" alt="img">
+    <div class="row position-relative" id="home">
+        <img alt="img"
+             class="img-fluid background" src="assets/img/doi-luang-chiang-dao-mountains-sunrise-chiang-mai-thailand.jpg" style="height: 75vh; width: 100vw;">
 
         <!--Home Description-->
         <div class="position-absolute align-self-center"
@@ -71,27 +71,27 @@
         </div>
 
         <!--Login Option Container-->
-        <form id="signInForm" class="position-absolute bg-white p-4 shadow align-self-center"
+        <form class="position-absolute bg-white p-4 shadow align-self-center" id="signInForm"
               style="border-radius: 0.5rem; right: 17%;">
             <div class="mb-3">
                 <p class="h4">Sign in</p>
                 <hr>
             </div>
             <div class="mb-3">
-                <label for="emailInput" class="form-label">Username</label>
-                <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp">
+                <label class="form-label" for="emailInput">Username</label>
+                <input aria-describedby="emailHelp" class="form-control" id="emailInput" type="email">
             </div>
             <div class="mb-3">
-                <label for="pwdInput" class="form-label">Password</label>
-                <input type="password" class="form-control" id="pwdInput">
+                <label class="form-label" for="pwdInput">Password</label>
+                <input class="form-control" id="pwdInput" type="password">
             </div>
             <div class="mb-3">
                 <div class="row">
-                    <button id="btnSignIn" type="button" class="btn btn-primary col-3 ml-3"
-                            style="background: #FB6011; border-color: #FB6011">Submit
+                    <button class="btn btn-primary col-3 ml-3" id="btnSignIn" style="background: #FB6011; border-color: #FB6011"
+                            type="button">Submit
                     </button>
-                    <a id="btnSignUp" class="navbar-brand col-4 align-self-center" style="font-size: 14px"
-                       href="register.html">Don't
+                    <a class="navbar-brand col-4 align-self-center" href="register.html" id="btnSignUp"
+                       style="font-size: 14px">Don't
                         have an
                         account? Sign Up</a>
                 </div>
@@ -339,7 +339,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -347,7 +347,7 @@
                         <h1 class="modal-title fs-5 col-12" id="carNameOnModal"
                             style="font-family: 'Josefin Sans', sans-serif; font-size: 40px; font-style: italic">Car
                             Name</h1>
-                        <h6 id="carTypeOnModal" class="fs-5 col-12" style="font-style: italic">Car Type</h6>
+                        <h6 class="fs-5 col-12" id="carTypeOnModal" style="font-style: italic">Car Type</h6>
                     </div>
 
                 </div>
@@ -355,35 +355,35 @@
                     <div class="row">
                         <!--carousel-->
                         <div class="col-12">
-                            <div id="carDetailsModal" class="carousel slide" data-ride="carousel">
+                            <div class="carousel slide" data-ride="carousel" id="carDetailsModal">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img id="carDetailsModalImg1" src="assets/img/car/BMW_i8-removebg-preview.png"
-                                             class="d-block w-100" alt="...">
+                                        <img alt="..." class="d-block w-100"
+                                             id="carDetailsModalImg1" src="assets/img/car/BMW_i8-removebg-preview.png">
                                     </div>
                                     <div class="carousel-item">
-                                        <img id="carDetailsModalImg2" src="assets/img/car/Mercedes-removebg-preview.png"
-                                             class="d-block w-100" alt="...">
+                                        <img alt="..." class="d-block w-100"
+                                             id="carDetailsModalImg2" src="assets/img/car/Mercedes-removebg-preview.png">
                                     </div>
                                     <div class="carousel-item">
-                                        <img id="carDetailsModalImg3"
-                                             src="assets/img/car/Perodua_Bezza_Prime_Sedan-removebg-preview.png"
-                                             class="d-block w-100" alt="...">
+                                        <img alt="..."
+                                             class="d-block w-100"
+                                             id="carDetailsModalImg3" src="assets/img/car/Perodua_Bezza_Prime_Sedan-removebg-preview.png">
                                     </div>
                                     <div class="carousel-item">
-                                        <img id="carDetailsModalImg4"
-                                             src="assets/img/car/Perodua_Bezza_Prime_Sedan-removebg-preview.png"
-                                             class="d-block w-100" alt="...">
+                                        <img alt="..."
+                                             class="d-block w-100"
+                                             id="carDetailsModalImg4" src="assets/img/car/Perodua_Bezza_Prime_Sedan-removebg-preview.png">
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev btn" type="button" data-target="#carDetailsModal"
-                                        data-slide="prev" style="box-shadow: transparent">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <button class="carousel-control-prev btn" data-slide="prev" data-target="#carDetailsModal"
+                                        style="box-shadow: transparent" type="button">
+                                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
                                     <span class="visually-hidden"></span>
                                 </button>
-                                <button class="carousel-control-next btn" type="button" data-target="#carDetailsModal"
-                                        data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <button class="carousel-control-next btn" data-slide="next" data-target="#carDetailsModal"
+                                        type="button">
+                                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
                                     <span class="visually-hidden"></span>
                                 </button>
                             </div>
@@ -392,41 +392,41 @@
                         <div class="row mt-4 ml-2" style="font-size: 15px;">
                             <div class="col-12 row">
                                 <div class="col-2">
-                                    <img src="assets/icon/team-28-256.png" style="height: 25px;width: 25px;" alt="icon">
+                                    <img alt="icon" src="assets/icon/team-28-256.png" style="height: 25px;width: 25px;">
                                 </div>
-                                <p id="passengerOnModalDetails" class="h7 col-3">00 Passen</p>
+                                <p class="h7 col-3" id="passengerOnModalDetails">00 Passen</p>
                                 <p class="h7 col-4" style="font-family: 'Josefin Sans', sans-serif;">Daily Rates :</p>
-                                <p id="dailyOnModalDetails" class="h7 col-3">Rs 1500/-</p>
+                                <p class="h7 col-3" id="dailyOnModalDetails">Rs 1500/-</p>
                             </div>
                             <div class="col-12 row">
                                 <div class="col-2">
-                                    <img src="assets/icon/gear.png" style="height: 25px;width: 25px;" alt="icon">
+                                    <img alt="icon" src="assets/icon/gear.png" style="height: 25px;width: 25px;">
                                 </div>
-                                <p id="transmissionOnModalDetails" class="h7 col-3">Auto</p>
+                                <p class="h7 col-3" id="transmissionOnModalDetails">Auto</p>
                                 <p class="h7 col-4" style="font-family: 'Josefin Sans', sans-serif;">Monthly Rates :</p>
-                                <p id="monthlyOnModalDetails" class="h7 col-3">Rs 10500/-</p>
+                                <p class="h7 col-3" id="monthlyOnModalDetails">Rs 10500/-</p>
                             </div>
                             <div class="col-12 row">
                                 <div class="col-2">
-                                    <img src="assets/icon/fuel type.png" style="height: 25px;width: 25px;" alt="icon">
+                                    <img alt="icon" src="assets/icon/fuel type.png" style="height: 25px;width: 25px;">
                                 </div>
-                                <p id="fuelOnModalDetails" class="h7 col-3">Diesol</p>
+                                <p class="h7 col-3" id="fuelOnModalDetails">Diesol</p>
                                 <p class="h7 col-4" style="font-family: 'Josefin Sans', sans-serif;">Extra KM :</p>
-                                <p id="extraKmOnModalDetails" class="h7 col-3">Rs 100/-</p>
+                                <p class="h7 col-3" id="extraKmOnModalDetails">Rs 100/-</p>
                             </div>
                             <div class="col-12 row">
                                 <div class="col-2">
-                                    <img src="assets/icon/painting.png" style="height: 30px;width: 30px;" alt="icon">
+                                    <img alt="icon" src="assets/icon/painting.png" style="height: 30px;width: 30px;">
                                 </div>
-                                <p id="colorOnModalDetails" class="h7 col-3">Color</p>
+                                <p class="h7 col-3" id="colorOnModalDetails">Color</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="reserveBtn" type="button" class="btn" disabled
-                            style="background: #FB6011; border-color: #FB6011; color: white">Reserve
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn" disabled id="reserveBtn" style="background: #FB6011; border-color: #FB6011; color: white"
+                            type="button">Reserve
                     </button>
                 </div>
             </div>
@@ -438,7 +438,7 @@
 <footer>
     <div class="container-fluid" style="background: #1C201F">
         <div class="row">
-            <img src="assets/img/Easy Car Rental Logo.jpg" alt="Logo" class="">
+            <img alt="Logo" class="" src="assets/img/Easy Car Rental Logo.jpg">
         </div>
         <div class="row" style="width: 100%; height: 10%">
             <a href="https://www.facebook.com/kavindu.thiwanka.925" target="_blank"><i
@@ -582,11 +582,11 @@
                     $("#carNameOnModal").text(x.carBrand);
                     $("#carTypeOnModal").text(x.carType);
                     $("#passengerOnModalDetails").text(x.numberOfPassengers);
-                    $("#dailyOnModalDetails").text("Rs "+ x.dailyPrice + "/-");
+                    $("#dailyOnModalDetails").text("Rs " + x.dailyPrice + "/-");
                     $("#transmissionOnModalDetails").text(x.transmissionType);
-                    $("#monthlyOnModalDetails").text("Rs "+ x.monthlyPrice + "/-");
+                    $("#monthlyOnModalDetails").text("Rs " + x.monthlyPrice + "/-");
                     $("#fuelOnModalDetails").text(x.fuelType);
-                    $("#extraKmOnModalDetails").text("Rs "+ x.priceForExtraKM + "/-");
+                    $("#extraKmOnModalDetails").text("Rs " + x.priceForExtraKM + "/-");
                 }
             }
         });
