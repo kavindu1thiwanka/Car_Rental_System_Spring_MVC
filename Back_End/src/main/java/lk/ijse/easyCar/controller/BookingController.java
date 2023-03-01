@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.controller;
 
+import lk.ijse.easyCar.dto.BookingDTO;
 import lk.ijse.easyCar.entity.Booking;
 import lk.ijse.easyCar.service.BookingService;
 import lk.ijse.easyCar.util.ResponseUtil;
@@ -22,6 +23,12 @@ public class BookingController {
     @GetMapping
     public ResponseUtil getAllBookingDetails(){
         return new ResponseUtil("OK","Successful",bookingService.getAllBookingDetails());
+    }
+
+    @PutMapping
+    public ResponseUtil setAdminStatus(@RequestBody BookingDTO dto){
+        bookingService.setAdminStatus(dto);
+        return new ResponseUtil("OK","Successful",null);
     }
 
 }

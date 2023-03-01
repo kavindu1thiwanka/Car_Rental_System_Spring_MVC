@@ -13,4 +13,6 @@ public interface BookingService {
     void placeBooking(Booking dto);
 
     ArrayList<BookingDTO> getDriverWorkShedule(String bkDriver);
+
+    void setAdminStatus(BookingDTO dto);
 }

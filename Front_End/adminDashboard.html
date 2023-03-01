@@ -290,7 +290,7 @@
     </div>
 </div>
 
-<!--Customer Management-->
+<!--Customer ManagementDriver-->
 <div class="mb-5 mt-5" id="customerPage">
     <div class="container-fluid">
         <div class="mt-md-4 mb-md-4">
@@ -473,6 +473,7 @@
                             <th scope="col">Return Date</th>
                             <th scope="col">Total</th>
                             <th scope="col">Driver</th>
+                            <th scope="col">Booking Status</th>
                             <th scope="col">Options</th>
                         </tr>
                         </thead>
@@ -516,6 +517,8 @@
         $('#exampleModalToggle2').modal('show');
     });
 
+    // Pending Request
+
     function loadPendingData() {
         $("#tblPendingReq").empty();
         $.ajax({
@@ -524,7 +527,7 @@
             success: function (resp) {
                 for (let cus of resp.data) {
                     if (cus.bkAdminStatus === "Unapproved"){
-                        var row = '<tr><td>' + cus.bkId + '</td><td>' + cus.bkCusEmail + '</td><td>' + cus.bkCar + '</td><td>' + cus.bkDate + '</td><td>' + cus.bkReturnDate + '</td><td>' + cus.bkTotal + '</td><td>' + cus.bkDriver + '</td><td>' + `<button class="btn btn-success btnApprove" type="button">Approve</button><button class="btn btn-danger ml-2 btnReject" type="button">Reject</button>` + '</td></tr>';
+                        var row = '<tr><td>' + cus.bkId + '</td><td>' + cus.bkCusEmail + '</td><td>' + cus.bkCar + '</td><td>' + cus.bkDate + '</td><td>' + cus.bkReturnDate + '</td><td>' + cus.bkTotal + '</td><td>' + cus.bkDriver + '</td><td>' + cus.bkStatus + '</td><td>' + `<button class="btn btn-success btnApprove" type="button">Approve</button><button class="btn btn-danger ml-2 btnReject" type="button">Reject</button>` + '</td></tr>';
                         $("#tblPendingReq").append(row);
                     }
                 }
@@ -534,6 +537,46 @@
             }
         });
     }
+
+    $(document).on('click', '.btnApprove', function () {
+
+        let bkId = $(this).closest('tr').children(":eq(0)").text();
+        let bkCusEmail = $(this).closest('tr').children(":eq(1)").text();
+        let bkCar = $(this).closest('tr').children(":eq(2)").text();
+        let bkDate = $(this).closest('tr').children(":eq(3)").text();
+        let bkReturnDate = $(this).closest('tr').children(":eq(4)").text();
+        let bkTotal = $(this).closest('tr').children(":eq(5)").text();
+        let bkDriver = $(this).closest('tr').children(":eq(6)").text();
+        let bkStatus = $(this).closest('tr').children(":eq(7)").text();
+
+        var reserveObj = {
+            bkId: bkId,
+            bkCusEmail: bkCusEmail,
+            bkCar: bkCar,
+            bkDate: bkDate,
+            bkReturnDate: bkReturnDate,
+            bkTotal: bkTotal,
+            bkDriver: bkDriver,
+            bkStatus: bkStatus,
+            bkAdminStatus: "Approved"
+        }
+
+        $.ajax({
+            url: baseURL+'booking',
+            method: 'put',
+            contentType:"application/json",
+            data:JSON.stringify(reserveObj),
+            dataType:"json",
+            success: function (res) {
+                loadPendingData();
+            },
+            error:function (error){
+                let cause= JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+
+        });
+    });
 
     $("#bookingPage").css("display", "none");
 
@@ -592,9 +635,6 @@
         $("#driverPage").css("display", "none");
         $("#bookingPage").css("display", "none");
         loadDataOnAdminDashboard();
-
-        // $("#dashboardNav").css("background","rgba(168,182,243,0.24)");
-        // $("#dashboardNav").css("border-radius","5px");
 
     });
 

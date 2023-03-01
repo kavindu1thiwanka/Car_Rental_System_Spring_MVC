@@ -47,4 +47,12 @@ public class BookingServiceImpl implements BookingService {
         return mapper.map(bookingRepo.findByBkDriver(bkDriver),new TypeToken<ArrayList<BookingDTO>>(){}.getType());
     }
 
+    @Override
+    public void setAdminStatus(BookingDTO dto) {
+        if (!bookingRepo.existsById(dto.getBkId())){
+            throw new RuntimeException("Booking Not Exist..!");
+        }
+        bookingRepo.save(mapper.map(dto, Booking.class));
+    }
+
 }
