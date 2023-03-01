@@ -362,20 +362,40 @@
     </div>
 
     <!--Contact Us-->
-    <div class="container bg-white">
+    <div class="container bg-white mb-5">
         <p class="h1 mt-5 mb-4" id="contact_us"
            style="font-family: 'Josefin Sans', sans-serif; font-size: 85px; font-style: italic">Contact</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae commodi optio placeat praesentium,
-            quas quibusdam ratione repellat suscipit? Aliquid illum ipsam laudantium maiores molestias pariatur possimus
-            saepe sint sit!
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cum eos error expedita facilis in
-            itaque, magnam natus nemo
-            ratione repellendus similique, ullam veritatis. Fugit magni minus perferendis quas quibusdam! Lorem ipsum
-            dolor sit amet, consectetur
-            adipisicing elit. Alias corporis delectus dolorem eaque eius impedit, laborum mollitia neque nesciunt nulla
-            quia sint. Deserunt distinctio
-            ex exercitationem in! Laudantium officia, vel?
-        </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input class="form-control" id="name" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" id="email" type="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-warning" type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <iframe
+                            allowfullscreen=""
+                            class="h-100 w-100" frameborder="0" loading="lazy" marginheight="0"
+                            marginwidth="0" scrolling="no"
+                            src="https://maps.google.com/maps?q=easy car rental&t=&z=10&ie=UTF8&iwloc=&output=embed"
+                            style="border:0;">
+
+                    </iframe>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal -->
