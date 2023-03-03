@@ -673,7 +673,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="userEmail">Email</label>
-                            <input class="form-control" id="userEmail" placeholder="example@gmail.com" type="email">
+                            <input class="form-control" id="userEmail" placeholder="example@gmail.com" disabled type="email">
                         </div>
                         <div class="col-12 mt-3">
                             <label class="form-label" for="userAddress">Address</label>
@@ -688,38 +688,60 @@
                             <input class="form-control" id="userContact" placeholder="0718539064" type="text">
                         </div>
 
-                        <p class="col-12 mt-3">
-                            <a aria-controls="collapseExample" aria-expanded="false" class="text"
-                               data-toggle="collapse"
-                               href="#collapseExample" role="button">
-                                Change Password
-                            </a>
-                        </p>
+                        <!--Collapse Control-->
+                        <div class="col-12 mt-2 row">
+                            <p class="col-2 pr-0 mt-3">
+                                <a aria-controls="collapseExample" aria-expanded="false" class="text"
+                                   data-toggle="collapse"
+                                   href="#collapseExample" role="button">
+                                    Change Password
+                                </a>
+                            </p>
+                            <p class="col-2 pl-0 mt-3">
+                                <a aria-controls="collapseExample2" aria-expanded="true" class="text text-danger"
+                                   data-toggle="collapse"
+                                   href="#collapseExample2" role="button">
+                                    Delete Account
+                                </a>
+                            </p>
+                        </div>
+                        <!--Delete Account Collapse-->
+                        <div class="collapse col-12" id="collapseExample2">
+                            <div class="card card-body">
+                                <div class="row">
+                                    <h2 class="col-md-12 text-danger">Warning</h2>
+                                    <h6 class="col-md-12" style="color:#4b4b4b;">Once you delete your account, there's no getting it back.
+                                        Make sure you want to do this.</h6>
+                                    <input class="form-control col-md-4 mt-2 ml-3" id="currentPwdForDeleteAccount"
+                                           placeholder="Current Password"
+                                           type="text">
+                                    <button class="btn btn-danger col-md-2 ml-2 mt-2">Delete Account</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Change Password Collapse-->
                         <div class="collapse col-12" id="collapseExample">
                             <div class="card card-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input class="form-control" id="currentPwd" placeholder="Current Password"
                                                type="text">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input class="form-control" id="newPwd" placeholder="New Password" type="text">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input class="form-control" id="confirmNewPwd"
                                                placeholder="Confirm New Password" type="text">
                                     </div>
-
+                                    <button id="changePwdBtn" class="btn btn-danger col-md-2">Change Password</button>
                                 </div>
                             </div>
                         </div>
 
-
-                        <div class="col-12 ml-0 mt-3">
-                            <div class="col-4 btn-group pl-0">
-                                <button class="btn btn-success" id="btnAddDriver" type="button">Add</button>
-                                <button class="btn btn-warning" id="btnUpdateDriver" type="button">Update</button>
-                                <button class="btn btn-danger" id="btnDeleteDriver" type="button">Delete</button>
+                        <div class="col-12 ml-0 mt-2 row">
+                            <div class="col-2 btn-group pl-0">
+                                <button class="btn btn-warning" id="btnUpdateUser" type="button">Update</button>
                             </div>
                         </div>
                     </div>
@@ -767,6 +789,104 @@
         loadUserData();
         $('#dashboardModal').modal('show');
     });
+
+    //Customer CRUD
+
+    $("#btnUpdateUser").click(function () {
+
+        let userEmail = $("#userEmail").val();
+        let userName = $("#userName").val();
+        let userAddress = $("#userAddress").val();
+        let userNICorLicenceNo = $("#userNICorLicenceNo").val();
+        let userContact = $("#userContact").val();
+
+        var userObj = {
+            userEmail: userEmail,
+            userName: userName,
+            userAddress: userAddress,
+            userNICorLicenceNo: userNICorLicenceNo,
+            userContact: userContact
+        }
+
+        $.ajax({
+            url: baseURL+'user',
+            method: 'put',
+            contentType:"application/json",
+            data:JSON.stringify(userObj),
+            dataType:"json",
+            success: function (res) {
+                alert(res.message);
+                loadUserData();
+            },
+            error:function (error){
+                let cause= JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+
+        });
+    });
+
+    $("#changePwdBtn").click(function () {
+
+        let userEmail = $("#userEmail").val();
+        let currentPwd = $("#currentPwd").val();
+        let newPwd = $("#newPwd").val();
+        let confirmNewPwd = $("#confirmNewPwd").val();
+        let userId = $("#userNICorLicenceNo").val();
+        let role = "User";
+
+        var allUserObj = {
+            userId: userId,
+            userEmail: userEmail,
+            userPwd: newPwd,
+            role: role
+        }
+
+        $.ajax({
+            url: baseURL+'home/login',
+            dataType:"json",
+            success: function (res) {
+                for (let u of res.data) {
+                    if (u.userEmail === userEmail){
+                        if (u.userPwd === currentPwd){
+                            if (newPwd===confirmNewPwd){
+                                $.ajax({
+                                    url: baseURL+'user/all',
+                                    method: 'put',
+                                    contentType:"application/json",
+                                    data:JSON.stringify(allUserObj),
+                                    dataType:"json",
+                                    success: function (res) {
+                                        alert(res.message);
+                                        loadUserData();
+                                    },
+                                    error:function (error){
+                                        let cause= JSON.parse(error.responseText).message;
+                                        alert(cause);
+                                    }
+
+                                });
+                            }else {
+                                alert("Password Confirmation Failed..!");
+                            }
+                        }else {
+                            alert("Current Password Incorrect..!")
+                        }
+                        break;
+                    }else {
+                        continue;
+                    }
+                }
+            },
+            error:function (error){
+                let cause= JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+
+        });
+    });
+
+    ////////////////////////////////////////////////////////////
 
     function loadAllLuxuryCars() {
         let content = '';

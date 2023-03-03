@@ -128,4 +128,20 @@ public class UserServiceImpl implements UserService {
         return mapper.map(driverRepo.findByDriverEmail(driverEmail), new TypeToken<ArrayList<DriverDTO>>() {
         }.getType());
     }
+
+    @Override
+    public void updateUser(UserDTO dto) {
+        if (!userRepo.existsById(dto.getUserEmail())){
+            throw new RuntimeException("User Not Exist..!");
+        }
+        userRepo.save(mapper.map(dto, User.class));
+    }
+
+    @Override
+    public void updateUserPwd(AllUserDTO dto) {
+        if (!allUsersRepo.existsById(dto.getUserEmail())){
+            throw new RuntimeException("User Not Exist..!");
+        }
+        allUsersRepo.save(mapper.map(dto, AllUsers.class));
+    }
 }

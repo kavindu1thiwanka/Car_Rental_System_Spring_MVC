@@ -32,4 +32,8 @@ public interface UserService {
     ArrayList<UserDTO> getUserDetails(String userEmail);
 
     ArrayList<DriverDTO> getDriverDetails(String driverEmail);
+
+    void updateUser(UserDTO dto);
+
+    void updateUserPwd(AllUserDTO dto);
 }

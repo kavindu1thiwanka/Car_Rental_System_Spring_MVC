@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.controller;
 
+import lk.ijse.easyCar.dto.AllUserDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
@@ -54,4 +55,15 @@ public class UserController {
         return new ResponseUtil("OK", "Successfully Registered..!", null);
     }
 
+    @PutMapping
+    public ResponseUtil updateUser(@RequestBody UserDTO dto){
+        userService.updateUser(dto);
+        return new ResponseUtil("OK","Successfully Updated. : "+dto.getUserName() ,null);
+    }
+
+    @PutMapping(path = "/all")
+    public ResponseUtil updateUserPwd(@RequestBody AllUserDTO dto){
+        userService.updateUserPwd(dto);
+        return new ResponseUtil("OK","Password Successfully Updated..!" ,null);
+    }
 }
