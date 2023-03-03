@@ -673,7 +673,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="userEmail">Email</label>
-                            <input class="form-control" id="userEmail" placeholder="example@gmail.com" disabled type="email">
+                            <input class="form-control" disabled id="userEmail" placeholder="example@gmail.com"
+                                   type="email">
                         </div>
                         <div class="col-12 mt-3">
                             <label class="form-label" for="userAddress">Address</label>
@@ -710,12 +711,13 @@
                             <div class="card card-body">
                                 <div class="row">
                                     <h2 class="col-md-12 text-danger">Warning</h2>
-                                    <h6 class="col-md-12" style="color:#4b4b4b;">Once you delete your account, there's no getting it back.
+                                    <h6 class="col-md-12" style="color:#4b4b4b;">Once you delete your account, there's
+                                        no getting it back.
                                         Make sure you want to do this.</h6>
                                     <input class="form-control col-md-4 mt-2 ml-3" id="currentPwdForDeleteAccount"
                                            placeholder="Current Password"
                                            type="text">
-                                    <button class="btn btn-danger col-md-2 ml-2 mt-2">Delete Account</button>
+                                    <button id="deleteAccBtn" class="btn btn-danger col-md-2 ml-2 mt-2">Delete Account</button>
                                 </div>
                             </div>
                         </div>
@@ -734,7 +736,7 @@
                                         <input class="form-control" id="confirmNewPwd"
                                                placeholder="Confirm New Password" type="text">
                                     </div>
-                                    <button id="changePwdBtn" class="btn btn-danger col-md-2">Change Password</button>
+                                    <button class="btn btn-danger col-md-2" id="changePwdBtn">Change Password</button>
                                 </div>
                             </div>
                         </div>
@@ -809,17 +811,17 @@
         }
 
         $.ajax({
-            url: baseURL+'user',
+            url: baseURL + 'user',
             method: 'put',
-            contentType:"application/json",
-            data:JSON.stringify(userObj),
-            dataType:"json",
+            contentType: "application/json",
+            data: JSON.stringify(userObj),
+            dataType: "json",
             success: function (res) {
                 alert(res.message);
                 loadUserData();
             },
-            error:function (error){
-                let cause= JSON.parse(error.responseText).message;
+            error: function (error) {
+                let cause = JSON.parse(error.responseText).message;
                 alert(cause);
             }
 
@@ -843,32 +845,71 @@
         }
 
         $.ajax({
-            url: baseURL+'home/login',
-            dataType:"json",
+            url: baseURL + 'home/login',
+            dataType: "json",
             success: function (res) {
                 for (let u of res.data) {
-                    if (u.userEmail === userEmail){
-                        if (u.userPwd === currentPwd){
-                            if (newPwd===confirmNewPwd){
+                    if (u.userEmail === userEmail) {
+                        if (u.userPwd === currentPwd) {
+                            if (newPwd === confirmNewPwd) {
                                 $.ajax({
-                                    url: baseURL+'user/all',
+                                    url: baseURL + 'user/all',
                                     method: 'put',
-                                    contentType:"application/json",
-                                    data:JSON.stringify(allUserObj),
-                                    dataType:"json",
+                                    contentType: "application/json",
+                                    data: JSON.stringify(allUserObj),
+                                    dataType: "json",
                                     success: function (res) {
                                         alert(res.message);
                                         loadUserData();
                                     },
-                                    error:function (error){
-                                        let cause= JSON.parse(error.responseText).message;
+                                    error: function (error) {
+                                        let cause = JSON.parse(error.responseText).message;
                                         alert(cause);
                                     }
 
                                 });
-                            }else {
+                            } else {
                                 alert("Password Confirmation Failed..!");
                             }
+                        } else {
+                            alert("Current Password Incorrect..!")
+                        }
+                        break;
+                    } else {
+
+                    }
+                }
+            },
+            error: function (error) {
+                let cause = JSON.parse(error.responseText).message;
+                alert(cause);
+            }
+
+        });
+    });
+
+    $("#deleteAccBtn").click(function () {
+        let userEmail = $("#userEmail").val();
+        let currentPwd = $("#currentPwdForDeleteAccount").val();
+        $.ajax({
+            url: baseURL + "home/login",
+            dataType: "json",
+            success: function (resp) {
+                for (let us of resp.data) {
+                    if (us.userEmail === userEmail){
+                        if (us.userPwd === currentPwd){
+                            $.ajax({
+                                url: baseURL+"user?email=" + userEmail + "",
+                                method: "delete",
+                                dataType:"json",
+                                success: function (resp) {
+                                    alert(resp.message);
+                                    window.location.href = "index.html";
+                                },
+                                error:function (error){
+                                    alert(JSON.parse(error.responseText).message);
+                                }
+                            });
                         }else {
                             alert("Current Password Incorrect..!")
                         }
@@ -878,11 +919,9 @@
                     }
                 }
             },
-            error:function (error){
-                let cause= JSON.parse(error.responseText).message;
-                alert(cause);
+            error: function (err) {
+                console.log(err);
             }
-
         });
     });
 
