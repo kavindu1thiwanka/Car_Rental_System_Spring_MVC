@@ -25,8 +25,14 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Object getAllBookingForDayCount() {
         int count;
-        count = getAllBookingDetails().size();
+        count = getAllApprovedBooking().size();
         return count;
+    }
+
+    @Override
+    public ArrayList<BookingDTO> getAllApprovedBooking() {
+        return mapper.map(bookingRepo.findByBkAdminStatus("Approved"), new TypeToken<ArrayList<BookingDTO>>() {
+        }.getType());
     }
 
     @Override

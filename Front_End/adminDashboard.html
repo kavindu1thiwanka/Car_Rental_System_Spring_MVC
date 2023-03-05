@@ -295,7 +295,7 @@
 </div>
 
 <!--Customer ManagementDriver-->
-<div class="mb-5 mt-5" id="customerPage">
+<div class="mb-3 mt-5" id="customerPage">
     <div class="container-fluid">
         <div class="mt-md-4 mb-md-4">
             <h1>Users</h1>
@@ -333,14 +333,13 @@
                                        type="text">
                             </div>
                         </div>
-                        <div class="form-group row mt-4 mb-5">
+                        <div class="form-group row mt-4 mb-4">
                             <div class="col-6 btn-group">
                                 <button class="btn btn-danger" id="btnDeleteUser" type="button">Delete</button>
                             </div>
                         </div>
                     </form>
-                    <div id="userImg" style="width: 20vw;height: 18vh">
-                    </div>
+                    <img id="userImg" style="width: 23vw; height: 23vh;">
                 </div>
                 <!--  Customer table-->
                 <div class="col-8 table-responsive" style="height: 61vh; overflow-y: scroll;">
@@ -578,6 +577,7 @@
             dataType: "json",
             success: function (res) {
                 loadPendingData();
+                loadDataOnAdminDashboard();
             },
             error: function (error) {
                 let cause = JSON.parse(error.responseText).message;
@@ -737,7 +737,10 @@
                 dataType: 'json',
                 success: function (res) {
                     $('#userImg').empty();
-                    $('#userImg').append("<img src=" + baseURL + res.data.imageUrl + " width='100'>");
+                    // $('#userImg').append("<img src=" + baseURL + res.data.imageUrl + ">");
+
+                    document.getElementById("userImg").src = baseURL + res.data.imageUrl;
+
                 },
                 error: function (err) {
                     console.log("Can't Load Image : " + JSON.parse(err.responseText).message);

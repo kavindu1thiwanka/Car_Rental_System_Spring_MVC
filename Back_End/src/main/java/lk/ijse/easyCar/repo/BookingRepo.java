@@ -8,4 +8,5 @@ import java.util.List;
 public interface BookingRepo extends JpaRepository<Booking, String> {
     List<Booking> findByBkDriver(String bkDriver);
 
+    List<Booking> findByBkAdminStatus(String status);
 }

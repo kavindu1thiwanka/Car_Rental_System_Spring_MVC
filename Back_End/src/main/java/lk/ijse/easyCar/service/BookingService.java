@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public interface BookingService {
     Object getAllBookingForDayCount();
 
+    ArrayList<BookingDTO> getAllApprovedBooking();
+
     ArrayList<BookingDTO> getAllBookingDetails();
 
     void placeBooking(Booking dto);
