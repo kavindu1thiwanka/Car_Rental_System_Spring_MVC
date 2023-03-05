@@ -4,6 +4,7 @@ import lk.ijse.easyCar.dto.AllUserDTO;
 import lk.ijse.easyCar.dto.DriverDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.entity.AllUsers;
+import lk.ijse.easyCar.entity.Driver;
 import lk.ijse.easyCar.entity.User;
 import lk.ijse.easyCar.repo.AllUsersRepo;
 import lk.ijse.easyCar.repo.DriverRepo;
@@ -143,5 +144,15 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User Not Exist..!");
         }
         allUsersRepo.save(mapper.map(dto, AllUsers.class));
+    }
+
+    @Override
+    public void saveDriver(DriverDTO dto) {
+        if (driverRepo.existsById(dto.getDriverEmail())) {
+            throw new RuntimeException("Driver email already exists");
+        }
+
+        Driver map = mapper.map(dto, Driver.class);
+        driverRepo.save(map);
     }
 }

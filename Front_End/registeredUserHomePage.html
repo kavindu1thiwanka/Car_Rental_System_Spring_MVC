@@ -682,7 +682,7 @@
                         </div>
                         <div class="col-md-6 mt-3">
                             <label class="form-label" for="userNICorLicenceNo">NIC or Licence Number</label>
-                            <input class="form-control" id="userNICorLicenceNo" placeholder="2034725934V" type="text">
+                            <input class="form-control" id="userNICorLicenceNo" placeholder="2034725934V" type="text" disabled>
                         </div>
                         <div class="col-md-6 mt-3">
                             <label class="form-label" for="userContact">Contact</label>
@@ -717,7 +717,8 @@
                                     <input class="form-control col-md-4 mt-2 ml-3" id="currentPwdForDeleteAccount"
                                            placeholder="Current Password"
                                            type="text">
-                                    <button id="deleteAccBtn" class="btn btn-danger col-md-2 ml-2 mt-2">Delete Account</button>
+                                    <button class="btn btn-danger col-md-2 ml-2 mt-2" id="deleteAccBtn">Delete Account
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -896,26 +897,26 @@
             dataType: "json",
             success: function (resp) {
                 for (let us of resp.data) {
-                    if (us.userEmail === userEmail){
-                        if (us.userPwd === currentPwd){
+                    if (us.userEmail === userEmail) {
+                        if (us.userPwd === currentPwd) {
                             $.ajax({
-                                url: baseURL+"user?email=" + userEmail + "",
+                                url: baseURL + "user?email=" + userEmail + "",
                                 method: "delete",
-                                dataType:"json",
+                                dataType: "json",
                                 success: function (resp) {
                                     alert(resp.message);
                                     window.location.href = "index.html";
                                 },
-                                error:function (error){
+                                error: function (error) {
                                     alert(JSON.parse(error.responseText).message);
                                 }
                             });
-                        }else {
+                        } else {
                             alert("Current Password Incorrect..!")
                         }
                         break;
-                    }else {
-                        continue;
+                    } else {
+
                     }
                 }
             },

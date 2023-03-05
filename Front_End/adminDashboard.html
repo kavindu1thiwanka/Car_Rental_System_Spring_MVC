@@ -389,10 +389,15 @@
                                        type="text">
                             </div>
                             <div class="col">
-                                <label for="dr_email">Email</label>
-                                <input class="form-control" id="dr_email" placeholder="contac@gamil.com"
+                                <label for="dr_contact">Address</label>
+                                <input class="form-control" id="dr_address" placeholder="Colombo 07"
                                        type="text">
                             </div>
+                        </div>
+                        <div class="mt-4">
+                            <label for="dr_email">Email</label>
+                            <input class="form-control" id="dr_email" placeholder="contac@gamil.com"
+                                   type="text">
                         </div>
                         <div class="form-group row mt-4 mb-5">
                             <div class="col-8 btn-group">
@@ -415,6 +420,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Contact</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Address</th>
                             <th scope="col">Availability</th>
                         </tr>
                         </thead>
@@ -941,7 +947,7 @@
             dataType: "json",
             success: function (resp) {
                 for (let dri of resp.data) {
-                    var row = '<tr><td>' + dri.driverNICorLicenceNo + '</td><td>' + dri.driverName + '</td><td>' + dri.driverContact + '</td><td>' + dri.driverEmail + '</td><td>' + dri.available + '</td></tr>';
+                    var row = '<tr><td>' + dri.driverNICorLicenceNo + '</td><td>' + dri.driverName + '</td><td>' + dri.driverContact + '</td><td>' + dri.driverEmail + '</td><td>' + dri.driverAddress + '</td><td>' + dri.available + '</td></tr>';
                     $("#tblDriver").append(row);
                 }
                 bindRowClickEventsDriver();
@@ -955,12 +961,14 @@
             let drLic = $(this).find("td:eq(0)").text();
             let drContact = $(this).find("td:eq(2)").text();
             let drEmail = $(this).find("td:eq(3)").text();
+            let drAddress = $(this).find("td:eq(4)").text();
 
 
             $('#dr_lic').val(drLic);
             $('#dr_name').val(drName);
             $('#dr_contact').val(drContact);
             $('#dr_email').val(drEmail);
+            $('#dr_address').val(drAddress);
 
         });
     }
@@ -979,6 +987,34 @@
                 alert(JSON.parse(error.responseText).message);
             }
         });
+    });
+
+    $("#btnAddDriver").click(function () {
+        var cusLogObj = {
+            driverEmail: $("#dr_email").val(),
+            driverName: $("#dr_name").val(),
+            driverAddress: $("#dr_Address").val(),
+            driverNICorLicenceNo: $("#dr_lic_").val(),
+            driverContact: $("#dr_contact").val(),
+            available: "Available"
+        }
+
+        $.ajax({
+            url: baseURL + "driver/save",
+            method: "post",
+            data: JSON.stringify(cusLogObj),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                alert(res.message);
+            },
+            error: function (err) {
+                let message = JSON.parse(err.responseText).message;
+                alert(message);
+                console.log("Error : " + message)
+            }
+        });
+        loadAllDriver();
     });
 
 

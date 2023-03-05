@@ -36,4 +36,6 @@ public interface UserService {
     void updateUser(UserDTO dto);
 
     void updateUserPwd(AllUserDTO dto);
+
+    void saveDriver(DriverDTO dto);
 }

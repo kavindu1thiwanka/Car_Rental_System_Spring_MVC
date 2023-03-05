@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.controller;
 
+import lk.ijse.easyCar.dto.DriverDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.BookingService;
 import lk.ijse.easyCar.service.UserService;
@@ -25,7 +26,7 @@ public class DriverController {
     }
 
     @PostMapping(path = "/rem")
-    public void getRemoveDriver() {
+    public void removeDriver() {
         driver.clear();
     }
 
@@ -53,5 +54,11 @@ public class DriverController {
     public ResponseUtil deleteDriver(@RequestParam String email) {
         userService.deleteDriver(email);
         return new ResponseUtil("OK", "Successfully Deleted", null);
+    }
+
+    @PostMapping(path = "/save")
+    public ResponseUtil saveDriver(DriverDTO dto) {
+        userService.saveDriver(dto);
+        return new ResponseUtil("OK", "Successfully Saved..!", null);
     }
 }
