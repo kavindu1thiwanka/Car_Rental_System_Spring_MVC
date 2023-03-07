@@ -741,14 +741,13 @@
             $('#user_contact').val(cusContact);
             $('#user_email').val(cusEmail);
             $.ajax({
-                url: baseURL + "image/findimage?imageId=" + cusNic,
-                method: 'get',
+                url: baseURL + "user?userEmail=" + cusEmail + "",
                 dataType: 'json',
                 success: function (res) {
-                    $('#userImg').empty();
-                    // $('#userImg').append("<img src=" + baseURL + res.data.imageUrl + ">");
-
-                    document.getElementById("userImg").src = baseURL + res.data.imageUrl;
+                    for (let x of res.data) {
+                        $('#userImg').empty();
+                        document.getElementById("userImg").src = baseURL + x.imgUrl;
+                    }
 
                 },
                 error: function (err) {
@@ -849,22 +848,22 @@
 
         let imgFront = $("#imgFront")[0].files[0];
         let imgFrontName = $("#imgFront")[0].files[0].name;
-        formData.append("imgFront", imgFront, imgFrontName);
+        formData.append("imgFrontFile", imgFront, imgFrontName);
 
         let imgBack = $("#imgBack")[0].files[0];
         let imgBackName = $("#imgBack")[0].files[0].name;
-        formData.append("imgBack", imgBack, imgBackName);
+        formData.append("imgBackFile", imgBack, imgBackName);
 
         let imgSide = $("#imgSide")[0].files[0];
         let imgSideName = $("#imgSide")[0].files[0].name;
-        formData.append("imgSide", imgSide, imgSideName);
+        formData.append("imgSideFile", imgSide, imgSideName);
 
         let imgInside = $("#imgInside")[0].files[0];
         let imgInsideName = $("#imgInside")[0].files[0].name;
-        formData.append("imgInside", imgInside, imgInsideName);
+        formData.append("imgInsideFile", imgInside, imgInsideName);
 
         $.ajax({
-            url: baseURL + "car",
+            url: baseURL + "car/saveImg",
             method: "post",
             data: formData,
             dataType: "json",
@@ -873,8 +872,8 @@
             processData: false,
             enctype: "multipart/form-data",
             success: function (resp) {
+                loadAllCar();
                 alert("Successfully Uploaded");
-                // loadTheLastUploadedImage();
             },
             error: function (err) {
                 console.log(err);

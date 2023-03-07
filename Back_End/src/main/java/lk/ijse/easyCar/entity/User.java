@@ -22,6 +22,8 @@ public class User {
     private String userAddress;
     private String userNICorLicenceNo;
     private int userContact;
+    private String imgFile;
+    private String imgUrl;
 
     @OneToOne(cascade = CascadeType.ALL)
     private AllUsers allUsers;

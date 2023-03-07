@@ -43,21 +43,16 @@
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                     <input class="form-control" id="userEmail" name="userEmail" placeholder="Email" type="text">
                 </div>
-                <!--                <div class="col-12 input-group mb-3">-->
-                <!--                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>-->
-                <!--                    <select name="role" id="role" class="form-control" >-->
-                <!--                        <option>User</option>-->
-                <!--                        <option>Driver</option>-->
-                <!--                    </select>-->
-                <!--                </div>-->
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                    <input class="form-control" id="userNICorLicenceNo" name="userNICorLicenceNo" placeholder="Nic Number or License Number"
+                    <input class="form-control" id="userNICorLicenceNo" name="userNICorLicenceNo"
+                           placeholder="Nic Number or License Number"
                            type="text">
                 </div>
                 <div class="col-12 input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-file"></i></span>
-                    <input class="form-control" id="cus_img" name="cus_img" placeholder="Nic or License Photo Upload here"
+                    <input class="form-control" id="cus_img" name="cus_img"
+                           placeholder="Nic or License Photo Upload here"
                            type="file">
                 </div>
                 <div class="col-12 input-group mb-3">
@@ -100,6 +95,7 @@
     $("#signUpBtn").click(function () {
         if ($('#userPwd').val() === $('#confirmPwd').val()) {
             let formCusData = $("#signUpForm").serialize();
+
             console.log(formCusData);
             $.ajax({
                 url: baseURL + "user/save",
@@ -107,19 +103,22 @@
                 data: formCusData,
                 dataType: "json",
                 success: function (res) {
-                    let cusImgFormData = new FormData();
+                    let cusFormData = new FormData();
 
                     let file1 = $("#cus_img")[0].files[0];
                     let fileName1 = $("#cus_img")[0].files[0].name;
 
-                    cusImgFormData.append("imageId", $("#userNICorLicenceNo").val());
-                    cusImgFormData.append("imageType", "nic");
-                    cusImgFormData.append("imageFile", file1, fileName1);
+                    cusFormData.append("userEmail", $("#userEmail").val());
+                    cusFormData.append("userName", $("#userName").val());
+                    cusFormData.append("userAddress", $("#userAddress").val());
+                    cusFormData.append("userNICorLicenceNo", $("#userNICorLicenceNo").val());
+                    cusFormData.append("userContact", $("#userContact").val());
+                    cusFormData.append("imgFile", file1, fileName1);
 
                     $.ajax({
-                        url: baseURL + "image/save",
-                        method: "post",
-                        data: cusImgFormData,
+                        url: baseURL + "user/saveImg",
+                        method: "put",
+                        data: cusFormData,
                         dataType: "json",
                         async: true,
                         contentType: false,

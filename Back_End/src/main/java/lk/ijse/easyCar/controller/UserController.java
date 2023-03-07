@@ -5,8 +5,13 @@ import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.UserService;
 import lk.ijse.easyCar.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 @RestController
@@ -65,5 +70,23 @@ public class UserController {
     public ResponseUtil updateUserPwd(@RequestBody AllUserDTO dto) {
         userService.updateUserPwd(dto);
         return new ResponseUtil("OK", "Password Successfully Updated..!", null);
+    }
+
+    @PutMapping(path = "/saveImg", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseUtil saveImage(UserDTO userDTO, @RequestPart("imgFile") MultipartFile file1) {
+        try {
+            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+            File uploadsDir = new File(projectPath + "/uploads");
+            uploadsDir.mkdir();
+            file1.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
+
+            userDTO.setImgUrl("uploads/" + file1.getOriginalFilename());
+            userService.updateUser(userDTO);
+
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+            return new ResponseUtil("Ok", "Successfully Saved", null);
+        }
+        return new ResponseUtil("Ok", "Successfully Saved", null);
     }
 }
