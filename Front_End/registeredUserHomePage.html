@@ -731,7 +731,7 @@
                         <div class="col mb-2">
                                     <div class="card h-100 shadow-sm">
                                         <div class="card-img-top" style="width: 348px; height: 245px">
-                                            <img src="assets/img/car/Mercedes-removebg-preview.png" class="card-img-top" alt="...">
+                                            <img src="${baseURL + c.imgFront}" class="card-img-top" alt="...">
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">${c.carBrand}</h5>
@@ -769,7 +769,7 @@
                         <div class="col mb-2">
                                     <div class="card h-100 shadow-sm">
                                         <div class="card-img-top" style="width: 348px; height: 245px">
-                                            <img src="assets/img/car/Toyota_Premio-removebg-preview.png" class="card-img-top" alt="...">
+                                            <img src="${baseURL + c.imgFront}" class="card-img-top" alt="...">
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">${c.carBrand}</h5>
@@ -802,13 +802,12 @@
             url: baseURL + "car/general",
             dataType: "json",
             success: function (resp) {
-                console.log(resp.data);
                 for (let c of resp.data) {
                     content += `
                         <div class="col mb-2">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-img-top" style="width: 348px; height: 245px">
-                                    <img src="assets/img/car/Perodua__Daihatsu__Axia_-_Auto-removebg-preview.png" class="card-img-top" alt="General Car Image">
+                                    <img src="${baseURL + c.imgFront}" class="card-img-top" alt="General Car Image">
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">${c.carBrand}</h5>
@@ -911,6 +910,10 @@
                     $("#monthlyOnModalDetails").text("Rs " + x.monthlyPrice + "/-");
                     $("#fuelOnModalDetails").text(x.fuelType);
                     $("#extraKmOnModalDetails").text("Rs " + x.priceForExtraKM + "/-");
+                    document.getElementById("carDetailsModalImg1").src = baseURL + x.imgFront;
+                    document.getElementById("carDetailsModalImg2").src = baseURL + x.imgSide;
+                    document.getElementById("carDetailsModalImg3").src = baseURL + x.imgBack;
+                    document.getElementById("carDetailsModalImg4").src = baseURL + x.imgInside;
                 }
             }
         });

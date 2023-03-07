@@ -7,12 +7,6 @@ import java.util.ArrayList;
 public interface CarService {
     ArrayList<CarDTO> getAllCars();
 
-    void addLuxuryCars();
-
-    void addPremiumCars();
-
-    void addGeneralCars();
-
     void saveCar(CarDTO dto);
 
     void deleteCar(String registrationNo);

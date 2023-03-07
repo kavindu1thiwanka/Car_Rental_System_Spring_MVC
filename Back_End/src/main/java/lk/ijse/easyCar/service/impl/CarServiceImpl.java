@@ -30,21 +30,6 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void addLuxuryCars() {
-
-    }
-
-    @Override
-    public void addPremiumCars() {
-
-    }
-
-    @Override
-    public void addGeneralCars() {
-
-    }
-
-    @Override
     public void saveCar(CarDTO dto) {
         if (carRepo.existsById(dto.getRegistrationNo())) {
             throw new RuntimeException("User already exist!");
