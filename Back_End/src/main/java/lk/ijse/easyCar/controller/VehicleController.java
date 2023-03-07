@@ -69,9 +69,9 @@ public class VehicleController {
             File uploadsDir = new File(projectPath + "/uploads");
             uploadsDir.mkdir();
             file1.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
-            file2.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
-            file3.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
-            file4.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file1.getOriginalFilename()));
+            file2.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file2.getOriginalFilename()));
+            file3.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file3.getOriginalFilename()));
+            file4.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + file4.getOriginalFilename()));
 
             carDTO.setImgFront("uploads/" + file1.getOriginalFilename());
             carDTO.setImgSide("uploads/" + file2.getOriginalFilename());
