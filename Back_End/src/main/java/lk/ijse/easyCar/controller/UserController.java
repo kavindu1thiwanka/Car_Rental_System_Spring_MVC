@@ -56,14 +56,14 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseUtil updateUser(@RequestBody UserDTO dto){
+    public ResponseUtil updateUser(@RequestBody UserDTO dto) {
         userService.updateUser(dto);
-        return new ResponseUtil("OK","Successfully Updated. : "+dto.getUserName() ,null);
+        return new ResponseUtil("OK", "Successfully Updated. : " + dto.getUserName(), null);
     }
 
     @PutMapping(path = "/all")
-    public ResponseUtil updateUserPwd(@RequestBody AllUserDTO dto){
+    public ResponseUtil updateUserPwd(@RequestBody AllUserDTO dto) {
         userService.updateUserPwd(dto);
-        return new ResponseUtil("OK","Password Successfully Updated..!" ,null);
+        return new ResponseUtil("OK", "Password Successfully Updated..!", null);
     }
 }
