@@ -4,6 +4,7 @@ import lk.ijse.easyCar.dto.AllUserDTO;
 import lk.ijse.easyCar.dto.DriverDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.entity.AllUsers;
+import lk.ijse.easyCar.entity.Car;
 import lk.ijse.easyCar.entity.Driver;
 import lk.ijse.easyCar.entity.User;
 import lk.ijse.easyCar.repo.AllUsersRepo;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -154,5 +156,28 @@ public class UserServiceImpl implements UserService {
 
         Driver map = mapper.map(dto, Driver.class);
         driverRepo.save(map);
+    }
+
+    @Override
+    public void updateDriver(DriverDTO dto) {
+        if (!driverRepo.existsById(dto.getDriverEmail())){
+            throw new RuntimeException("User Not Exist..!");
+        }
+        driverRepo.save(mapper.map(dto, Driver.class));
+    }
+
+    @Override
+    public ArrayList<Integer> getAvailableAndReservedDriverCount() {
+        ArrayList<Integer> arrayList = new ArrayList();
+        int availableCount;
+        int reservedCount;
+        List<Driver> available = driverRepo.findByAvailable("Available");
+        availableCount = available.size();
+        List<Driver> reserved = driverRepo.findByAvailable("Unavailable");
+        reservedCount = reserved.size();
+
+        arrayList.add(availableCount);
+        arrayList.add(reservedCount);
+        return arrayList;
     }
 }

@@ -1,5 +1,6 @@
 package lk.ijse.easyCar.controller;
 
+import lk.ijse.easyCar.dto.CarDTO;
 import lk.ijse.easyCar.dto.DriverDTO;
 import lk.ijse.easyCar.dto.UserDTO;
 import lk.ijse.easyCar.service.BookingService;
@@ -60,5 +61,16 @@ public class DriverController {
     public ResponseUtil saveDriver(DriverDTO dto) {
         userService.saveDriver(dto);
         return new ResponseUtil("OK", "Successfully Saved..!", null);
+    }
+
+    @PutMapping
+    public ResponseUtil updateDriver(@RequestBody DriverDTO dto) {
+        userService.updateDriver(dto);
+        return new ResponseUtil("OK", "Successfully Updated", null);
+    }
+
+    @GetMapping(path = "/availableCount")
+    public ResponseUtil getAvailableAndReservedCarCount() {
+        return new ResponseUtil("OK", "Successfully Loaded. :", userService.getAvailableAndReservedDriverCount());
     }
 }

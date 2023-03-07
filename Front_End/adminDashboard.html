@@ -135,11 +135,11 @@
             <div class="col-12 bg-white row rounded-sm mb-3">
                 <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     AVAILABLE DRIVERS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
+                <h2 class="h2 col-2 mb-4 mt-4" id="availableDriverCount" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     00</h2>
                 <h2 class="h2 col-3 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif; font-style: italic">
                     OCCUPIED DRIVERS :</h2>
-                <h2 class="h2 col-2 mb-4 mt-4" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
+                <h2 class="h2 col-2 mb-4 mt-4" id="unAvailableDriverCount" style="font-family: 'Josefin Sans', sans-serif;font-style: italic">
                     00</h2>
             </div>
             <div class="col-12 bg-white row rounded-sm mb-3">
@@ -448,6 +448,7 @@
                         <th scope="col">Return Date</th>
                         <th scope="col">Total</th>
                         <th scope="col">Driver</th>
+                        <th scope="col">Status</th>
                     </tr>
                     </thead>
                     <tbody id="tblBooking">
@@ -546,6 +547,50 @@
         });
     }
 
+    function loadDataOnAdminDashboard() {
+        $.ajax({
+            url: baseURL + "admin/u",
+            dataType: "json",
+            success: function (resp) {
+                $('#registeredUserCount').text(resp.data);
+            }
+        });
+
+        $.ajax({
+            url: baseURL + "admin/d",
+            dataType: "json",
+            success: function (resp) {
+                $('#registeredDriversCount').text(resp.data);
+            }
+        });
+
+        $.ajax({
+            url: baseURL + "admin/b",
+            dataType: "json",
+            success: function (resp) {
+                $('#bookingForDayCount').text(resp.data);
+            }
+        });
+
+        $.ajax({
+            url: baseURL + "car/availableCount",
+            dataType: "json",
+            success: function (resp) {
+                $('#availableCarCount').text(resp.data[0]);
+                $('#reservedCarCount').text(resp.data[1]);
+            }
+        });
+
+        $.ajax({
+            url: baseURL + "driver/availableCount",
+            dataType: "json",
+            success: function (resp) {
+                $('#availableDriverCount').text(resp.data[0]);
+                $('#unAvailableDriverCount').text(resp.data[1]);
+            }
+        });
+    }
+
     $(document).on('click', '.btnApprove', function () {
 
         let bkId = $(this).closest('tr').children(":eq(0)").text();
@@ -555,7 +600,6 @@
         let bkReturnDate = $(this).closest('tr').children(":eq(4)").text();
         let bkTotal = $(this).closest('tr').children(":eq(5)").text();
         let bkDriver = $(this).closest('tr').children(":eq(6)").text();
-        let bkStatus = $(this).closest('tr').children(":eq(7)").text();
 
         var reserveObj = {
             bkId: bkId,
@@ -565,7 +609,7 @@
             bkReturnDate: bkReturnDate,
             bkTotal: bkTotal,
             bkDriver: bkDriver,
-            bkStatus: bkStatus,
+            bkStatus: "Active",
             bkAdminStatus: "Approved"
         }
 
@@ -601,41 +645,6 @@
             }
         });
     });
-
-    function loadDataOnAdminDashboard() {
-        $.ajax({
-            url: baseURL + "admin/u",
-            dataType: "json",
-            success: function (resp) {
-                $('#registeredUserCount').text(resp.data);
-            }
-        });
-
-        $.ajax({
-            url: baseURL + "admin/d",
-            dataType: "json",
-            success: function (resp) {
-                $('#registeredDriversCount').text(resp.data);
-            }
-        });
-
-        $.ajax({
-            url: baseURL + "admin/b",
-            dataType: "json",
-            success: function (resp) {
-                $('#bookingForDayCount').text(resp.data);
-            }
-        });
-
-        $.ajax({
-            url: baseURL + "car/availableCount",
-            dataType: "json",
-            success: function (resp) {
-                $('#availableCarCount').text(resp.data[0]);
-                $('#reservedCarCount').text(resp.data[1]);
-            }
-        });
-    }
 
     $("#dashboardNav").click(function () {
         $("#dashboardPage").css("display", "block");
@@ -693,7 +702,7 @@
             success: function (resp) {
                 for (let cus of resp.data) {
                     if (cus.bkAdminStatus === "Approved") {
-                        var row = '<tr><td>' + cus.bkId + '</td><td>' + cus.bkCusEmail + '</td><td>' + cus.bkCar + '</td><td>' + cus.bkDate + '</td><td>' + cus.bkReturnDate + '</td><td>' + cus.bkTotal + '</td><td>' + cus.bkDriver + '</td></tr>';
+                        var row = '<tr><td>' + cus.bkId + '</td><td>' + cus.bkCusEmail + '</td><td>' + cus.bkCar + '</td><td>' + cus.bkDate + '</td><td>' + cus.bkReturnDate + '</td><td>' + cus.bkTotal + '</td><td>' + cus.bkDriver + '</td><td>' + cus.bkStatus + '</td></tr>';
                         $("#tblBooking").append(row);
                     }
                 }

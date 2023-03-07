@@ -38,4 +38,8 @@ public interface UserService {
     void updateUserPwd(AllUserDTO dto);
 
     void saveDriver(DriverDTO dto);
+
+    void updateDriver(DriverDTO dto);
+
+    ArrayList<Integer> getAvailableAndReservedDriverCount();
 }

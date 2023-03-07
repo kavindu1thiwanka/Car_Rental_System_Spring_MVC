@@ -399,10 +399,12 @@
                         <table class="table shadow table-hover">
                             <thead class="thead-dark">
                             <tr class="table-primary">
+                                <th scope="col">Booking ID</th>
                                 <th scope="col">Car</th>
                                 <th scope="col">Pick Up Date</th>
                                 <th scope="col">Return Date</th>
                                 <th scope="col">Driver</th>
+                                <th scope="col">Total</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Options</th>
                             </tr>
@@ -504,6 +506,45 @@
             </div>
         </div>
     </div>
+    <!-- Return Car Modal -->
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-backdrop="static"
+         data-keyboard="false"
+         id="returnCardModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5"
+                        style="font-family: 'Josefin Sans', sans-serif; font-size: 40px; font-style: italic">Return</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-auto">
+                            <label for="extraKmInputField">Extra Km</label>
+                            <input class="form-control" id="extraKmInputField" placeholder="00"
+                                   type="text">
+                            <label class="small" style="color: #b3b7bb">Enter the extra km you went</label>
+                        </div>
+                        <div class="col-auto mt-2">
+                            <input class="form-check-input ml-1" id="damageCheckBox" type="checkbox" value="">
+                            <label class="form-check-label ml-4" for="damageCheckBox">
+                                If your vehicle have damage select this check box
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" data-target="#dashboardModal"
+                            data-toggle="modal"
+                            type="button">Go Back
+                    </button>
+                    <button class="btn btn-success" data-dismiss="modal" id="returnCarBtn"
+                            style="color: white"
+                            type="button">Return
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>
@@ -530,6 +571,7 @@
     let baseURL = "http://localhost:8080/easy/";
 
     let car;
+    let bookingId;
     let date = new Date().toJSON().slice(0, 10);
 
     loadAllLuxuryCars();
@@ -810,22 +852,39 @@
                         success: function (resp) {
                             for (let b of resp.data) {
                                 if (b.bkCusEmail === x.userEmail) {
-                                    $.ajax({
-                                        url: baseURL + "driver",
-                                        dataType: "json",
-                                        success: function (resp) {
-                                            for (let d of resp.data) {
-                                                if (d.driverEmail === b.bkDriver) {
-                                                    var row = '<tr><td>' + b.bkCar + '</td><td>' + b.bkDate + '</td><td>' + b.bkReturnDate + '</td><td>' + d.driverName + '</td><td>' + b.bkStatus + '</td><td>' + `<button class="btn btn-success btnReturnVehicle" type="button">Return</button><button class="btn btn-danger ml-2 cancelReservation" type="button">Cancel</button>` + '</td></tr>';
-                                                    $("#bookingTbl").append(row);
-                                                } else {
-
+                                    if (b.bkDriver === "Self Drive"){
+                                        if (b.bkStatus === "Active" || b.bkStatus === "Pending") {
+                                            var row = '<tr><td>' + b.bkId + '</td><td>' + b.bkCar + '</td><td>' + b.bkDate + '</td><td>' + b.bkReturnDate + '</td><td>' + b.bkDriver + '</td><td>' + b.bkTotal + '</td><td>' + b.bkStatus + '</td><td>' + `<button class="btn btn-success btnReturnVehicle" data-dismiss="modal" data-toggle="modal" data-target="#returnCardModal" type="button">Return</button><button class="btn btn-danger ml-2 cancelReservation" type="button">Cancel</button>` + '</td></tr>';
+                                            $("#bookingTbl").append(row);
+                                        }
+                                        else if (b.bkStatus === "Closed" || b.bkStatus === "Canceled"){
+                                            var row2 = '<tr><td>' + b.bkId + '</td><td>' + b.bkCar + '</td><td>' + b.bkDate + '</td><td>' + b.bkReturnDate + '</td><td>' + b.bkDriver + '</td><td>' + b.bkTotal + '</td><td>' + b.bkStatus + '</td><td>' + `<button class="btn btn-success btnReturnVehicle" data-dismiss="modal" data-toggle="modal" data-target="#returnCardModal" type="button" disabled>Return</button><button class="btn btn-danger ml-2 cancelReservation" type="button" disabled>Cancel</button>` + '</td></tr>';
+                                            $("#bookingTbl").append(row2);
+                                        }
+                                    }else{
+                                        $.ajax({
+                                            url: baseURL + "driver",
+                                            dataType: "json",
+                                            success: function (resp) {
+                                                for (let d of resp.data) {
+                                                    if (d.driverEmail === b.bkDriver) {
+                                                        if (b.bkStatus === "Active" || b.bkStatus === "Pending") {
+                                                            var row = '<tr><td>' + b.bkId + '</td><td>' + b.bkCar + '</td><td>' + b.bkDate + '</td><td>' + b.bkReturnDate + '</td><td>' + d.driverName + '</td><td>' + b.bkTotal + '</td><td>' + b.bkStatus + '</td><td>' + `<button class="btn btn-success btnReturnVehicle" data-dismiss="modal" data-toggle="modal" data-target="#returnCardModal" type="button">Return</button><button class="btn btn-danger ml-2 cancelReservation" type="button">Cancel</button>` + '</td></tr>';
+                                                            $("#bookingTbl").append(row);
+                                                        }
+                                                        else if (b.bkStatus === "Closed" || b.bkStatus === "Canceled"){
+                                                            var row2 = '<tr><td>' + b.bkId + '</td><td>' + b.bkCar + '</td><td>' + b.bkDate + '</td><td>' + b.bkReturnDate + '</td><td>' + d.driverName + '</td><td>' + b.bkTotal + '</td><td>' + b.bkStatus + '</td><td>' + `<button class="btn btn-success btnReturnVehicle" data-dismiss="modal" data-toggle="modal" data-target="#returnCardModal" type="button" disabled>Return</button><button class="btn btn-danger ml-2 cancelReservation" type="button" disabled>Cancel</button>` + '</td></tr>';
+                                                            $("#bookingTbl").append(row2);
+                                                        }
+                                                    } else{
+                                                        continue;
+                                                    }
                                                 }
                                             }
-                                        }
-                                    });
+                                        });
+                                    }
                                 } else {
-
+                                    continue;
                                 }
                             }
                         }
@@ -855,6 +914,11 @@
                 }
             }
         });
+    });
+
+    $(document).on('click', '.btnReturnVehicle', function () {
+        bookingId = "";
+        bookingId = $(this).closest('tr').children(":eq(0)").text();
     });
 
     $("#signOutNav").click(function () {
@@ -906,15 +970,8 @@
 
     $("#reserveBtn").click(function () {
         let dEmail;
-        let bookingStatus;
         let bookingId;
-        let registrationNo;
-
-        if ($("#todayModal2").text() === date) {
-            bookingStatus = "Active";
-        } else {
-            bookingStatus = "Pending";
-        }
+        let id;
 
         $.ajax({
             url: baseURL + "booking",
@@ -929,12 +986,35 @@
                         if ($("#exampleRadios2").is(":checked")) {
                             for (let x of resp.data) {
                                 dEmail = x.driverEmail;
+                                var driverObj = {
+                                    driverEmail: x.driverEmail,
+                                    driverName: x.driverName,
+                                    driverAddress: x.driverAddress,
+                                    driverNICorLicenceNo: x.driverNICorLicenceNo,
+                                    driverContact: x.driverContact,
+                                    available: "Unavailable"
+                                }
+                                $.ajax({
+                                    url: baseURL + "driver",
+                                    method: "put",
+                                    data: JSON.stringify(driverObj),
+                                    contentType: "application/json",
+                                    dataType: "json",
+                                    success: function (res) {
+                                        alert()
+                                    },
+                                    error: function (err) {
+                                        let message = JSON.parse(err.responseText).message;
+                                        alert(message);
+                                        console.log("Error : " + message)
+                                    }
+                                });
                                 break;
                             }
                         } else if ($("#exampleRadios1").is(":checked")) {
                             dEmail = "Self Drive";
                         }
-                        registrationNo = $("#carRegisterNumModal2").text()
+                        id = $("#carRegisterNumModal2").text()
                         var reserveObj = {
                             bkId: "BK_" + bookingId,
                             bkCusEmail: $("#customerEmailModal2").text(),
@@ -943,7 +1023,7 @@
                             bkReturnDate: $("#returnDateModal2").text(),
                             bkTotal: $("#totalModal2").text(),
                             bkDriver: dEmail,
-                            bkStatus: bookingStatus,
+                            bkStatus: "Pending",
                             bkAdminStatus: "Unapproved"
                         }
                         $.ajax({
@@ -953,9 +1033,9 @@
                             contentType: "application/json",
                             dataType: "json",
                             success: function (res) {
-                                console.log(registrationNo);
+                                console.log(id);
                                 $.ajax({
-                                    url: baseURL + "car?registrationNo=" + registrationNo + "",
+                                    url: baseURL + "car?id=" + id + "",
                                     dataType: "json",
                                     success: function (resp) {
                                         for (let x of resp.data) {
@@ -973,26 +1053,25 @@
                                                 available: "Reserved",
                                                 status: x.status,
                                             }
-                                        }
-                                        $.ajax({
-                                            url: baseURL + 'car',
-                                            method: 'put',
-                                            contentType: "application/json",
-                                            data: JSON.stringify(carObj),
-                                            dataType: "json",
-                                            success: function (res) {
-                                                alert(res.message);
-                                            },
-                                            error: function (error) {
-                                                let cause = JSON.parse(error.responseText).message;
-                                                alert(cause);
-                                            }
+                                            $.ajax({
+                                                url: baseURL + 'car',
+                                                method: 'put',
+                                                contentType: "application/json",
+                                                data: JSON.stringify(carObj),
+                                                dataType: "json",
+                                                success: function (res) {
+                                                },
+                                                error: function (error) {
+                                                    let cause = JSON.parse(error.responseText).message;
+                                                    alert(cause);
+                                                }
 
-                                        });
+                                            });
+                                            break;
+                                        }
+                                        alert(resp.message);
                                     }
                                 });
-                                alert(res.message);
-                                console.log("Success : " + res.message);
                             },
                             error: function (err) {
                                 let message = JSON.parse(err.responseText).message;
@@ -1011,6 +1090,143 @@
         });
 
     });
+
+    $("#returnCarBtn").click(function () {
+        let extraKm = $('#extraKmInputField').val();;
+        $.ajax({
+            url: baseURL + "booking",
+            dataType: "json",
+            success: function (res) {
+                for (let x of res.data) {
+                    if (x.bkId === bookingId) {
+                        $.ajax({
+                            url: baseURL + "car?id=" + x.bkCar + "",
+                            dataType: "json",
+                            success: function (resp) {
+                                for (let y of resp.data) {
+                                    if (y.registrationNo === x.bkCar) {
+
+                                        let damageTotal = x.bkTotal + (y.priceForExtraKM * extraKm);
+
+                                        if ($("#damageCheckBox").is(":checked")) {
+                                            if (y.carType === "General") {
+                                                damageTotal = damageTotal + 10000;
+                                            }
+                                            if (y.carType === "Premium") {
+                                                damageTotal = damageTotal + 15000;
+                                            }
+                                            if (y.carType === "Luxury") {
+                                                damageTotal = damageTotal + 20000;
+                                            }
+
+                                        }
+
+
+                                        var reserveObj = {
+                                            bkId: bookingId,
+                                            bkCusEmail: x.bkCusEmail,
+                                            bkCar: x.bkCar,
+                                            bkDate: x.bkDate,
+                                            bkReturnDate: x.bkReturnDate,
+                                            bkTotal: damageTotal,
+                                            bkDriver: x.bkDriver,
+                                            bkStatus: "Closed",
+                                            bkAdminStatus: x.bkAdminStatus
+                                        }
+                                        var carObj = {
+                                            registrationNo: y.registrationNo,
+                                            carBrand: y.carBrand,
+                                            carType: y.carType,
+                                            numberOfPassengers: y.numberOfPassengers,
+                                            transmissionType: y.transmissionType,
+                                            fuelType: y.fuelType,
+                                            dailyPrice: y.dailyPrice,
+                                            monthlyPrice: y.monthlyPrice,
+                                            priceForExtraKM: y.priceForExtraKM,
+                                            color: y.color,
+                                            available: "Available",
+                                            status: x.status,
+                                        }
+                                        $.ajax({
+                                            url: baseURL + 'booking',
+                                            method: 'put',
+                                            contentType: "application/json",
+                                            data: JSON.stringify(reserveObj),
+                                            dataType: "json",
+                                            success: function (res) {
+                                                $.ajax({
+                                                    url: baseURL + 'car',
+                                                    method: 'put',
+                                                    contentType: "application/json",
+                                                    data: JSON.stringify(carObj),
+                                                    dataType: "json",
+                                                    success: function (res) {
+
+                                                        if (!(x.bkDriver === "Self Drive")){
+                                                            $.ajax({
+                                                                url: baseURL + "driver",
+                                                                dataType: "json",
+                                                                success: function (res) {
+                                                                    for (let z of res.data) {
+                                                                        if (z.driverEmail === x.bkDriver){
+                                                                            var driverObj = {
+                                                                                driverEmail: z.driverEmail,
+                                                                                driverName: z.driverName,
+                                                                                driverAddress: z.driverAddress,
+                                                                                driverNICorLicenceNo: z.driverNICorLicenceNo,
+                                                                                driverContact: z.driverContact,
+                                                                                available: "Available"
+                                                                            }
+                                                                            $.ajax({
+                                                                                url: baseURL + "driver",
+                                                                                method: "put",
+                                                                                data: JSON.stringify(driverObj),
+                                                                                contentType: "application/json",
+                                                                                dataType: "json",
+                                                                                success: function (res) {
+                                                                                    loadUserData();
+                                                                                    alert("Vehicle Successfully Returned");
+                                                                                }
+                                                                            });
+                                                                        }
+
+                                                                    }
+                                                                }
+                                                            });
+                                                        }else {
+                                                            alert("Vehicle Successfully Returned");
+                                                        }
+                                                    },
+                                                    error: function (error) {
+                                                        let cause = JSON.parse(error.responseText).message;
+                                                        alert(cause);
+                                                    }
+                                                });
+                                            },
+                                            error: function (error) {
+                                                let cause = JSON.parse(error.responseText).message;
+                                                alert(cause);
+                                            }
+
+                                        });
+                                    } else {
+
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+
+                    }
+                }
+            }, error: function (err) {
+                let message = JSON.parse(err.responseText).message;
+                alert(message);
+                console.log("Error : " + message)
+            }
+        });
+    });
+
 </script>
 </body>
 </html>
