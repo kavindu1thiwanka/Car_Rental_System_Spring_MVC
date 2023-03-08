@@ -108,7 +108,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public ArrayList<CarDTO> getAllGeneralCars() {
-        List<Car> arrayList = carRepo.findByCarType("General");
+        List<Car> arrayList = carRepo.findByCarType("Genaral");
         ArrayList<Car> carGeneralList = new ArrayList();
         for (Car c : arrayList) {
             if (c.getAvailable().equals("Available")) {
@@ -117,6 +117,7 @@ public class CarServiceImpl implements CarService {
                 continue;
             }
         }
+
         return mapper.map(carGeneralList, new TypeToken<ArrayList<CarDTO>>() {
         }.getType());
     }
