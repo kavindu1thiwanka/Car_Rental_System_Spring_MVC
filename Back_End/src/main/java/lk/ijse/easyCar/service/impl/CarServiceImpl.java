@@ -73,32 +73,30 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public ArrayList<CarDTO> getAllLuxuryCars() {
-        List<Car> carList = carRepo.findByCarType("Luxury");
-//        for (Car c : carList) {
-//            for (Car x : carList) {
-//                if (c.getCarBrand().equals(x.getCarBrand())){
-//                    carList.remove(c);
-//                }else {
-//                    continue;
-//                }
-//            }
-//        }
-        return mapper.map(carList, new TypeToken<ArrayList<CarDTO>>() {
+        List<Car> arrayList = carRepo.findByCarType("Luxury");
+        ArrayList<Car> carLuxuryList = new ArrayList();
+        for (Car c : arrayList) {
+            if (c.getAvailable().equals("Available")) {
+                carLuxuryList.add(c);
+            } else {
+                continue;
+            }
+        }
+        return mapper.map(carLuxuryList, new TypeToken<ArrayList<CarDTO>>() {
         }.getType());
     }
 
     public ArrayList<CarDTO> getAllPremiumCars() {
-        List<Car> carList = carRepo.findByCarType("Premium");
-//        for (Car c : carList) {
-//            for (Car x : carList) {
-//                if (c.getCarBrand().equals(x.getCarBrand())){
-//                    carList.remove(c);
-//                }else {
-//                    continue;
-//                }
-//            }
-//        }
-        return mapper.map(carList, new TypeToken<ArrayList<CarDTO>>() {
+        List<Car> arrayList = carRepo.findByCarType("Premium");
+        ArrayList<Car> carPremiumList = new ArrayList();
+        for (Car c : arrayList) {
+            if (c.getAvailable().equals("Available")) {
+                carPremiumList.add(c);
+            } else {
+                continue;
+            }
+        }
+        return mapper.map(carPremiumList, new TypeToken<ArrayList<CarDTO>>() {
         }.getType());
     }
 
@@ -110,17 +108,16 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public ArrayList<CarDTO> getAllGeneralCars() {
-        List<Car> carList = carRepo.findByCarType("General");
-//        for (Car c : carList) {
-//            for (Car x : carList) {
-//                if (c.getCarBrand().equals(x.getCarBrand())){
-//                    carList.remove(c);
-//                }else {
-//                    continue;
-//                }
-//            }
-//        }
-        return mapper.map(carList, new TypeToken<ArrayList<CarDTO>>() {
+        List<Car> arrayList = carRepo.findByCarType("General");
+        ArrayList<Car> carGeneralList = new ArrayList();
+        for (Car c : arrayList) {
+            if (c.getAvailable().equals("Available")) {
+                carGeneralList.add(c);
+            } else {
+                continue;
+            }
+        }
+        return mapper.map(carGeneralList, new TypeToken<ArrayList<CarDTO>>() {
         }.getType());
     }
 }
